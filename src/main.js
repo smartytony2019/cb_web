@@ -1,10 +1,15 @@
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-import locale from 'element-ui/lib/locale/lang/en'
-import ElementUI from 'element-ui'
+// 导入vant包 和其相关样式
+import Vant from 'vant'
+import 'vant/lib/index.css'
+
+
+// import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import i18n from './lang'
+
 
 import '@/assets/styles/index.scss' // global css
 
@@ -29,9 +34,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+// Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+// 将 vant 组件库安装到 Vue 上
+Vue.use(Vant)
 Vue.use(i18n)
 
 Vue.config.productionTip = false

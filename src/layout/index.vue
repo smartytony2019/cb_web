@@ -1,9 +1,6 @@
 <template>
-  <div class="app-wrapper">
-  <h1>fffffffffffff</h1>
-    <router-view></router-view>
-  <h1>fffffffffffff</h1>
-  </div>
+  <router-view />
+  <!-- <div class="app-wrapper"></div> -->
 </template>
 
 <script>

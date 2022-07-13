@@ -18,6 +18,7 @@ body {
   
   #app {
     height: 100%;
+    color: #7a828d;
   }
   
   *,
@@ -59,3 +60,24 @@ body {
     padding: 20px;
   }
   
+
+.van-tab {
+  padding: 0;
+  width: 33.33333%;
+  margin: 0.3125rem 0;
+}
+
+.van-tabs__nav--complete {
+  padding-left: 0!important;
+}
+
+.van-tabs__nav--line {
+  padding-bottom: 0;
+  padding-right: 0!important;
+}
+
+.van-tabs__nav {
+  background: none;
+  display: flex;
+  flex-wrap: wrap;
+}
