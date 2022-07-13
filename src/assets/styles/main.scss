@@ -1,0 +1,177 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3339105 */
+  src: url('//at.alicdn.com/t/font_3339105_mriw8cmzglh.woff2?t=1650977174685') format('woff2'),
+  url('//at.alicdn.com/t/font_3339105_mriw8cmzglh.woff?t=1650977174685') format('woff'),
+  url('//at.alicdn.com/t/font_3339105_mriw8cmzglh.ttf?t=1650977174685') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img{
+  -webkit-user-drag:none;
+}
+
+.icon-jinrujiantou:before {
+  content: "\e88e";
+}
+
+.icon-xuanzhong:before {
+  content: "\e629";
+}
+
+.icon-xuanze:before {
+  content: "\e60c";
+}
+
+.icon-fanhui:before {
+  content: "\e600";
+}
+
+.icon-fanhui1:before {
+  content: "\e609";
+}
+
+.icon-fanhui2:before {
+  content: "\e602";
+}
+
+.bgimg{
+  background-size: 100% 100%;
+}
+.leftHeader{
+
+  background-size: 100% 100%;
+}
+
+
+
+@media (min-width:640px){
+  .listBanner{
+      background-size: 99% 100% !important;
+  }
+  .pad{
+      padding: 26px 22px 26px 44px !important;
+  }
+  .home_Banner{
+      height: 170px !important;
+  }
+}
+
+
+
+/*推广教程*/
+/*.detail{*/
+/*    background: url(../image/promote/group.png) no-repeat 50%/100% 100%;*/
+/*}*/
+/*我的背景图*/
+.mine-info-box{
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: top;
+}
+
+/*游戏内页*/
+/*幸运哈希游戏背景*/
+.Lucky_Hash_Bg{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/*等待开奖背景*/
+.Hash_group{
+  background-repeat: no-repeat;
+}
+/*幸运希哈游戏界面banner*/
+.Lucky_hash_banner{
+  background-repeat: no-repeat;
+}
+
+/*幸运对子游戏背景*/
+.Lucky_Pair_Bg{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/*幸运对子开奖背景*/
+.Pair_group{
+  background-repeat: no-repeat;
+}
+/*幸运对子游戏背景banner*/
+.Lucky_Pair_banner{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/*幸运状元游戏背景*/
+.Lucky_Champion_Bg{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/*幸运状元开奖背景*/
+.Champion_group{
+
+  background-repeat: no-repeat;
+}
+/*幸运状元游戏背景banner*/
+.Lucky_Champion_banner{
+
+  background-size: 100% 100%;
+}
+
+
+/*希哈百记录游戏背景*/
+.bjl_bg{
+
+}
+/*希哈百家乐开奖背景*/
+.bjl_group{
+  background-repeat: no-repeat;
+}
+.Hash_bjl_banner{
+  background-repeat: no-repeat;
+}
+/*庄*/
+.itemImgOrange{
+
+  background-size: 100% 100%;
+}
+/*闲*/
+.itemImgGreen{
+
+  background-size: 100% 100%;
+}
+
+/*投注详情title背景*/
+.tradeHead{
+  background-size: 100% 100%;
+}
+
+/*游戏大厅背景*/
+.gamelottery_bg{
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/*帮助中心背景*/
+.help_bg{
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+/*客服背景*/
+.bg_service{
+  background-size: 100% 100%;
+
+}
+/*客服图标*/
+.service_icon{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASISURBVHgBzVhNTFRXFD5DASuCDpiWJozNmLYJ46JgYzVpFx0iddlqu7UZ94Z2aVMX2MQ2dtdqE7fSNmm6EBbtplUDLNoUNBFMFBbqmwgoqDAwMzrO8HM8333znk+Yee++x0j8ksN97947l+9999xzz70hCgBmjkvRJoayXSxcNGBeLFm0AbHBUCg0Qi8KQiYsdkLMYP8wxBJiUaokioRSvH4YGIvWC3yh2FWuPAwOqp788AhXRqVywNgHg5DaKCR0SR3kjccacqFVpKJSXKVnS78s0oUVOjeWpuGZJzQ2t0iZxRVVH2uspZb6V6hzRx199lY9aQIhZreElWQ5YoYUUdIg1DOWUWQaaqsosqWaYk01qm0qu0xjqYLq2yL1XW3bdAmOCLHda2rZDAmumMgscvz8JL/zS5IP/z3NQ9O5kv0ms4t8/maG471m35PDs6yJ7ucUK05hv5tak9kl+uKfGZp6tETH32+iRGuDUqj3VlYplCms2Crta36VOt+sU31PXp6jSxM5OiSq/fDBdvIApnSnKDdfXayIk8cUWqROfbidOiN1dOzfh9R3+1HJvj3jGXsaz8Zfp2P/zVKffMCuxhpKxLa6/Rv49ldi31qKufoWVPlaBu9qC9P+yGY6OvBAkdQBFsHxPY10+MKMUrX/UIvySxckRbGdVUKqnTzUOjO6ICutmvbv2Gwrp4uLE4+VYqdkGs2Fk/H6CXabOKh/5NZraPqJIgK/Odr/wA4LfoCQMjydV0r13s4qgh5oA7F4udYbcwX6/kpKPatQ4EOprne3PffeM56mWLhGwskS7fljQsJN2u3nSrFouVb4khWTMCW6wLTDH53xCx82fD9vv5+5tuA2RLsrMT8KOQFnB74plqXgMZ1hhAvP7ccL2IYQ+Vul/PztemqoMVfdVvGpvc2bxMfyfocMV1MAYKq+FB9qbaqliDxbREoB0xmAGIEYoq0v1X470KwCqA50+63CfFWRWOlB69cOirDh559FHGM4A+vHEnhdkETPsicYKLNPfKRTAitWGWCtUl0sWHuoEMR4mFr4JLY2N2L4nAGxkikulPn1wBv2+4U7j2lciA1JwIRy5YAN31LK2twtQgv5ZXne4uqX4ITWUdLE2Y7X1HRgi7IAkthLsUNcFOLfSTbxsyNGoQ0fgYALwpcmcyrz8MCg+ss+zorX5/Iqz0K+ZeH0aIo/+fMud0iudnp0ntOFZVX//72cytvwLkqpXA7tHjBsekjQ2AeQCIoyqnSDRR4JJohLqsQaSDiJ4ZQd+KgGNW7M5lW5uv6nkRS/9/sd9SEaMLh43lQeioxRKn6UxxMUAJ/+dU9tX1gsSG+wUQ/dh8/laJcEYfjmXpfF4sA560Cy+jCCE1I7+QBIdPRN2e84mLTK9hRr2qRCjSYhQCWIJVvYvBLwPaWS19sHlIBIsdeVAW/sKdyC3lUBv4xXBA5yuCp40Zcq/kg5yMHnDK48cLUVpfWCzQBs8PoBlbqpkmBTvSMc/KqzW0w77wtRALB5FsWxL07mmQHmvByGIZ0aIPOyZJB84imCZWpQDFMr5gAAAABJRU5ErkJggg==);
+  background-size: 100% 100%;
+}
+/*纸飞机客服图标*/
+.telegram_icon{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJMUExURQAAAP///3///1Wq/8z//9T//9v//9////H//+Xy8ufz8+jz//b///b///f///////////f///L4//P//+j5//P5/+75+fT5//T6//T//+/1//X///D6+vX6+vX6+vP5/Pf8//f8/Pf8//X6//j9//P6/fX4/fb6/fj9//r9//b6/fj9//r///r9//j9/fb9//v9//j7/fv///j9/fv9/fv///n7/fv9//////3///////39//3///////b7/fj7//b7/fX6/fz9//z9//z+//z+//v8/vv8//v8/vz+/v3+//v+//v9//v+//7+//39/v3+//v+//r9/vr+//3+//v9/v3///v+//////v+//////7///3+//7+/v////z+//z+//z9/v3+//3///////z+/vz+//z9/vz9//3///7///3+//3+/v7///3///3+/v3+/v3+//7///7//yWi4Cai4Caj4Cej4Smj4S+m4S+n4jOo4jWp4j6t40Gu5EGv5EOv5EWw5Uaw5Eex5VK15lO25lO251i451i46Fq56Fu56Fy56F666Ge+6Wm/6m3A6nbF7HrG7HvG7HzH7H3H7H7I7ITK7YbL7ojM7ovN7ozO743O7o7P75HP75HQ75bS8JvU8KTY8qba8qja867c86/d9LPe9Lfh9cPl9sTm98fn9sfn98rp+Mvp+M3q+NDr+NPs+dju+eHy++b1/O34/O74/e/4/fH5/vL5/fT6/fT6/vf7/vf8/vj7/vj8/vv+/v3+/v7+/v7//////y7ody0AAAB0dFJOUwABAgMFBgcIEhQVFhsdICAhIicpLCwuLjAwMTEyMjRWXmJlZmdoa2xsbW5vb3BxcnJ0dHV2eHl6enuAgoKDiY2RlaeorK2vs7bMzs/Q0NHT09TW1tbX19jY2dnb3ODg5ujp6+/v8PL09PX19vf3+Pn6+vv+Pl5XuAAAAb9JREFUGBmdwQVXFFEYBuAXu1uxW7G7u7EVxW5dFTv4VKy1uxE7UMHuWjvw/WPOnZl72YkdzuF5UE6NeoxbuCa3JGdGZtd0pFRt2EwmmTq6DsJUGhijz8p+aQhIn8YQ2fXh024jQ+3IgEcbptQWSToxQkcY9bYywpYWcKVlMVJWFTj6sAxDYKu1gmWI1YAyiqF+P7n2lK4RUKYwxIdb+0VO0rUMlsYM+FV0Yo9YzlNrDqALfT7dOyCOfGp9AUyix4sre0Vk9xGxPKA2AcB0lvpTfFyUw69uiOUxtSUA1lFLFB4UJe9y4q4oz6mtB1BCx5uLeWI79I4FYvtIA0Aubbd3iePql78FYtvHUgDW0vYoLkr8Jb+eE8dpGpsALKbr7Z1TR+9/57cz4sqnMRfAeHpdEu0hjckAetHrrGivafQG0IReP26KK0GjJSyz6fM+LsoxGougDKffz+tiuUBjLJTqMQY8i4sUU1tdF7bBDPpcVEhjEByVZzHSgopwNdvMCDsbwmjPCN2RpANT6gaPjO0Mta0zfBpkM8S81gioMGAVfWJDqyJM7THzmWT5yJpIqWnPzDkb+C9n6cT+rVA+/wF8vBYTcsPJBgAAAABJRU5ErkJggg==);
+  background-size: 100% 100%;
+}
