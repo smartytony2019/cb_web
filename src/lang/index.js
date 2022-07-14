@@ -21,7 +21,7 @@ const messages = {
     ...vantZhLocale
   }
 }
-Locale.add(messages);
+Locale.add(messages)
 export function getLanguage() {
   // Read the language of the last page closed
   const chooseLanguage = Cookies.get('language')

@@ -72,6 +72,12 @@ export const constantRoutes = [
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
+        path: '/champion',
+        name: 'champion',
+        component: () => import('@/views/home/champion'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
         path: '/mine',
         name: 'mine',
         component: () => import('@/views/home/mine'),
