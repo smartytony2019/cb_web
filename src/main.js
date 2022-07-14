@@ -5,6 +5,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import Vant from 'vant'
 import 'vant/lib/index.css'
 
+import Meta from "vue-meta";
 
 // import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -40,6 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 // 将 vant 组件库安装到 Vue 上
 Vue.use(Vant)
 Vue.use(i18n)
+Vue.use(Meta)
 
 Vue.config.productionTip = false
 

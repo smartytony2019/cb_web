@@ -58,6 +58,24 @@ export const constantRoutes = [
         name: 'index',
         component: () => import('@/views/home/index'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
+        path: '/hash',
+        name: 'hash',
+        component: () => import('@/views/home/hash'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
+        path: '/bull',
+        name: 'bull',
+        component: () => import('@/views/home/bull'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
+        path: '/mine',
+        name: 'mine',
+        component: () => import('@/views/home/mine'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
       }
     ]
   },
