@@ -84,6 +84,12 @@ export const constantRoutes = [
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
+        path: '/bjl',
+        name: 'bjl',
+        component: () => import('@/views/home/bjl'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
         path: '/mine',
         name: 'mine',
         component: () => import('@/views/home/mine'),
