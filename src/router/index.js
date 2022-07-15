@@ -62,31 +62,31 @@ export const constantRoutes = [
       {
         path: '/hash',
         name: 'hash',
-        component: () => import('@/views/home/hash'),
+        component: () => import('@/views/game/hash'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
         path: '/bull',
         name: 'bull',
-        component: () => import('@/views/home/bull'),
+        component: () => import('@/views/game/bull'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
         path: '/comb',
         name: 'comb',
-        component: () => import('@/views/home/comb'),
+        component: () => import('@/views/game/comb'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
         path: '/champion',
         name: 'champion',
-        component: () => import('@/views/home/champion'),
+        component: () => import('@/views/game/champion'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
         path: '/bjl',
         name: 'bjl',
-        component: () => import('@/views/home/bjl'),
+        component: () => import('@/views/game/bjl'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {

@@ -22,7 +22,7 @@
               <label class="language">{{ languageDefault.name }}</label>
               <div v-if="switchLanguage" class="rightup" @click.stop>
                 <div v-for="(item,index) in languageList" :key="index+''" class="rightBox" @click="switchLanguageHandle(item)">
-                  <p class="hairline" :class="index == languageIndex ? 'ac' : ''">
+                  <p class="van-hairline--bottom" :class="index == languageIndex ? 'ac' : ''">
                     <img :src="item.url" alt="">
                     {{ item.name }}
                   </p>
@@ -314,9 +314,9 @@
         <!-- 内容区域 - end -->
 
         <!-- APP下载 - start -->
-        <div class="appdown  after flex-between-center">
+        <div v-if="isShowAppDown" class="appdown after flex-between-center">
           <div class="flex-center-center">
-            <i class="close_app van-icon van-icon-close" />
+            <i class="close_app van-icon van-icon-close" @click="isShowAppDown = !isShowAppDown" />
             <div>
               <div class="appTitle">下载哈博APP，体验更多竞彩乐趣</div>
             </div>
@@ -378,6 +378,7 @@ export default {
   },
   data() {
     return {
+      isShowAppDown: true,
       switchLanguage: false,
       languageIndex: 0,
       languageDefault: null,
