@@ -1,7 +1,7 @@
 <!--
 @Author:      tony
 @Date:        2019-01-04T10:00:00+08:00
-@Description: 哈希PK拾
+@Description: 哈希两面
 -->
 <template>
   <div class="wrapper">
@@ -9,11 +9,10 @@
       <div class="page">
 
         <div class="headerFIVE">
-
           <div class="head flex-between-center">
             <div class="flex-center-center">
               <i class="iconfont icon-fanhui2" />
-              <span>哈希PK拾 体验房</span>
+              <span>哈希两面 体验房</span>
             </div>
             <div>
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAYAAAAdx42aAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACUSURBVHgB7dZBDYUwEATQ2W/gIwUHWMAJSCiKCA7qACTgAFBQdiBY6Fz2JW16a7NtZmullARg8NGgvsn8AAU658+nDJ2dFWDpO2iuYEEIQc04eRa0EOSAmWUG0ezrHhpZ3QvAXpCgk743wPv/o67L38CJEILa9ydURDEzYOMBVl+00Hh6wQHNj/jBXjDhLUdt3HO8AYZ7MoUEz+JsAAAAAElFTkSuQmCC">
@@ -36,139 +35,113 @@
 
           <div class="en_name">Block Hash</div>
 
-          <div class="orderList">
-            <div class="list-title flex">
-              <div>Block Hash </div>
-              <div>投注金额</div>
-              <div>中奖金额</div>
-              <div>下注时间</div>
+          <div class="subxt flex-between-center">
+            <div>开奖结果</div>
+            <div class="flex xt">
+              <div class="ac">大小</div>
+              <div>单双</div>
+              <div class="ac">个人走势</div>
+              <div>全部走势</div>
             </div>
-            <div class="maquee">
-              <ul style="animation: 30s linear 0s infinite normal none running scroll_Y;">
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-              </ul>
+          </div>
 
-              <ul style="animation: 30s linear 0s infinite normal none running scroll_Y;">
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-                <li>
-                  <div>00****fc21f1</div>
-                  <div>1435<span>USDT</span></div>
-                  <div>14063<span>USDT</span></div>
-                  <div>15:33:02</div>
-                </li>
-              </ul>
+          <div class="orderList">
+            <div style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+              <div style="overflow: auto; height: 106%; width: 100%; position: absolute;">
+                <div class="flex" style="margin-left: 30px;">
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                    <div class="blank small">小</div>
+                  </div>
+                  <div class="lie">
+                    <div class="blank big">大</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -191,7 +164,7 @@
               </div>
 
               <div class="flex-between-center new_win">
-                <div>赔率：9.8</div>
+                <div />
                 <div>
                   游戏说明
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATgSURBVHgBxVndcdtGEN4FoLxYmjAVhK7AdAWmKohcgVyBCYaUZ/Ik8CkzEmlBbkBSBVYHhisQXYGpCsKZMC8OgfXu4XAASJA8QPT4exAB427xYXdv/4zQEP7wsgsJdMjFVwDYAYIWALXSpzgHpBlfzJDoC/9G4fgsggbAOot9P2gl3lGPN/k5GUsQzvhvhPG3URj+NbPdZkVQiJF3dM5v8aul8MuJNUYw01Lb/Fc+oAPVZG9tie4k+HYw7iFiUNYYztl0d2zGe1j+Nw3DYL5pv3IFwjcE7ApI7QJJNn88Ct+/u4WmBHvDyVVJa5ZCN5L98+INoXteIgoYXo8HfahDMDXp4Ue+7OYLacTaCrdpy5ro8DJgjZ4XWEzxmXscBv012U6VgMQ9jAw50RomL/kUBvsgJxBZIlMfHH4HR4NF/LFq7ZoGS2YVcvG3413OLH6WgPOK/bKthCI9wnJ5u3Of/3eb3F8+5SZfN3eJoPIRx7mxJVflCiVYnNZVkuxKfdZwuEZwbaGY9fLd1FbwRsiHHjkvq/zLyGILsE9+0rdzPHSfZ+uNDybuQVD4itE2cqvrU0j2gHu+iNS1+Wdq07/J1TZZkmXUIUzRokViDpDSoNKGd/AV9BdfTwbPtwn0/YsOec5Ddk8EX5x40c0OkZYnpjeBerdFrlrkJg9GSYfub6JFx2jDfHA8gl3w8KRwN3fi/0+KJ1x8DpfusTwzqwi720SGYX9eevdiqQ6qIogS5VMhM5sgnCQFzQB9rjoE8kL+MRojwhewA/rd6qPYJ3vy66UOanwpAgt8eH92Aj8ISHBHCEKuJdxEg13zEJM72BPED8uyVdllw/C+cNdxiuZqWrOtk+P4KCGoiOXy3mrz0isepK6DDv6ub6awJ9DB0U0xBKmwZVkDKt/FNAVydHghJm7rZ3vJsypVEuU+KgePcy/UAalqXPyiJQTTOi8rNp8ASZVr5RmnS6gJzumP+rLlwB6har38xqrQqEJCYIpjIZiaFo2pG8EfjE9KfieFbQNyaq+Dv+pLziSo8ybtSPq70TVXlgF/CzINzhyKkzQ+Ibb94Kpep1ZC3rNwPLWLeRWQnAw6h/Ppf/TYxhEB/KGeLpbyIIImIIpUHkivP0NTeMLBVIFTj70wj3+kioAIGkCb9BaeiIQ7QMzL6MjR2SNN0Ain8JNRKlyYm65m6Fo/b6Wx7OdAvRvLhUsaB5ee6QEkljU5LNzgn3IW+ac3mHyVa2iAYhyVXsYQTItFSLUoX6CLxTpg0wTqJPN+9qGw7v63w0ne0HOzlcXQPJPEbgB5sXiuRha1GBZGI4S18rp/dtFhNwv03lmmvRJBpcXENC4cKZwbXdPZ8UuSftqI49yqbcjISf+SuKZpX81Aa407p6xQV7RPyqfW5IqtLrtZOBmW3KtyNtMbjqXY7BqSTvx6Vxtam5y0GmyljJx0hh8mw87quspqhjuy15AVsNLXkvOgnHgfxLjaFlmqUS+EFGlbq9ZvHb+VzC34AeO3KrNaE9wk1IxzpcnaMsAUbYH3rMPp64SHoKdrQ1BIRsU5TCOC6Yv4NHNzvzEV8nyPY5OMPuY8WJ+r2pKro00lnIq58cJqnFdziK6Jro5zraA0dl13CFqLYBE6kHcJeWJAUo1ju/zfEBL0aYoxl15cMTVtab8DN1+gbklGWtAAAAAASUVORK5CYII=">
@@ -199,55 +172,21 @@
               </div>
 
               <div class="select_content">
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>0</div>
-                  </div>
+                <div class="playBlockNew">
+                  <div>大</div>
+                  <div>1.95</div>
                 </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>1</div>
-                  </div>
+                <div class="playBlockNew">
+                  <div>小</div>
+                  <div>1.95</div>
                 </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>2</div>
-                  </div>
+                <div class="playBlockNew">
+                  <div>单</div>
+                  <div>1.95</div>
                 </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>3</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>4</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>5</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>6</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>7</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>8</div>
-                  </div>
-                </div>
-                <div class="select_item">
-                  <div class="item flex-center-center">
-                    <div>9</div>
-                  </div>
+                <div class="playBlockNew">
+                  <div>双</div>
+                  <div>1.95</div>
                 </div>
               </div>
             </div>
@@ -383,6 +322,30 @@ export default {
     margin-left: 0.5rem;
   }
 
+  .subxt {
+    padding-left: 0.5rem;
+    height: 30px;
+    .xt {
+      height: 1.25rem;
+      margin-left: 0.875rem;
+      >div {
+        background: #799aee;
+        color: #fff;
+        padding: 0 0.1875rem;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        border-radius: 1.25rem;
+        min-width: 2.5rem;
+        margin-left: 0.3125rem;
+      }
+      .ac {
+        background: #66a8ff;
+      }
+    }
+  }
+
   .orderList {
     width: 100%;
     background: rgba(0,0,0,.4);
@@ -390,7 +353,6 @@ export default {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin-top: 0.625rem;
     padding: 0.3125rem 0.625rem;
     border-radius: 0.625rem;
     background: rgba(0,0,0,.5);
@@ -404,28 +366,24 @@ export default {
       }
     }
 
-    .maquee {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      ul {
-        width: 100%;
-        padding: 0 0.625rem;
-        li {
-          display: flex;
-          border-bottom: 0.0625rem solid hsla(0,0%,100%,.12);
-          padding: 0.25rem 0;
-          >div{
-              flex: 1 1;
-              text-align: center;
-              font-size: .8125rem;
-            span {
-              color: #e5cf00;
-            }
-          }
-        }
+    .lie {
+      min-width: 2.5rem;
+      .blank {
+        width: 2.1875rem;
+        height: 1.125rem;
+        font-size: .8125rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #568bf8;
+        color: #fff;
+        margin: 0.1875rem auto;
+      }
+      .big {
+        background: #f12d35;
       }
     }
+
   }
 
 }
@@ -484,17 +442,25 @@ export default {
       display: flex;
       flex-wrap: wrap;
       margin-top: 0.625rem;
-      .select_item {
-        width: 20%;
-        padding: 0.625rem 0.3125rem;
-        .item {
-          width: 100%;
-          height: 3.125rem;
-          box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 5%);
-          color: #60768a;
-          background: #fff;
-          border-radius: 0.4375rem;
-          font-size: 1.25rem;
+      .playBlockNew{
+        width: 10.75rem;
+        font-size: 1.0625rem;
+        text-align: center;
+        border-radius: 0.4375rem;
+        background: #fff;
+        padding: 0.9375rem 0;
+        color: #60768a;
+        box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 5%);
+        margin: 0 auto 0.625rem;
+        >div {
+          text-align: center;
+          &:first-child {
+            font-size: 1.625rem;
+          }
+          &:last-child {
+            color: #a3a7b7;
+            margin-top: 0.625rem;
+          }
         }
       }
     }
