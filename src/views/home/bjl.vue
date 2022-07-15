@@ -10,9 +10,9 @@
         <div class="view">
           <div class="contentHeader">
             <div class="head flex-between-center">
-              <div class="flex-center-center">
+              <div class="flex-center-center" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui2" />
-                <span>幸运哈希 体验房</span>
+                <span>哈希百家乐 体验房</span>
               </div>
               <div>
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAYAAAAdx42aAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACUSURBVHgB7dZBDYUwEATQ2W/gIwUHWMAJSCiKCA7qACTgAFBQdiBY6Fz2JW16a7NtZmullARg8NGgvsn8AAU658+nDJ2dFWDpO2iuYEEIQc04eRa0EOSAmWUG0ezrHhpZ3QvAXpCgk743wPv/o67L38CJEILa9ydURDEzYOMBVl+00Hh6wQHNj/jBXjDhLUdt3HO8AYZ7MoUEz+JsAAAAAElFTkSuQmCC">
@@ -42,7 +42,7 @@
             </div>
             <div class="Hash_game_banner Hash_bjl_banner">
               <div class="bannerContent">
-                <div class="bannerTitle">幸运百家乐 体验房</div>
+                <div class="bannerTitle">哈希百家乐 体验房</div>
                 <div class="bannerText">最高赔率: 11</div>
                 <div class="bannerText">限注：0USDT-200USDT</div>
               </div>

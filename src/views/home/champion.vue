@@ -11,7 +11,7 @@
         <div class="headerFIVE">
 
           <div class="head flex-between-center">
-            <div class="flex-center-center">
+            <div class="flex-center-center" @click="$router.go(-1)">
               <i class="iconfont icon-fanhui2" />
               <span>哈希PK拾 体验房</span>
             </div>

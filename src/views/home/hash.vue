@@ -3,7 +3,7 @@
     <div class="flex-1 index-page">
       <div class="page Lucky_Hash_Bg">
         <div class="head flex-between-center">
-          <div class="flex-center-center">
+          <div class="flex-center-center" @click="$router.go(-1)">
             <i class="iconfont icon-fanhui2" />
             <span>幸运哈希 体验房</span>
           </div>
@@ -267,6 +267,8 @@ export default {
     }
   },
   created() {
+  },
+  methods: {
   }
 
 }

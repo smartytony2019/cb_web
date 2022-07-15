@@ -15,32 +15,22 @@
             </div>
           </div>
 
-          <div class="flex-right">
+          <!-- 切换语言 - start -->
+          <div class="flex-right" @click="switchLanguage = !switchLanguage">
             <div class="flex-center-center switch-language">
-              <img src="@/assets/images/zh-CN.png" alt="" class="rightImg">
-              <label class="language">中文</label>
-              <div v-if="switchLanguage" class="rightup">
-                <div class="rightBox">
-                  <p class="hairline ac">
-                    <img src="@/assets/images/zh-CN.png" alt="">
-                    中文
-                  </p>
-                </div>
-                <div class="rightBox">
-                  <p class="hairline ac">
-                    <img src="@/assets/images/zh-CN.png" alt="">
-                    中文
-                  </p>
-                </div>
-                <div class="rightBox">
-                  <p class="hairline ac">
-                    <img src="@/assets/images/zh-CN.png" alt="">
-                    中文
+              <img :src="languageDefault.url" alt="" class="rightImg">
+              <label class="language">{{ languageDefault.name }}</label>
+              <div v-if="switchLanguage" class="rightup" @click.stop>
+                <div v-for="(item,index) in languageList" :key="index+''" class="rightBox" @click="switchLanguageHandle(item)">
+                  <p class="hairline" :class="index == languageIndex ? 'ac' : ''">
+                    <img :src="item.url" alt="">
+                    {{ item.name }}
                   </p>
                 </div>
               </div>
             </div>
           </div>
+          <!-- 切换语言 - end -->
         </div>
 
         <!-- 内容区域 - start -->
@@ -139,82 +129,40 @@
             <!-- 游戏 - start -->
             <div class="gameBox">
               <div class="title">哈希彩种 HOT</div>
-              <van-tabs
-                class="tab-style list-tab-style"
-                swipeable
-              >
-
-                <van-tab v-for="item in 6" :key="item+''">
+              <van-tabs class="tab-style list-tab-style" swipeable @click="gameChange">
+                <van-tab v-for="(item,index) in gameList" :key="index+''">
                   <!--自定义标题（#title必不可少）-->
                   <template #title>
-                    <div class="gameitem lucky_hash">
-                      <span>幸运哈希</span>
+                    <div class="gameitem" :class="index === gameIndex? item.enname+'_active': item.enname">
+                      <span>{{ item.name }}</span>
                     </div>
                   </template>
 
                   <div class="game_content">
-                    <div class="listBanner four">
-                      <div class="time_title">体验房</div>
-                      <div class="pad">
-                        <div class="playName">幸运哈希</div>
-                        <div class="high">
-                          最高赔率
-                          <span class="odds">1.98</span>
+                    <template v-if="item.children && item.children.length>0">
+                      <div v-for="(cItem,cIndex) in item.children" :key="cIndex+''" class="listBanner four" :style="{backgroundImage: 'url('+cItem.img+')'}" @click="gameEnter(cItem)">
+                        <div class="time_title">{{ cItem.name }}</div>
+                        <div class="pad">
+                          <div class="playName">{{ item.name }}</div>
+                          <div class="high">
+                            最高赔率
+                            <span class="odds">{{ cItem.maxOdds }}</span>
+                          </div>
+                          <div class="high">
+                            限注
+                            <span class="otherSize">{{ cItem.min }}-{{ cItem.max }}U</span>
+                          </div>
+                          <button class="gameButton">立即去玩</button>
                         </div>
-                        <div class="high">
-                          限注
-                          <span class="otherSize">0-200U</span>
-                        </div>
-                        <button class="gameButton">立即去玩</button>
                       </div>
-                    </div>
-                    <div class="listBanner four">
-                      <div class="time_title">体验房</div>
-                      <div class="pad">
-                        <div class="playName">幸运哈希</div>
-                        <div class="high">
-                          最高赔率
-                          <span class="odds">1.98</span>
-                        </div>
-                        <div class="high">
-                          限注
-                          <span class="otherSize">0-200U</span>
-                        </div>
-                        <button class="gameButton">立即去玩</button>
+                    </template>
+                    <template v-else>
+                      <div style="text-align: center;">
+                        <img src="@/assets/images/nodata.png" class="nodata">
+                        <div class="morePlay">更多游戏正在研发中...</div>
                       </div>
-                    </div>
+                    </template>
 
-                    <div class="listBanner four">
-                      <div class="time_title">体验房</div>
-                      <div class="pad">
-                        <div class="playName">幸运哈希</div>
-                        <div class="high">
-                          最高赔率
-                          <span class="odds">1.98</span>
-                        </div>
-                        <div class="high">
-                          限注
-                          <span class="otherSize">0-200U</span>
-                        </div>
-                        <button class="gameButton">立即去玩</button>
-                      </div>
-                    </div>
-
-                    <div class="listBanner four">
-                      <div class="time_title">体验房</div>
-                      <div class="pad">
-                        <div class="playName">幸运哈希</div>
-                        <div class="high">
-                          最高赔率
-                          <span class="odds">1.98</span>
-                        </div>
-                        <div class="high">
-                          限注
-                          <span class="otherSize">0-200U</span>
-                        </div>
-                        <button class="gameButton">立即去玩</button>
-                      </div>
-                    </div>
                   </div>
                 </van-tab>
               </van-tabs>
@@ -379,7 +327,6 @@
         </div>
         <!-- APP下载 - start -->
       </div>
-
     </div>
 
     <div class="footer flex">
@@ -432,22 +379,297 @@ export default {
   data() {
     return {
       switchLanguage: false,
-      tabList: [ // 榜单图标变量
-        { tabName: '甜蜜榜', id: 0,
-          tabUrl: `${urlPath}tmb-tab.png`,
-          tabUrlAct: `${urlPath}tmb-tab-active.png`
+      languageIndex: 0,
+      languageDefault: null,
+      languageList: [
+        {
+          id: 1,
+          name: '中文',
+          value: 'zh-CN',
+          key: 'zh',
+          url: require('@/assets/images/zh-CN.png')
         },
-        { tabName: '贡献榜', id: 1,
-          tabUrl: `${urlPath}gxb-tab.png`,
-          tabUrlAct: `${urlPath}gxb-tab-active.png`
+        {
+          id: 2,
+          name: 'ENG',
+          value: 'en-US',
+          key: 'en',
+          url: require('@/assets/images/en-US.png')
         },
-        { tabName: '威望榜', id: 2,
-          tabUrl: `${urlPath}wwb-tab.png`,
-          tabUrlAct: `${urlPath}wwb-tab-active.png` }
+        {
+          id: 3,
+          name: 'VN',
+          value: 'vi-VN',
+          key: 'vi',
+          url: require('@/assets/images/vi-VN.png')
+        }
+      ],
+
+      gameIndex: 0,
+      gameList: [
+        {
+          id: 1,
+          name: '幸运哈希',
+          enname: 'LUCKY_HASH',
+          children: [
+            {
+              id: 1,
+              gameId: 1,
+              name: '体验房',
+              maxOdds: '1.98',
+              min: 0,
+              max: 200,
+              img: 'https://designer-trip.com/image/game/Gamelogo/hash.png'
+            },
+            {
+              id: 2,
+              gameId: 1,
+              name: '初级房',
+              maxOdds: '1.98',
+              min: 10,
+              max: 5000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/hash1.png'
+            },
+            {
+              id: 3,
+              gameId: 1,
+              name: '中级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/hash2.png'
+            },
+            {
+              id: 4,
+              gameId: 1,
+              name: '高级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/hash3.png'
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: '哈希PK拾',
+          enname: 'CHAMPION',
+          children: [
+            {
+              id: 5,
+              gameId: 2,
+              name: '体验房',
+              maxOdds: '1.98',
+              min: 0,
+              max: 200,
+              img: 'https://designer-trip.com/image/game/Gamelogo/champion.png'
+            },
+            {
+              id: 6,
+              gameId: 2,
+              name: '初级房',
+              maxOdds: '1.98',
+              min: 10,
+              max: 5000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/champion1.png'
+            },
+            {
+              id: 7,
+              gameId: 2,
+              name: '中级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/champion2.png'
+            },
+            {
+              id: 8,
+              gameId: 2,
+              name: '高级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/champion3.png'
+            }
+          ]
+        },
+
+        {
+          id: 3,
+          name: '哈希牛牛',
+          enname: 'HASH_NIUNIU',
+          children: [
+            {
+              id: 9,
+              gameId: 3,
+              name: '体验房',
+              maxOdds: '1.98',
+              min: 0,
+              max: 200,
+              img: 'https://designer-trip.com/image/game/Gamelogo/pair.png'
+            },
+            {
+              id: 10,
+              gameId: 3,
+              name: '初级房',
+              maxOdds: '1.98',
+              min: 10,
+              max: 5000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/pair1.png'
+            },
+            {
+              id: 11,
+              gameId: 3,
+              name: '中级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/pair2.png'
+            },
+            {
+              id: 12,
+              gameId: 3,
+              name: '高级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/pair3.png'
+            }
+          ]
+        },
+
+        {
+          id: 4,
+          name: '哈希两面',
+          enname: 'HASH_COMB',
+          children: [
+            {
+              id: 13,
+              gameId: 4,
+              name: '体验房',
+              maxOdds: '1.98',
+              min: 0,
+              max: 200,
+              img: 'https://designer-trip.com/image/game/Gamelogo/comb.png'
+            },
+            {
+              id: 14,
+              gameId: 4,
+              name: '初级房',
+              maxOdds: '1.98',
+              min: 10,
+              max: 5000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/comb1.png'
+            },
+            {
+              id: 15,
+              gameId: 4,
+              name: '中级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/comb2.png'
+            },
+            {
+              id: 16,
+              gameId: 4,
+              name: '高级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/comb3.png'
+            }
+          ]
+        },
+
+        {
+          id: 5,
+          name: '哈希百家乐',
+          enname: 'HASH_BJL',
+          children: [
+            {
+              id: 17,
+              gameId: 5,
+              name: '体验房',
+              maxOdds: '1.98',
+              min: 0,
+              max: 200,
+              img: 'https://designer-trip.com/image/game/Gamelogo/bai.png'
+            },
+            {
+              id: 18,
+              gameId: 5,
+              name: '初级房',
+              maxOdds: '1.98',
+              min: 10,
+              max: 5000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/bai1.png'
+            },
+            {
+              id: 19,
+              gameId: 5,
+              name: '中级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/bai2.png'
+            },
+            {
+              id: 20,
+              gameId: 5,
+              name: '高级房',
+              maxOdds: '1.98',
+              min: 100,
+              max: 10000,
+              img: 'https://designer-trip.com/image/game/Gamelogo/bai3.png'
+            }
+          ]
+        },
+
+        {
+          id: 4,
+          name: '敬请期待',
+          enname: 'WAIT'
+        }
       ]
     }
   },
   created() {
+    this.languageDefault = this.languageList[this.languageIndex]
+  },
+  methods: {
+    switchLanguageHandle(item) {
+      this.languageIndex = item.id - 1
+      this.switchLanguage = false
+      this.languageDefault = this.languageList[this.languageIndex]
+
+      const lang = item.key
+      if (this.$i18n.locale === lang) {
+        return
+      }
+      this.$i18n.locale = lang
+      this.$store.dispatch('app/setLanguage', lang)
+    },
+    gameChange(index) {
+      this.gameIndex = index
+    },
+    gameEnter(item) {
+      if (item.gameId === 1) {
+        this.$router.push({ path: '/hash?id=' + item.id })
+      }
+      if (item.gameId === 2) {
+        this.$router.push({ path: '/champion?id=' + item.id })
+      }
+      if (item.gameId === 3) {
+        this.$router.push({ path: '/bull?id=' + item.id })
+      }
+      if (item.gameId === 4) {
+        this.$router.push({ path: '/comb?id=' + item.id })
+      }
+      if (item.gameId === 5) {
+        this.$router.push({ path: '/bjl?id=' + item.id })
+      }
+    }
   }
 
 }
@@ -579,7 +801,6 @@ export default {
   background-size: 100% 100%;
   line-height: 2.5rem;
   text-align: center;
-  background-image: url(https://designer-trip.com/image/ac_haxi.png);
   span {
     margin-left: 1.4375rem;
     font-weight: 700;
@@ -609,7 +830,6 @@ export default {
     height: 10.625rem;
     margin-bottom: 0.625rem;
     background-size: cover;
-    background-image: url(https://designer-trip.com/image/game/Gamelogo/hash.png);
     .time_title {
       text-align: center;
       padding: 0.625rem;
@@ -652,6 +872,13 @@ export default {
   }
   .four[data-v-67079a18] {
     height: 10.625rem!important;
+  }
+  .nodata {
+    width: 30%;
+  }
+  .morePlay {
+    text-align: center;
+    color: #333;
   }
 }
 

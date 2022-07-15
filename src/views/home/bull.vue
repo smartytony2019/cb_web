@@ -10,7 +10,7 @@
         <div class="view">
           <div class="contentHeader">
             <div class="head flex-between-center">
-              <div class="flex-center-center">
+              <div class="flex-center-center" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui2" />
                 <span>幸运哈希 体验房</span>
               </div>
