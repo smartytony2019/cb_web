@@ -177,7 +177,8 @@
           </div>
         </div>
         <!-- 内容区域 - end -->
-
+        <!-- login fadeL-enter-active fadeL-enter-to -->
+        <!-- login reg fadeR-enter-active fadeR-leave-to -->
       </div>
     </div>
 
