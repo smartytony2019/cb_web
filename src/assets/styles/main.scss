@@ -250,3 +250,28 @@ img{
     background-color: transparent!important;
   }
 }
+
+.activity {
+  .van-tabs__nav--line {
+    box-sizing: content-box;
+    height: 100%;
+    padding-bottom: 0.9375rem;
+  }
+  .van-tabs--line {
+    .van-tabs__wrap {
+      height: 2.75rem;
+    }
+  }
+  .van-tabs__nav {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .van-tabs__line {
+    background-color: #3d72fa;
+  }
+}

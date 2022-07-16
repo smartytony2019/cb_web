@@ -47,32 +47,32 @@
                   <div class="text1">我的团队</div>
                   <div class="flex wrap">
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m1.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m2.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m3.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m4.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m5.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
                     <div class="listContent flex-column-center">
-                      <div><img src="https://designer-trip.com/image/promote/m1.png"></div>
+                      <div><img src="@/assets/images/promote/m6.png"></div>
                       <div class="mar">直属人数</div>
                       <div>1</div>
                     </div>
@@ -87,14 +87,14 @@
                   </div>
                   <div class="flex-between-center mar">
                     <div class="flex-between-center m1">
-                      <div><img data-v-ebc85f1e="" src="https://designer-trip.com/image/promote/t1.png"></div>
+                      <div><img src="@/assets/images/promote/t1.png"></div>
                       <div>
                         <div>可用佣金</div>
                         <div class="text3">0</div>
                       </div>
                     </div>
                     <div class="flex-between-center m1">
-                      <div><img data-v-ebc85f1e="" src="https://designer-trip.com/image/promote/t2.png"></div>
+                      <div><img src="@/assets/images/promote/t2.png"></div>
                       <div>
                         <div>佣金合计</div>
                         <div class="text3">0</div>
