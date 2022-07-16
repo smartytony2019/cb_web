@@ -50,88 +50,94 @@ export const constantRoutes = [
 
   {
     path: '/',
+    name: 'Home',
     component: Layout,
     redirect: '/',
     children: [
       {
         path: '/',
-        name: 'index',
         component: () => import('@/views/home'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
-      },
-      {
-        path: '/activity',
-        name: 'activity',
-        component: () => import('@/views/activity'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
-      },
-      {
-        path: '/promote',
-        name: 'promote',
-        component: () => import('@/views/promote'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
-      },
-      {
-        path: '/mine',
-        name: 'mine',
-        component: () => import('@/views/mine'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       },
       {
         path: '/hash',
         name: 'hash',
         component: () => import('@/views/game/hash'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       },
       {
         path: '/bull',
         name: 'bull',
         component: () => import('@/views/game/bull'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       },
       {
         path: '/comb',
         name: 'comb',
         component: () => import('@/views/game/comb'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       },
       {
         path: '/champion',
         name: 'champion',
         component: () => import('@/views/game/champion'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       },
       {
         path: '/bjl',
         name: 'bjl',
         component: () => import('@/views/game/bjl'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+        meta: { title: '' }
       }
     ]
   },
 
-  // 注单管理
-  // {
-  //   path: '/bet',
-  //   component: Layout,
-  //   redirect: '/bet/bet',
-  //   name: 'bet',
-  //   meta: { title: 'bet.menu', icon: 'el-icon-s-help' },
-  //   children: [
-  //     {
-  //       path: 'bet',
-  //       name: 'Bet',
-  //       component: () => import('@/views/bet/lottery'),
-  //       meta: { title: 'bet.lottery.menu', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'draw',
-  //       name: 'Draw',
-  //       component: () => import('@/views/bet/draw'),
-  //       meta: { title: 'bet.draw.menu', icon: 'tree' }
-  //     }
-  //   ]
-  // },
+  // 活动
+  {
+    path: '/activity',
+    name: 'Activity',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/activity'),
+        meta: { title: '' }
+      },
+      {
+        path: '/activity/detail',
+        component: () => import('@/views/activity/detail'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
+  // 推广
+  {
+    path: '/promote',
+    name: 'Promote',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/promote'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
+  // 我的
+  {
+    path: '/mine',
+    name: 'Mine',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/mine'),
+        meta: { title: '' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

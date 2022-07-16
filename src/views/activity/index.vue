@@ -26,7 +26,7 @@
                   </div>
 
                   <div class="list_img_wrap">
-                    <div class="van-image" style="width: 100%; height: 100%;">
+                    <div class="van-image" style="width: 100%; height: 100%;" @click="handleItemClick(cItem)">
                       <img :src="cItem.image" class="van-image__img">
                       <p class="list_timer">{{ cItem.time }}</p>
                     </div>
@@ -84,21 +84,25 @@ export default {
         ],
         images: [
           {
+            id: 1,
             type: 1,
             image: 'https://designer-trip.com/image/Activity/newcomer1Cn.jpg',
             time: '2022-07-02 - 2022-07-09'
           },
           {
+            id: 2,
             type: 1,
             image: 'https://designer-trip.com/image/Activity/newcomer2Cn.jpg',
             time: '2022-07-02 - 2022-07-09'
           },
           {
+            id: 3,
             type: 2,
             image: 'https://designer-trip.com/image/Activity/newcomer3Cn.png',
             time: '2022-07-02 - 2022-07-09'
           },
           {
+            id: 4,
             type: 3,
             image: 'https://designer-trip.com/image/Activity/dailitiaocaoCn.jpg',
             time: '2022-07-02 - 2022-07-09'
@@ -119,6 +123,14 @@ export default {
         const item = this.tabs.nav[index]
         this.imageList = this.tabs.images.filter(f => f.type === item.type)
       }
+    },
+    handleItemClick(item) {
+      this.$router.push({
+        path: '/activity/detail',
+        query: {
+          id: item.id
+        }
+      })
     }
   }
 }
