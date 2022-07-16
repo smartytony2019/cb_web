@@ -43,12 +43,12 @@
                 <p>邀请码</p>
               </div>
               <div class="item">
-                <img src="https://designer-trip.com/image/invitecode.png">
-                <p>邀请码</p>
-              </div>
-              <div class="item">
                 <img src="https://designer-trip.com/image/myWallet.png">
                 <p>我的钱包</p>
+              </div>
+              <div class="item">
+                <img src="https://designer-trip.com/image/invitecode.png">
+                <p>投注记录</p>
               </div>
               <div class="item">
                 <img src="https://designer-trip.com/image/jiaoyi.png">
@@ -104,7 +104,7 @@
               <div class="bg-box">
                 <div class="list-item flex-between-center after">
                   <div class="item-left flex-center-center">
-                    <img src="https://designer-trip.com/image/financial_ic.png">
+                    <img src="@/assets/images/financial_ic.png">
                     <p>财务报表</p>
                   </div>
                   <div class="item-right">
@@ -114,8 +114,8 @@
 
                 <div class="list-item flex-between-center after">
                   <div class="item-left flex-center-center">
-                    <img src="https://designer-trip.com/image/financial_ic.png">
-                    <p>财务报表</p>
+                    <img src="@/assets/images/marke_ic.png">
+                    <p>推广报表</p>
                   </div>
                   <div class="item-right">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
@@ -124,8 +124,28 @@
 
                 <div class="list-item flex-between-center">
                   <div class="item-left flex-center-center">
-                    <img src="https://designer-trip.com/image/financial_ic.png">
-                    <p>财务报表</p>
+                    <img src="https://designer-trip.com/image/betting_ic.png">
+                    <p>投注报表</p>
+                  </div>
+                  <div class="item-right">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
+                  </div>
+                </div>
+
+                <div class="list-item flex-between-center">
+                  <div class="item-left flex-center-center">
+                    <img src="https://designer-trip.com/image/hlpe_ic.png">
+                    <p>帮助中心</p>
+                  </div>
+                  <div class="item-right">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
+                  </div>
+                </div>
+
+                <div class="list-item flex-between-center">
+                  <div class="item-left flex-center-center">
+                    <img src="https://designer-trip.com/image/set_ic.png">
+                    <p>设置</p>
                   </div>
                   <div class="item-right">
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
@@ -139,56 +159,19 @@
         <!-- 内容区域 - end -->
 
       </div>
-
     </div>
 
-    <div class="footer flex">
-      <div class="flex-1 flex-center-center">
-        <div class="nav flex-column-center">
-          <div class="footer-icon">
-            <img src="data:image/png;base64,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" class="animate__rubberBand">
-          </div>
-          <div>首页</div>
-        </div>
-      </div>
-      <div class="flex-1 flex-center-center">
-        <div class="nav flex-column-center">
-          <div class="footer-icon">
-            <img src="data:image/png;base64,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" class="animate__rubberBand">
-          </div>
-          <div>首页</div>
-        </div>
-      </div>
-      <div class="flex-1 flex-center-center">
-        <div class="nav flex-column-center">
-          <div class="footer-icon">
-            <img src="data:image/png;base64,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" class="animate__rubberBand">
-          </div>
-          <div>首页</div>
-        </div>
-      </div>
-      <div class="flex-1 flex-center-center">
-        <div class="nav flex-column-center">
-          <div class="footer-icon">
-            <img src="data:image/png;base64,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" class="animate__rubberBand">
-          </div>
-          <div>首页</div>
-        </div>
-      </div>
-    </div>
+    <!-- 导航 - start -->
+    <Nav />
+    <!-- 导航 - end -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import Nav from '@/components/Nav'
 export default {
-  name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
-  },
+  name: 'Mine',
+  components: { Nav },
   data() {
     return {
       switchLanguage: false

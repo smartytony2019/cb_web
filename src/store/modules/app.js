@@ -6,7 +6,8 @@ const state = {
     withoutAnimation: false
   },
   device: 'desktop',
-  language: Cookies.get('language') ? Cookies.get('language') : 'zh'
+  language: Cookies.get('language') ? Cookies.get('language') : 'zh',
+  navIndex: Cookies.get('navIndex') ? Cookies.get('navIndex') : 0
 }
 
 const mutations = {
@@ -30,6 +31,10 @@ const mutations = {
   SET_LANGUAGE: (state, language) => {
     state.language = language
     Cookies.set('language', language)
+  },
+  SET_NAV_INDEX: (state, index) => {
+    state.navIndex = index
+    Cookies.set('navIndex', index)
   }
 }
 
@@ -45,6 +50,9 @@ const actions = {
   },
   setLanguage({ commit }, language) {
     commit('SET_LANGUAGE', language)
+  },
+  setNavIndex({ commit }, index) {
+    commit('SET_NAV_INDEX', index)
   }
 }
 

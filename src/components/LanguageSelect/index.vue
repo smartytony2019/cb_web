@@ -30,11 +30,6 @@ export default {
       }
       this.$i18n.locale = lang
       this.$store.dispatch('app/setLanguage', lang)
-      // window.location.reload()
-      // this.$message({
-      //   message: 'Switch Language Success',
-      //   type: 'success'
-      // })
     }
   }
 }

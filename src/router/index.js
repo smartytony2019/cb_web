@@ -56,7 +56,19 @@ export const constantRoutes = [
       {
         path: '/',
         name: 'index',
-        component: () => import('@/views/home/index'),
+        component: () => import('@/views/home'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
+        path: '/mine',
+        name: 'mine',
+        component: () => import('@/views/mine'),
+        meta: { title: 'dashboard.menu', icon: 'dashboard' }
+      },
+      {
+        path: '/promote',
+        name: 'promote',
+        component: () => import('@/views/promote'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       },
       {
@@ -87,12 +99,6 @@ export const constantRoutes = [
         path: '/bjl',
         name: 'bjl',
         component: () => import('@/views/game/bjl'),
-        meta: { title: 'dashboard.menu', icon: 'dashboard' }
-      },
-      {
-        path: '/mine',
-        name: 'mine',
-        component: () => import('@/views/home/mine'),
         meta: { title: 'dashboard.menu', icon: 'dashboard' }
       }
     ]
