@@ -137,7 +137,7 @@
                   </div>
                 </div>
 
-                <div class="list-item flex-between-center">
+                <div class="list-item flex-between-center" @click="$router.push({path:'/help'})">
                   <div class="item-left flex-center-center">
                     <img src="https://designer-trip.com/image/hlpe_ic.png">
                     <p>帮助中心</p>
@@ -147,7 +147,7 @@
                   </div>
                 </div>
 
-                <div class="list-item flex-between-center">
+                <div class="list-item flex-between-center" @click="$router.push({path:'/setting'})">
                   <div class="item-left flex-center-center">
                     <img src="https://designer-trip.com/image/set_ic.png">
                     <p>设置</p>
