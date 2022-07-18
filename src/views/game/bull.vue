@@ -532,7 +532,7 @@ export default {
   z-index: 999;
   left: 0;
   .clear {
-    width: 15%;
+    width: 9%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -549,10 +549,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0.125rem 0 0;
+    margin: 0 0 0 2rem;
     >div {
       flex: 1 1;
-      margin: 0 0.3125rem;
+      margin: 0 0 0 0.8rem;
       width: 3rem;
       height: 3rem;
     }
