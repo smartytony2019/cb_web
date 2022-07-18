@@ -15,7 +15,7 @@
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOwSURBVHgBvVa7b1NnFD/n+iY0A5U9VB256dwhYqjUKdcbA63dqt0qxSxMRSRSxRqiKk1BlWKKGBCCgMSesCNxwwCIhYh/wGZiQMJGPEzyPQ6/c69t/AjgwfZPvtf+Hj6/77w/ImB5SyKaMgIldSK1M1uyTVNEaC1FjkgCljxNEYEFs3hh60loigitvkWEQE5jxJnrsomvUi6g49VT3BxcD/TlHbF4Giuc9xXrZb5l/NJh6zB1uomwicaF01dt2TrKW+ehlJQ/Q6zP+Ighs2Qg1DmBQrRYudyKh4ixLSV1YzS1sT62IDVWEmiNwA0Xh4gzjRFbY2L+Y9MoaYSnLt6tWatK+eVhYry8mvozlv794psFGhEHXko2M3Fye2UugT57IM//ttFv7jSqEVjyKYV/3WhVrOSelC+836QRANPGKg/fN9Ox0I6OUSbO9hGrqRF5jEA4VGfjaSnVwPqzJ/9+HXfmyxut6Kd/3tVOrr893zsH/y5g/6vtc3O7OufD2UtqbnzieLWR7yPOgssNFZAyNuLki0qMPewk2NI/nwDBvpV76kvnaPXEanag98bFmkKYTzoydla4CY5dBFr+SHikm9OoXMocCHEwpPFbmim3nf+EmAooqtEMz276fR+j2EXM1ISd8hwEN3Cg4+Bc0sILUTv9VnNrOeZIgpnugULl9YzKJX5IY2hZUjnCfCm08gw2uYdRRdeYue7JFNmF2+xlgSXctiyxrsGwu71y7q4dVcL53rk0qrVy+UPCGiaL4VuifbN7d/1ogjCo6hhP3e+bYrJWqIuxv2BfE89itiaJztMX8DGPB3h/PNcoo/rkEZFJciETdH/96xUn/pTxvtiZ029jka/a4VyaTjs0AtLuxNoSWQa0DUqMOZi5T9CDfws3B4U8vFio/vBXYwHO/Tk48HdoBARaWDVi0aH6ib2Ptd4aM5qgx/8VKgfm5XePql82syLVWOA87rkHfP9nA76VY4javaf/jyZIsVedb466N41qR/2XAC9+CaUGsU4JTQhhVqslZelAo1kvJTjBLZoQQo1EGFrg7a6tDToLWKl27ds9mhBCvewx55j8R5Vr174p0oQR6kvzWKZ7yWz7WDsT08g9dxzgaLmRD1u2kQ2DBvrQq4Bz6nhdJuq1xMBwaL53vTPuhXZlRreaC4vpUnT6xSoi+HzaD7rC9Ccrv+Y4S9or2une2YTpbCjtpOD0is7dw2g5bP83Tdnspxg33+WJKs8jmvnqGE0YPEv12pXCsw9NCG+blSMckwAAAABJRU5ErkJggg==">
               <p class="van-hairline--bottom"> 走势图</p>
             </div>
-            <div class="rightBox">
+            <div class="rightBox" @click="isShowIntro = !isShowIntro; isShowDetail = false">
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHXSURBVHgB7VZZTsNADLWnw/JHOQFwAhAXAO6BWCQk4Ac4CssHiB+WC3AFboA4ARVboYilQoK0ncTYnkmTVEWC7+YpyrzxJicfz8al/fYNMM63hqcW99q7lQpsA7EBQSEHARICIakd+c1XOYnQ+8XMEQTqS20Sg5IM3t52sGvvXqJJCHh4iZZ9hlYTlstLq/geNIbkDI1IU8oxlABpAH0+oG8GVuzza7Tq0GjK0+v3KqGdFm5CE0mO55HkuMnFJX1iU/tQxVxCiRIlBg+4c0LVKILq0SbWlDs3Uwyx4XR90m1GnStcM7/LuIOarb+1rljnqmwZf2RuECe9blIQ8DiTcuptNy7YvMKDF3Y1tILSS34MCeGNvW20xrj2u/jvGy02UndSqDjzhSDIszyYVod0lAgJdbveMGRycaEjW29+zcJo9CH3t+bXgsPRieJn9H5WP/wlhv/oyPs1lChRYvCAG4duJTFAx+v2bO2gM2+GzdxvwQnvesakPGFu4D+xceyubf2jfSKiy/azxmfngpdWEXJWT9INNmvNC3NXoAM0l0Kkbt8UNme/POdklCimJot3VEuTeVqcdjrJjq7tkCpwd93Wh7xIQ07H9SgUD7MiE28dGFgBPP0BXUTzIbn7ESQAAAAASUVORK5CYII="></img>
               <p class="van-hairline--bottom"> 玩法说明</p>
             </div>
@@ -28,6 +28,60 @@
               <p class="van-hairline--bottom"> 在线客服</p>
             </div>
           </div>
+
+          <!-- 玩法说明 - start -->
+          <van-popup
+            v-model="isShowIntro"
+            position="bottom"
+            :style="{ height: '60%' }"
+            closeable
+            close-icon="cross"
+          >
+            <div class="PlayInfo">
+              <div class="title">玩法说明</div>
+              <div class="content">
+                <div class="content_title">
+                  取区块链Block Hash值从右到左第一个数字（字母跳过）为开奖结果，押注范围0-9，下注号码与开奖结果相同即为中奖
+                </div>
+
+                <div class="flexTitle">
+                  <div class="noBorder">
+                    Block Hash
+                  </div>
+
+                  <div>开奖结果</div>
+                </div>
+
+                <div class="grid">
+                  <div class="gridItem">
+                    <div>5a</div>
+                    <div class="noRight">中奖</div>
+                  </div>
+                  <div class="gridItem">
+                    <div>c5</div>
+                    <div class="noRight">中奖</div>
+                  </div>
+                  <div class="gridItem">
+                    <div>bf</div>
+                    <div class="noRight">不中奖</div>
+                  </div>
+                  <div class="gridItem">
+                    <div>89</div>
+                    <div class="noRight">不中奖</div>
+                  </div>
+                </div>
+
+                <div class="odds">
+                  赔率：1.98
+                </div>
+
+                <div class="order_text">
+                  限注：0USDT-200USDT
+                </div>
+              </div>
+            </div>
+          </van-popup>
+          <!-- 玩法说明 - end -->
         </div>
 
         <div class="view">
@@ -268,6 +322,7 @@ export default {
   },
   data() {
     return {
+      isShowIntro: false,
       isShowDetail: false,
       roomType: 1,
       result: '000000000288f0dc73f321bc1ede29140086ef5d200b84756d27800d38e4296c',
@@ -642,6 +697,73 @@ export default {
     >p {
       margin-top: 0.125rem;
     }
+  }
+}
+
+.PlayInfo {
+  padding: 0.625rem 0;
+  font-size: .9375rem;
+  color: #60768a;
+  height: 100%;
+  .title {
+    padding: 0.9375rem 0.6875rem;
+    text-align: center;
+    font-size: 1.125rem;
+  }
+
+  .content {
+    height: calc(100% - 3rem);
+    overflow: auto;
+    padding: 0 1.25rem;
+    .content_title {
+      font-size: 1rem;
+      margin-bottom: 0.625rem;
+      line-height: 1.375rem;
+    }
+
+    .flexTitle {
+      background: #a3c0fb;
+      width: 100%;
+      display: flex;
+      color: #fff;
+      font-size: 1rem;
+      >div {
+        text-align: center;
+        width: 50%;
+        border-left: 0.0625rem solid #fff;
+        line-height: 2.3125rem;
+      }
+
+      .noBorder {
+        border: none;
+      }
+    }
+  }
+
+  .grid {
+    width: 100%;
+
+    .gridItem {
+      display: flex;
+      justify-content: space-between;
+      >div {
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0.5625rem 0;
+        border-left: 0.0625rem solid #e9e9e9;
+        border-bottom: 0.0625rem solid #e9e9e9;
+      }
+
+      .noRight {
+        border-right: 0.0625rem solid #e9e9e9;
+      }
+    }
+  }
+
+  .odds, .order_text {
+    margin: 0.625rem 0;
+    font-size: .875rem;
   }
 }
 
