@@ -139,6 +139,55 @@ export const constantRoutes = [
     ]
   },
 
+  // 存款
+  {
+    path: '/deposit',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/deposit'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
+  // 取款
+  {
+    path: '/withdraw',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/withdraw'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
+  // 报表
+  {
+    path: '/report',
+    component: Layout,
+    children: [
+      {
+        path: '/report/financial',
+        component: () => import('@/views/report/financial'),
+        meta: { title: '' }
+      },
+      {
+        path: '/report/promotion',
+        component: () => import('@/views/report/promotion'),
+        meta: { title: '' }
+      },
+      {
+        path: '/report/bet',
+        component: () => import('@/views/report/bet'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

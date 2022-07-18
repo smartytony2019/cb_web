@@ -1,3 +1,8 @@
+<!--
+@Author:      tony
+@Date:        2019-01-04T10:00:00+08:00
+@Description: 我的
+-->
 <template>
   <div class="wrapper">
     <div class="flex-1 index-page">
@@ -39,19 +44,19 @@
             <!-- 按钮 - start -->
             <div class="main-item">
               <div class="item">
-                <img src="https://designer-trip.com/image/invitecode.png">
+                <img src="@/assets/images/invitecode.png">
                 <p>邀请码</p>
               </div>
               <div class="item">
-                <img src="https://designer-trip.com/image/myWallet.png">
+                <img src="@/assets/images/myWallet.png">
                 <p>我的钱包</p>
               </div>
               <div class="item">
-                <img src="https://designer-trip.com/image/invitecode.png">
+                <img src="@/assets/images/myBack.png">
                 <p>投注记录</p>
               </div>
               <div class="item">
-                <img src="https://designer-trip.com/image/jiaoyi.png">
+                <img src="@/assets/images/jiaoyi.png">
                 <p>交易记录</p>
               </div>
             </div>
@@ -102,7 +107,7 @@
             <!-- 列表 - start -->
             <div class="data-list">
               <div class="bg-box">
-                <div class="list-item flex-between-center after">
+                <div class="list-item flex-between-center after" @click="$router.push({path:'/report/financial'})">
                   <div class="item-left flex-center-center">
                     <img src="@/assets/images/financial_ic.png">
                     <p>财务报表</p>
@@ -112,7 +117,7 @@
                   </div>
                 </div>
 
-                <div class="list-item flex-between-center after">
+                <div class="list-item flex-between-center after" @click="$router.push({path:'/report/promotion'})">
                   <div class="item-left flex-center-center">
                     <img src="@/assets/images/marke_ic.png">
                     <p>推广报表</p>
@@ -122,7 +127,7 @@
                   </div>
                 </div>
 
-                <div class="list-item flex-between-center">
+                <div class="list-item flex-between-center" @click="$router.push({path:'/report/bet'})">
                   <div class="item-left flex-center-center">
                     <img src="https://designer-trip.com/image/betting_ic.png">
                     <p>投注报表</p>

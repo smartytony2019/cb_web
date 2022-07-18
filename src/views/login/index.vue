@@ -38,7 +38,7 @@
 
           <div class="logReg">
             <!-- 登录 - start -->
-            <transition name = "fade">
+            <transition name="fade">
               <div v-show="isLogin" class="login">
                 <div class="right">
                   <div class="title">登录</div>
@@ -57,7 +57,7 @@
                       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABKlJREFUWEe9l3molVUUxX+reaCoSJpthMgGI4vSSrIiCoqysEnTRixMsXkiDbMyyCKTytK0ycqi8o9e8yBN0mADQUXzBEYjNkLpivU4n9x333ffu0m24XHfvd8++6yzv73XXke0abbXBg4ChgD9gW2B9cryJcAnwBvAc8ACSX+3E1q9OdneFDgHOB3YqDf/8vxr4A5gmqQfelrTEoDtVYGLgIsbTvoH8DLwCvAR8DOQGBsCOwEDgX2ANcumPwETJE1vBaIWQDn1IyVY1n4OXAPMk5RNW5rtjYFRwLnA5sWxAxghKYC6WDcAtrcHngW2Blw2vlLSn22mv9PN9vrAZGBsWfde6kfS941xugAo6F8HtgF+BIZJSlF1M9t7ADsDS4FFkj5o4TcMuBdYHXgX2FfSr5VvM4CngYOBVHUcg7qL2d4NuA3Yu+nRU8AYSR/XrDkceLiAmCtpeDcAts8Cbi4PkqoXagLtBwTkWuXZZ0CKtW/5nqwNkvRhzdqRwJ3l96GSHs3/nRmwvQHwZan2qZLOrwmwRqn8bJbMDJeUlGZ9qv9BYAtgoaR8r3tt9wPHlb22k7S0AjARuKK8976SfqsBkHc5D/gd2FFSen252d4FeLtkZLCkF2tibFI6KhkcJeku2V4F+LRU/URJk1qgvwk4O+9S0jEtfMKEA4BLJE1p4XMjMA54SdL+AZBiWggsC4jmk1VBbKeSTwRmSjqjRfDrgaHAVZJmtvCp9svjLQPgQuBa4C1Jaa1asz0bODmFKmlMK7/efi8Z/xYIYR0fAHOBE4BZksL3Xay0XTY+AtgBSJuFivPq6ixDKNwQwpkhKZ3SHPNJ4BBgSgCE2weF8yUlE42FlYy8CqQDVsRC2/0lpcMa495ehtsDAZBW2hUYLSkE0+g4rVDpF2UIVUOmJzDJQP5ywj7AeZJSG41xr8vvQEcAvAnkpGGxiog6nW3PAk4FZkvKZ9tm+5miH7p1hO2qE+YHQOV4taTLmpCmkk8DutBnOyhsLwAG17Wk7XtCZGHGALgFODNMJunY/wlA6iq64YIAGAHcDSyWtNnKBlDG9HelsIcEQLg9RRbrMoRs/+evwHbILKSWkdynmgXPAwcUxZNhURXhygAQsXNgsi5pZAXgSKBzPAJ7SkpnNHbBHEmntFN8DeCrjS6VFDmXeIcCjxefAZIWLRcktl8D9gLyOVDSMtuRVOmMX8oUy+xvx8KEkXbrpMAlzbAdCf9OkfPzJR2VQI0Adi+6PptMlzTWduZ7Jlyk+YpYlHMyusT2Q0CmaMZ5P0mdddcsycYDN5SdJkmaaDuS+7BymojUdixxo4CfiLawHYKL4oqdJCk80Gl1qnhOkdV5Hs4eLymo/7UVpRV6j5iJTZZ0eWOgOgCZclOzcXGMWBkn6bF2EdhO3HRThlulFyPtJzTH6OlmNLoAWbcsilxPRjokfVMHxnbkfIorgqVf8QnpZNDlotPNerwb2s7lJNeqyOrKopySlcz5xqtZqj4AKksn3NdJt9LiVtnr9XKahbaj83Kqo8uI7eltfFUU8q2S0gU9WlsAqgi2VwOifnM52QrI99hfhc6jit8Ph/S2cfX8H5JE/XRaV9gQAAAAAElFTkSuQmCC" class="img-icon">
                     </div>
                     <div class="input">
-                      <input type="password" placeholder="用户名" class="loginiput">
+                      <input type="password" placeholder="密码" class="loginiput">
                     </div>
                   </div>
 
@@ -66,7 +66,7 @@
                       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABKlJREFUWEe9l3molVUUxX+reaCoSJpthMgGI4vSSrIiCoqysEnTRixMsXkiDbMyyCKTytK0ycqi8o9e8yBN0mADQUXzBEYjNkLpivU4n9x333ffu0m24XHfvd8++6yzv73XXke0abbXBg4ChgD9gW2B9cryJcAnwBvAc8ACSX+3E1q9OdneFDgHOB3YqDf/8vxr4A5gmqQfelrTEoDtVYGLgIsbTvoH8DLwCvAR8DOQGBsCOwEDgX2ANcumPwETJE1vBaIWQDn1IyVY1n4OXAPMk5RNW5rtjYFRwLnA5sWxAxghKYC6WDcAtrcHngW2Blw2vlLSn22mv9PN9vrAZGBsWfde6kfS941xugAo6F8HtgF+BIZJSlF1M9t7ADsDS4FFkj5o4TcMuBdYHXgX2FfSr5VvM4CngYOBVHUcg7qL2d4NuA3Yu+nRU8AYSR/XrDkceLiAmCtpeDcAts8Cbi4PkqoXagLtBwTkWuXZZ0CKtW/5nqwNkvRhzdqRwJ3l96GSHs3/nRmwvQHwZan2qZLOrwmwRqn8bJbMDJeUlGZ9qv9BYAtgoaR8r3tt9wPHlb22k7S0AjARuKK8976SfqsBkHc5D/gd2FFSen252d4FeLtkZLCkF2tibFI6KhkcJeku2V4F+LRU/URJk1qgvwk4O+9S0jEtfMKEA4BLJE1p4XMjMA54SdL+AZBiWggsC4jmk1VBbKeSTwRmSjqjRfDrgaHAVZJmtvCp9svjLQPgQuBa4C1Jaa1asz0bODmFKmlMK7/efi8Z/xYIYR0fAHOBE4BZksL3Xay0XTY+AtgBSJuFivPq6ixDKNwQwpkhKZ3SHPNJ4BBgSgCE2weF8yUlE42FlYy8CqQDVsRC2/0lpcMa495ehtsDAZBW2hUYLSkE0+g4rVDpF2UIVUOmJzDJQP5ywj7AeZJSG41xr8vvQEcAvAnkpGGxiog6nW3PAk4FZkvKZ9tm+5miH7p1hO2qE+YHQOV4taTLmpCmkk8DutBnOyhsLwAG17Wk7XtCZGHGALgFODNMJunY/wlA6iq64YIAGAHcDSyWtNnKBlDG9HelsIcEQLg9RRbrMoRs/+evwHbILKSWkdynmgXPAwcUxZNhURXhygAQsXNgsi5pZAXgSKBzPAJ7SkpnNHbBHEmntFN8DeCrjS6VFDmXeIcCjxefAZIWLRcktl8D9gLyOVDSMtuRVOmMX8oUy+xvx8KEkXbrpMAlzbAdCf9OkfPzJR2VQI0Adi+6PptMlzTWduZ7Jlyk+YpYlHMyusT2Q0CmaMZ5P0mdddcsycYDN5SdJkmaaDuS+7BymojUdixxo4CfiLawHYKL4oqdJCk80Gl1qnhOkdV5Hs4eLymo/7UVpRV6j5iJTZZ0eWOgOgCZclOzcXGMWBkn6bF2EdhO3HRThlulFyPtJzTH6OlmNLoAWbcsilxPRjokfVMHxnbkfIorgqVf8QnpZNDlotPNerwb2s7lJNeqyOrKopySlcz5xqtZqj4AKksn3NdJt9LiVtnr9XKahbaj83Kqo8uI7eltfFUU8q2S0gU9WlsAqgi2VwOifnM52QrI99hfhc6jit8Ph/S2cfX8H5JE/XRaV9gQAAAAAElFTkSuQmCC" class="img-icon">
                     </div>
                     <div class="input">
-                      <input type="password" placeholder="用户名" class="loginiput">
+                      <input type="password" placeholder="点击完成验证" class="loginiput">
                     </div>
                   </div>
 
@@ -95,7 +95,7 @@
             <!-- 登录 - end -->
 
             <!-- 注册 - start -->
-            <transition name = "fade">
+            <transition name="fade">
               <div v-show="!isLogin" class="login reg">
                 <div class="left" @click="handleSwitch">
                   <img src="data:image/png;base64,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">
@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="input">
-                      <input type="text" placeholder="用户名" class="loginiput">
+                      <input type="text" placeholder="提现钱包地址(不可修改)" class="loginiput">
                     </div>
                   </div>
 
@@ -134,7 +134,7 @@
                     </div>
 
                     <div class="input">
-                      <input type="text" placeholder="用户名" class="loginiput">
+                      <input type="text" placeholder="密码" class="loginiput">
                     </div>
                   </div>
 
@@ -145,7 +145,7 @@
                     </div>
 
                     <div class="input">
-                      <input type="text" placeholder="用户名" class="loginiput">
+                      <input type="text" placeholder="确认密码" class="loginiput">
                     </div>
                   </div>
 
@@ -156,7 +156,7 @@
                     </div>
 
                     <div class="input">
-                      <input type="text" placeholder="用户名" class="loginiput">
+                      <input type="text" placeholder="邀请码" class="loginiput">
                     </div>
                   </div>
 
@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="input">
-                      <input type="text" placeholder="用户名" class="loginiput">
+                      <input type="text" placeholder="点击完成验证" class="loginiput">
                     </div>
                   </div>
 
