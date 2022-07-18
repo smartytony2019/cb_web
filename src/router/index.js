@@ -50,6 +50,10 @@ export const constantRoutes = [
     path: '/setting',
     component: () => import('@/views/setting')
   },
+  {
+    path: '/record',
+    component: () => import('@/views/record')
+  },
 
   {
     path: '/',

@@ -51,11 +51,15 @@
                 <img src="@/assets/images/myWallet.png">
                 <p>我的钱包</p>
               </div>
-              <div class="item">
-                <img src="@/assets/images/myBack.png">
-                <p>投注记录</p>
+              <div class="item" @click="$router.push({path:'/withdraw'})">
+                <img src="@/assets/images/shop.png">
+                <p>提款</p>
               </div>
-              <div class="item">
+              <div class="item" @click="$router.push({path:'/deposit'})">
+                <img src="@/assets/images/bi.png">
+                <p>存款</p>
+              </div>
+              <div class="item" @click="$router.push({path:'/record'})">
                 <img src="@/assets/images/jiaoyi.png">
                 <p>交易记录</p>
               </div>
@@ -183,8 +187,8 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('app/setNavIndex', 3)
   }
-
 }
 </script>
 

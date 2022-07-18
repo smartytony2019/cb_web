@@ -235,7 +235,7 @@ img{
     border-radius: 0.5rem;
     margin: 0.625rem 0.625rem 0 0.625rem;
     background: #fff;
-    min-width: 6.25rem;
+    // min-width: 6.25rem;
   }
   .van-tab--active {
     background: #4080ff!important;
@@ -273,5 +273,31 @@ img{
   }
   .van-tabs__line {
     background-color: #3d72fa;
+  }
+}
+
+.record {
+  .van-dropdown-menu__bar {
+    height: 3.25rem;
+    box-shadow: none;
+    .van-dropdown-menu__item {
+      flex: none!important;
+      .van-dropdown-menu__title {
+        background: #f7f8fc;
+        border-radius: 1.25rem;
+        padding: 0.3125rem 2rem 0.3125rem 1.25rem;
+        margin-left: 0.625rem;
+        &::after {
+          right: 1.125rem;
+          border-color: transparent transparent #333 #333;
+        }
+      }
+    }
+  }
+
+  .van-popup {
+    max-width: 40rem;
+    margin: 0 auto;
+    right: 0;
   }
 }

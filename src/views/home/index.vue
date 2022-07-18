@@ -83,11 +83,11 @@
               </div>
 
               <div class="service">
-                <div>
+                <div @click="$router.push({path:'/deposit'})">
                   <div class="cunkuan bgimg" />
                   <span>存款</span>
                 </div>
-                <div>
+                <div @click="$router.push({path:'/withdraw'})">
                   <div class="qukuan bgimg" />
                   <span>提款</span>
                 </div>
@@ -95,7 +95,7 @@
                   <div class="serve bgimg" />
                   <span>客服</span>
                 </div>
-                <div>
+                <div @click="$router.push({path:'/help'})">
                   <div class="illustrate bgimg" />
                   <span>说明</span>
                 </div>
@@ -620,6 +620,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('app/setNavIndex', 0)
     this.languageDefault = this.languageList[this.languageIndex]
   },
   methods: {

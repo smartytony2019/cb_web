@@ -112,6 +112,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('app/setNavIndex', 1)
     this.imageList = this.tabs.images
   },
   methods: {

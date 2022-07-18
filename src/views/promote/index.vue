@@ -443,6 +443,10 @@ export default {
         }
       ]
     }
+  },
+  created() {
+    this.$store.dispatch('app/setNavIndex', 2)
+    console.log('Promote created')
   }
 }
 </script>
