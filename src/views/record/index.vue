@@ -112,7 +112,7 @@ export default {
         { text: '提现', value: 1 },
         { text: '投注', value: 2 },
         { text: '活动', value: 3 },
-        { text: '兑换', value: 3 }
+        { text: '兑换', value: 4 }
       ]
     }
   },

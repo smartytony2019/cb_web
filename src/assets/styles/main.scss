@@ -301,3 +301,11 @@ img{
     right: 0;
   }
 }
+
+.van-popup {
+  background: none;
+}
+
+.van-popup--bottom.van-popup--round {
+  border-radius: 1rem 1rem 0 0;
+}
