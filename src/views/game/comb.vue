@@ -159,7 +159,7 @@
               </div>
 
               <div class="select_content">
-                <div class="playBlockNew">
+                <div class="playBlockNew playActive">
                   <div>大</div>
                   <div>1.95</div>
                 </div>
@@ -394,6 +394,13 @@ export default {
             margin-top: 0.625rem;
           }
         }
+      }
+
+      .playActive {
+        background: linear-gradient(118.11deg,#7fa7f8 -5.62%,#2568ed 108.48%)!important;
+        box-shadow: 0 0.3125rem 0.4375rem rgb(59 119 239 / 38%);
+        border-radius: 0.4375rem;
+        color: #fff;
       }
     }
   }
