@@ -32,7 +32,7 @@
         <p>投注</p>
         <p>记录</p>
       </div>
-      <button class="button">
+      <button class="button" @click="handleBet">
         <div class="flex-column-center">
           <div>立即投注</div>
           <div>USDT：0.00</div>
@@ -43,6 +43,49 @@
         <p>余额</p>
       </div>
     </div>
+
+    <!-- 确认投注 - start -->
+    <van-popup v-model="isShowBetConfirm" position="center" round>
+      <div class="queren">
+        <div class="title after">确认投注</div>
+        <div class="gameName">哈希PK拾</div>
+        <div class="qlist after">
+          <span>玩法</span>
+          <span>投注金额</span>
+          <span>最高可赢</span>
+        </div>
+        <div class="qlist after">
+          <span>1,2,8</span>
+          <span>1</span>
+          <span>9.80</span>
+        </div>
+        <div class="count after">
+          共<span>3</span>
+          注 共
+          <span>3</span>
+          USDT
+        </div>
+
+        <div class="ebtnbox flex-center-center">
+          <div class="leftc">
+            <button class="van-button van-button--default van-button--normal" style="color: white; background: linear-gradient(rgb(239, 244, 255), rgb(176, 184, 201)); border: 0px;" @click="handleBetCencal">
+              <div class="van-button__content">
+                <span class="van-button__text"> 取消 </span>
+              </div>
+            </button>
+          </div>
+
+          <div>
+            <button class="van-button van-button--default van-button--normal" style="color: white; background: linear-gradient(rgb(162, 193, 255), rgb(64, 128, 255)); border: 0px;" @click="handleBetConfirm">
+              <div class="van-button__content">
+                <span class="van-button__text"> 确认投注 </span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </van-popup>
+    <!-- 确认投注 - end -->
   </div>
 </template>
 
@@ -56,6 +99,11 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      isShowBetConfirm: false
+    }
+  },
   computed: {
     isShow: {
       get() {
@@ -64,6 +112,17 @@ export default {
       set(val) {
         this.$emit('close', val)
       }
+    }
+  },
+  methods: {
+    handleBet() {
+      this.isShowBetConfirm = true
+    },
+    handleBetCencal() {
+      this.isShowBetConfirm = false
+    },
+    handleBetConfirm() {
+      this.isShowBetConfirm = false
     }
   }
 }
@@ -163,6 +222,61 @@ export default {
     text-align: center;
     >p {
       margin-top: 0.125rem;
+    }
+  }
+}
+
+.queren {
+  width: 22.75rem;
+  color: #333;
+  text-align: center;
+  padding: 0 1rem;
+  font-size: 1rem;
+  .title {
+    line-height: 2.75rem;
+    font-size: 1rem;
+    position: relative;
+    >div {
+      text-align: center;
+    }
+  }
+
+  .gameName {
+    text-align: left;
+    margin: 1.375rem 0 0.6875rem 0;
+  }
+
+  .qlist {
+    background: #f9faff;
+    position: relative;
+    color: #41434f;
+    padding: 0 0.625rem;
+    display: grid;
+    align-items: center;
+    height: 2.5rem;
+    grid-template-columns: 35% 30% 35%;
+    span {
+      text-align: center;
+    }
+  }
+
+  .count {
+    position: relative;
+    text-align: left;
+    font-size: .9375rem;
+    padding: 0.9375rem 0 0.8125rem 0;
+    color: #41434f;
+  }
+
+  .ebtnbox {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0 0.875rem 0;
+    .van-button {
+      border-radius: 0.625rem;
+      width: 7.5625rem;
+      height: 3.125rem;
+      font-size: 1rem;
     }
   }
 }

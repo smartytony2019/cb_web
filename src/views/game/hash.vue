@@ -217,6 +217,7 @@ export default {
   data() {
     return {
       isShowDrop: false,
+      isShowBetConfirm: true,
       roomType: 1,
       result: '000000000288f0dc73f321bc1ede29140086ef5d200b84756d27800d38e4296c',
       rooms: [
@@ -249,6 +250,12 @@ export default {
   methods: {
     roomClick(item) {
       this.roomType = item.type
+    },
+    handleBetCencal() {
+      this.isShowBetConfirm = false
+    },
+    handleBetConfirm() {
+      this.isShowBetConfirm = false
     }
   }
 
@@ -465,174 +472,6 @@ export default {
         }
       }
     }
-  }
-}
-
-.footer {
-  background: #fff;
-  border-top-left-radius: 1.0625rem;
-  border-top-right-radius: 1.0625rem;
-  color: #60768a;
-  padding: 1.125rem 0.625rem;
-  font-size: .9375rem;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  box-sizing: border-box;
-  z-index: 999;
-  left: 0;
-  right: 0;
-  max-width: 40rem;
-  margin: 0 auto;
-  .clear {
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(119,125,149,.47843137254901963);
-    img {
-      margin-top: -0.125rem;
-      width: 1.0625rem;
-      height: 1.125rem;
-    }
-  }
-
-  .radiusBlock {
-    height: 2.0625rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0.125rem 0 0;
-    >div {
-      flex: 1 1;
-      margin: 0 0.3125rem;
-      width: 3rem;
-      height: 3rem;
-    }
-    img {
-      width: 3rem;
-      height: 3rem;
-    }
-  }
-  .amount {
-    width: 95%;
-    height: 2rem;
-    background: #eef1f8;
-    border: none;
-    box-sizing: border-box;
-    box-shadow: inset 0 0.125rem 0.25rem #fff;
-    border-radius: 0.5625rem;
-    color: #4080ff;
-    padding-left: 0.3125rem;
-  }
-  .m {
-    margin-top: 0.9375rem;
-  }
-  .lottery {
-    background: #eef1f8;
-    border-radius: 0.5rem;
-    padding: 0.625rem;
-    text-align: center;
-  }
-  .button {
-    background: #eef1f8;
-    border-radius: 0.625rem;
-    text-align: center;
-    background: linear-gradient(180deg,#88b8ff,#4080ff);
-    box-shadow: 0 0.375rem 0.625rem rgb(0 0 0 / 12%);
-    max-width: 16.125rem;
-    flex: 1 1;
-    height: 3rem;
-    border: none;
-    color: #fff;
-    font-size: .875rem;
-    font-weight: 400;
-    margin: 0 0.3125rem;
-    >div {
-      >div {
-        &:last-child {
-          font-size: .8125rem;
-          margin-top: 0.3125rem;
-        }
-      }
-    }
-  }
-  .hao {
-    background: linear-gradient(180deg,#4de0f4,#40baff);
-    color: #fff;
-    border-radius: 0.5rem;
-    font-size: .8125rem;
-    text-align: center;
-    >p {
-      margin-top: 0.125rem;
-    }
-  }
-}
-
-.PlayInfo {
-  padding: 0.625rem 0;
-  font-size: .9375rem;
-  color: #60768a;
-  height: 100%;
-  .title {
-    padding: 0.9375rem 0.6875rem;
-    text-align: center;
-    font-size: 1.125rem;
-  }
-
-  .content {
-    height: calc(100% - 3rem);
-    overflow: auto;
-    padding: 0 1.25rem;
-    .content_title {
-      font-size: 1rem;
-      margin-bottom: 0.625rem;
-      line-height: 1.375rem;
-    }
-
-    .flexTitle {
-      background: #a3c0fb;
-      width: 100%;
-      display: flex;
-      color: #fff;
-      font-size: 1rem;
-      >div {
-        text-align: center;
-        width: 50%;
-        border-left: 0.0625rem solid #fff;
-        line-height: 2.3125rem;
-      }
-
-      .noBorder {
-        border: none;
-      }
-    }
-  }
-
-  .grid {
-    width: 100%;
-
-    .gridItem {
-      display: flex;
-      justify-content: space-between;
-      >div {
-        width: 50%;
-        text-align: center;
-        margin: 0 auto;
-        padding: 0.5625rem 0;
-        border-left: 0.0625rem solid #e9e9e9;
-        border-bottom: 0.0625rem solid #e9e9e9;
-      }
-
-      .noRight {
-        border-right: 0.0625rem solid #e9e9e9;
-      }
-    }
-  }
-
-  .odds, .order_text {
-    margin: 0.625rem 0;
-    font-size: .875rem;
   }
 }
 

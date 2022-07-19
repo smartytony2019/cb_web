@@ -80,7 +80,10 @@
     <!-- 玩法说明 - end -->
 
     <!-- 在线客服 - start -->
-    <van-popup v-model="isShowService">
+    <van-popup
+      v-model="isShowService"
+      :style="{ background: 'none' }"
+    >
       <div class="bg_service">
         <div style="text-align: center;">
           <img src="@/assets/images/kf_port.png" style="width: 90px; height: 90px;">
