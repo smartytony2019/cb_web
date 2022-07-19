@@ -47,7 +47,7 @@
                 <img src="@/assets/images/invitecode.png">
                 <p>邀请码</p>
               </div>
-              <div class="item">
+              <div class="item" @click="$router.push({path:'/wallet'})">
                 <img src="@/assets/images/myWallet.png">
                 <p>我的钱包</p>
               </div>

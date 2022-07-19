@@ -172,6 +172,32 @@ export const constantRoutes = [
     ]
   },
 
+  // 钱包
+  {
+    path: '/wallet',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/wallet'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
+  // 兑换
+  {
+    path: '/exchange',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/exchange'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
   // 报表
   {
     path: '/report',
