@@ -54,6 +54,10 @@ export const constantRoutes = [
     path: '/record',
     component: () => import('@/views/record')
   },
+  {
+    path: '/offline',
+    component: () => import('@/views/offline')
+  },
 
   {
     path: '/',

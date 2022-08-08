@@ -302,7 +302,28 @@ img{
   }
 }
 
+.record-popup {
+  &.van-popup--bottom.van-popup--round {
+    background: #fff;
+    border-radius: 1rem 1rem 0 0;
+  }
+}
+
 .van-popup--bottom.van-popup--round {
   background: none;
   border-radius: 1rem 1rem 0 0;
+}
+
+
+
+.exchange {
+  .van-tabs__wrap {
+    min-height: 2.5rem;
+    background-color: #fff;
+    margin: 0.3125rem 0.625rem 0;
+  }
+
+  .van-tabs__line {
+    bottom:0;
+  }
 }

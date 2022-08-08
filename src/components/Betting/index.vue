@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="flex-between-center m">
-      <div class="lottery">
+      <div class="lottery" @click="handleRecordClick">
         <p>投注</p>
         <p>记录</p>
       </div>
@@ -86,12 +86,133 @@
       </div>
     </van-popup>
     <!-- 确认投注 - end -->
+
+    <!-- 投注记录 - start -->
+    <van-popup v-model="isShowBetRecords" class="record-popup" position="bottom" round :style="{ height: '80%' }" closeable close-icon-position="top-left">
+      <div class="orderBlock">
+        <div class="title">投注记录</div>
+        <div class="mescroll">
+
+          <van-pull-refresh v-model="isLoadingRefresh" :head-height="80" @refresh="onRefresh">
+            <van-list
+              :finished="finished"
+              finished-text="没有更多了"
+              @load="onLoad"
+            >
+              <div class="dataList">
+                <div class="items" @click="handleTradeInfo">
+                  <div class="flex-between-center">
+                    <span>玩法:哈希两面</span>
+                  </div>
+
+                  <div class="flex-between-center">
+                    <span>投注详情:小</span>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAXCAYAAAA/ZK6/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC3SURBVHgBndO9DcMgEAVgjGLXHsEjeAA32SSeJN7E2YRIIFHiETxCCjr+YqKQAoE58gqkO71PugYkhOhRRbCUcqSULmDgn6Zp7oyxFQy+uUEQjuYiwomdR4IQ0kOBz9i2LUmhHMiiM/BBXdcJzvkABcg5N1hrSUBFECMQCMgYs14qwK61nqEn+fL1yA4BWyj7oXTSppTy5VdY4JryGXimyrmTHtM0zSgTXFOOQbH8A8cXXSDlv/IG9KlpCPF+fFMAAAAASUVORK5CYII="></img>
+                  </div>
+
+                  <div class="flex">
+                    <div>投注金额:1.00</div>
+                    <div>
+                      中奖金额:<span style="color:red">1.95</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </van-list>
+          </van-pull-refresh></div>
+      </div>
+    </van-popup>
+    <!-- 投注记录 - end -->
+
+    <!-- 投注详情信息 - start -->
+    <van-popup v-model="isShowTradeInfo" class="trade-info-popup" position="center">
+      <div class="tradeInfo">
+        <div class="header flex tradeHead">
+          <div class="flex-left" @click="isShowTradeInfo=false">
+            <i class="iconfont icon-fanhui2" />
+          </div>
+
+          <div class="flex-center-center title"> 交易详情</div>
+          <div class="flex-right" />
+        </div>
+
+        <div class="line" />
+        <div class="view">
+          <div class="detailInfo">
+            <div class="flex-between-center after">
+              <p>Block Hash</p>
+              <p class="blue">
+                <a href="#" target="_blank">00000···6cea7619</a>
+              </p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>投注详情</p>
+              <p>小</p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>投注金额</p>
+              <p>1.00USDT</p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>奖金</p>
+              <p class="yellow">0.00USDT</p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>派奖金额</p>
+              <p class="yellow">0.00USDT</p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>订单日期</p>
+              <p>2022/8/8 18:43:36</p>
+            </div>
+
+            <div class="flex-between-center after">
+              <p>状态</p>
+              <p class="status win">未中奖</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </van-popup>
+    <!-- 投注详情信息 - end -->
+
+    <!-- <div class="van-toast van-toast--middle" style="z-index: 2004;"><i class="van-icon van-icon-smile van-toast__icon" /><div class="van-toast__text">恭喜老板，您中奖啦!</div></div> -->
+
+    <!-- <div class="van-toast van-toast--middle" style="z-index: 2004;">
+      <i class="van-icon van-toast__icon"><img src="data:image/png;base64,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" class="van-icon__image"></i>
+      <div class="van-toast__text">很遗憾,就差一点点!</div>
+    </div> -->
+    <Loading v-if="isLoading" />
+
+    <div v-if="isSettleProccess" class="settle-proccess">
+      <div class="loadEffect _loadEffect">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <div>正在开奖中...</div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
+import { Toast } from 'vant'
+import Loading from '@/components/Loading'
 export default {
   name: 'Betting',
+  components: { Loading },
   props: {
     show: {
       required: false,
@@ -101,7 +222,14 @@ export default {
   },
   data() {
     return {
-      isShowBetConfirm: false
+      isLoading: false,
+      isLoadingRefresh: false,
+      isSettleProccess: false,
+      isShowTradeInfo: false,
+
+      finished: true,
+      isShowBetConfirm: false,
+      isShowBetRecords: false
     }
   },
   computed: {
@@ -121,8 +249,53 @@ export default {
     handleBetCencal() {
       this.isShowBetConfirm = false
     },
+
+    /**
+     * 确认投注
+     */
     handleBetConfirm() {
       this.isShowBetConfirm = false
+      this.isLoading = true
+      const sleep = (time) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve()
+          }, time)
+        })
+      }
+      sleep(2000).then(() => {
+        this.isLoading = false
+        this.isSettleProccess = true
+
+        sleep(2000).then(() => {
+          this.isSettleProccess = false
+          Toast.setDefaultOptions({ duration: 3000 })
+          // 成功
+          // Toast.success('恭喜老板，您中奖啦!')
+
+          // 失败
+          Toast({
+            message: '很遗憾,就差一点点!',
+            icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABnZJREFUeF7lW2nIVFUYfp6/EeSPivagsu1HFG1otpgtpn0GSWYLkhlJRotRmka0WYlthpQmVLZCWQaVlWZoKVGZEEgRbZSZEfkjqf7Ujyee4cwwy52Zc+7cWfx64TIf37znXZ577nvPuwzRY5K0N4BDw3UIAALYBuBnXyR/7aVJVt41knQggHEAJgE4Nji9RxuF/wYwDMobAN4l+W23jCwcAElnAjgDwLkATi/I8M8NBID1JNcXJLMkpjAAJF0CYDaAUUUamCHrUwBLSL5UhJ6OAZBkh+24AegleUcYCH/mptwASDoIwC3B+dwGFLDQO8FAeGckUy4AJE0GsAjAYckau7dgNsnFqeKTAZC0AMAdqYp6xL+c5MwUXUkASFoNYEKKgj7wbiTpt1AURQMgaQeA/aOk9p9pJ8l9YsyIAkDS1wCOihE4QDzbSPrE2ZLaAiDpIQC3thM0oN+/TPKKVra1BEDSNADPDahzsWbNJ/lgM+amAEg6G8AHsVoGnG8myeVZNmYCEA45dv7IAXcsxbxJJN+qX9AMgEcH4ISX4lwM73skL2gLQDjbfxwjcTfkmUrylWq7G3aApFf7kNj0CssPSZ7VFICQ0hqAGJoH4HsA5wOYEbOgCzxPA1gD4HAATSN9nd7pJFeU/1ezAyR568fk8/NILiwLkXQegJsBNDxjXXDaIl0UeYSkj+YlknR7JAibSZ7SAIAkl67WRRo8ISsPl3RVCJ7HRcpJZfspOL6kfqEkg/9OpMAhkm+bt7IDJHkLGcUY2kQys9wlyTU/F0i8I1wALYqc6j5M8pcsgZI2AhgTqWwZyevqAfgMwMmRAsxm/idIPt/EoCMCELMSZGaxvhkct4MNlLMUt53kwRUAJDlp+DGnoT4wLSC5oYmBdwG4O6fsdSRdXM1y3FVmy81bihtPck3pEZB0LYCnchpZXubIeg/JGiAl+bWTt5L7DMmGN4wkO25gO6FS8aQMwOsALs4pbbNrgyQ3dWEHWPY4kn/Wy5bk9Nwxy4E3D5VqBmUAvgJwTKKUvwH4ZFWKphkG9ioGuOkyB8BpifabfUQZADvTrmNTLb8SRDIc79dbwI9ZzSkvApCRDL263yOYq1n8rDcEtj6fA84B8H6iH6MMwIkA3HpKoRoABuQk6LOHs9gUGjIADn4Ogql0GwCfzAYhF/Br3KW7VLraAPjE9ljqymHCP+f/DsDcTh6B4bAJZuQNgp04/xcAp92/hUsA3MTYF8DxAA7oRHji2ovyvgYT9ZTYnwWwsl07O6TlUwFck0dJ4poxeQ9CKXq2AriP5MqURaEsf1MYr0lZmsJ7dCdH4RhFawFMJultX0OS3Gf0drcNpceB5D8ZfN2sUVZygddsaIxHCTxPkry+ml/SZQBcPmuWwKwCsKp+/KVb7TmabGAXWmAbSI6tc34ZgNjevUvXbmn9UJYhyS06t+qKohdITisD4HG27QVJdl4xmuR3AVxvddcKfOdT6EsAU0g6U/VN2jNUgEenCGnBW6prVtcEPyporG0WyaXBaGeGrhOckNPoLwCMJflHkDcFQE1jI6dcx5v9vLYagDsB3JtTYHnZDpLeTSUqqHKzmKQTnbLMbwCM7NBOD1XdWA+ABxwz63oJyipZoiTfdd/9lDpDM1UTSZZK3pLmA7g/waYs1kpZv74x8gmAUzsQ7u1aAlGSp8icMRZBK0hOD3I7qTFaxBaSJ5WNqgfA0xQvdmDxIpJzJTlQuWXlwFUUXQnAnSA/pjd0ILRmViCrOeqt1qsWVwd+5Fpac/drYkBVkElpMeWyoo+LGiZFmg1I+DFoOVzURyfyqm64+5k7IAQaB0IHxOFEmXNCrYakhlOpbCnJzB5luzE5t8vcNtudaTXJC5s5EDMoWdQRuR8gbiXZclahLQAhJjjBKbLX3wswdpEc0U5RFAABBPcA/Cuv3YEqyU47Y6MBCCD41xmXtxPa5+/XknSzJoqSAAggeDrsgSjpvWd6nKTfXtGUDEAAoYiBimgjIxkXkvTNSaJcAAQQhgD43To+SWPxzFsAeNojcxi6nbrcAJQFS7oUgCeuXE/oJXXkeNnQjgGoAsKVXu+IlEmzPIAV4njhAFQB4VPXRAD+9G8LiyAXbD2K41Nd5khOXiWF7YAsAyT5deT5A1+pB6md7hGEPoGLK12hrgJQbbGkvUIT1ED4ckO0DIqd9WnTn6W/Se7qisd1Qv8Dar4/ZMIlri0AAAAASUVORK5CYII='
+          })
+        })
+      })
+    },
+    handleRecordClick() {
+      this.isShowBetRecords = true
+    },
+
+    /**
+     * 订单详情信息
+     */
+    handleTradeInfo() {
+      this.isShowTradeInfo = true
+    },
+
+    onRefresh() {
+    },
+    onLoad() {
+
     }
   }
 }
@@ -281,4 +454,211 @@ export default {
   }
 }
 
+.orderBlock {
+  color: #656565;
+  position: relative;
+  height: 100%;
+  .title {
+    padding: 0.9375rem 0.6875rem;
+    text-align: center;
+    font-size: 1.125rem;
+  }
+
+  .mescroll {
+    overflow: auto;
+    position: absolute;
+    height: calc(100% - 3rem);
+    width: 100%;
+
+    .dataList {
+      .items {
+        position: relative;
+        padding: 1.375rem;
+        background: #eef1f8;
+        border-radius: 0.625rem;
+        color: #464857;
+        font-size: .9375rem;
+        overflow: hidden;
+        margin: 0.3125rem 0.625rem;
+        >div {
+          margin-top: 0.5rem;
+          &:first-child {
+            font-size: 1.0625rem;
+            margin-top: 0;
+          }
+        }
+
+        .flex-between-center {
+          img {
+            width: 0.75rem;
+            height: 1.4375rem;
+          }
+        }
+
+        .flex {
+          color: grey;
+          font-size: .875rem;
+          >div {
+            flex: 1 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.settle-proccess {
+  position: fixed;
+  z-index: 2005;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.7);
+  max-width: 40rem;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loadEffect {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #40b49d;
+      position: absolute;
+      animation: load 1.04s ease infinite;
+      &:nth-child(1) {
+            left: 0;
+            top: 50%;
+            margin-top: -10px;
+            animation-delay: 0.13s;
+        }
+      &:nth-child(2) {
+            left: 14px;
+            top: 14px;
+            animation-delay: 0.26s;
+        }
+      &:nth-child(3) {
+            left: 50%;
+            top: 0;
+            margin-left: -10px;
+            animation-delay: 0.39s;
+        }
+      &:nth-child(4) {
+            top: 14px;
+            right: 14px;
+            animation-delay: 0.52s;
+        }
+      &:nth-child(5){
+            right: 0;
+            top: 50%;
+            margin-top: -10px;
+            animation-delay: 0.65s;
+        }
+      &:nth-child(6) {
+            right: 14px;
+            bottom:14px;
+            animation-delay: 0.78s;
+        }
+      &:nth-child(7) {
+            bottom: 0;
+            left: 50%;
+            margin-left: -10px;
+            animation-delay: 0.91s;
+        }
+      &:nth-child(8) {
+            bottom: 14px;
+            left: 14px;
+            animation-delay: 1.04s;
+        }
+    }
+    @keyframes load{
+      0% {
+          transform: scale(1.2);
+          opacity: 1;
+      }
+      100% {
+          transform: scale(.3);
+          opacity: 0.5;
+      }
+    }
+    >div {
+      color: #40b49d;
+      position: absolute;
+      bottom: -2rem;
+    }
+  }
+}
+
+.trade-info-popup {
+  width: 100%;
+  height: 100%;
+  max-width: 40rem;
+  background-color: #fff;
+  .tradeInfo {
+    color: #333;
+    font-size: .9375rem;
+    font-weight: 500;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    .header {
+      min-height: 3.4375rem;
+      padding: 0 0.9375rem;
+      background-color: #fff;
+      color: #fff!important;
+      background-image: url(../../assets/images/game/report.head.png);
+      >div {
+        display: flex;
+        align-items: center;
+        min-width: 3.125rem;
+      }
+      .icon-fanhui2 {
+        font-size: 1.25rem;
+      }
+
+      .title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        flex: 1 1;
+        color: #fff!important;
+      }
+    }
+
+    .line {
+      height: 0.625rem;
+      width: 100%;
+      background: #f7f6fc;
+    }
+
+    .detailInfo {
+      padding: 0 1rem 1rem 1rem;
+      text-align: center;
+      .flex-between-center {
+        padding: 0.9375rem 0;
+        position: relative;
+      }
+      .status {
+        padding: 0.25rem 0.3125rem;
+        border-radius: 0.1875rem;
+        background: #a8a8a8;
+        color: #fff;
+        font-size: .8125rem;
+      }
+      .win {
+        background-color: red;
+      }
+    }
+  }
+}
 </style>

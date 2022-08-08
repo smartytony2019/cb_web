@@ -13,7 +13,7 @@
               <i class="iconfont  icon-fanhui2" />
             </div>
           </div>
-          <div class="flex-center-center title">存款</div>
+          <div class="flex-center-center title"> 我的钱包 </div>
           <div class="flex-right">
             <span class="jyjl">交易记录</span>
           </div>
@@ -33,15 +33,15 @@
             </div>
 
             <div class="typeData">
-              <div>
+              <div @click="$router.push({path:'deposit'})">
                 <img src="https://designer-trip.com/image/mycukuan.png">
                 <p>存款</p>
               </div>
-              <div>
+              <div @click="$router.push({path:'withdraw'})">
                 <img src="https://designer-trip.com/image/qukuan.png">
-                <p>存款</p>
+                <p>提款</p>
               </div>
-              <div>
+              <div @click="$router.push({path:'/exchange'})">
                 <img src="https://designer-trip.com/image/wallet.png">
                 <p>兑换</p>
               </div>

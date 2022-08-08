@@ -142,11 +142,27 @@
             <!-- 奖池 - end -->
 
             <!-- 游戏 - start -->
-            <div class="gameBox">
+            <div class="lottory flex">
+              <div class="sub_left">
+
+                <div v-for="(item,index) in cates" :key="index" class="flex-center-center" :class="{active:index===cateIndex}" @click="cateIndex=index">
+                  <div class="cate" :class="'cate_'+item.id" />
+                  <div>{{ item.name }}</div>
+                </div>
+
+              </div>
+
+              <div class="gameContent">
+                <div class="gamelist">
+                  <div class="inner_box_hash">
+                    <div v-for="(item,index) in cates[cateIndex].list" :key="index" class="game" :class="'game_'+item.id" @click="handleGameClick(item)" />
+                  </div>
+                </div>
+              </div>
+            <!-- <div class="gameBox">
               <div class="title">哈希彩种 HOT</div>
               <van-tabs class="tab-style list-tab-style" swipeable @click="gameChange">
                 <van-tab v-for="(item,index) in gameList" :key="index+''">
-                  <!--自定义标题（#title必不可少）-->
                   <template #title>
                     <div class="gameitem" :class="index === gameIndex? item.enname+'_active': item.enname">
                       <span>{{ item.name }}</span>
@@ -181,11 +197,11 @@
                   </div>
                 </van-tab>
               </van-tabs>
-            </div>
+            </div> -->
             <!-- 游戏 - end -->
 
             <!-- 中奖榜 - start -->
-            <div class="newWin">
+            <!-- <div class="newWin">
               <div class="newWinContent bg-box">
                 <div class="title after">最新中奖榜 NEW</div>
                 <div class="winItem t1">
@@ -321,26 +337,27 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- 中奖榜 - end -->
 
-          </div>
-        </div>
-        <!-- 内容区域 - end -->
-
-        <!-- APP下载 - start -->
-        <div v-if="isShowAppDown" class="appdown after flex-between-center">
-          <div class="flex-center-center">
-            <i class="close_app van-icon van-icon-close" @click="isShowAppDown = !isShowAppDown" />
-            <div>
-              <div class="appTitle">下载哈博APP，体验更多竞彩乐趣</div>
             </div>
           </div>
-          <a href="#">
-            <div class="downs">立即下载</div>
-          </a>
-        </div>
+          <!-- 内容区域 - end -->
+
+          <!-- APP下载 - start -->
+          <div v-if="isShowAppDown" class="appdown after flex-between-center">
+            <div class="flex-center-center">
+              <i class="close_app van-icon van-icon-close" @click="isShowAppDown = !isShowAppDown" />
+              <div>
+                <div class="appTitle">下载哈博APP，体验更多竞彩乐趣</div>
+              </div>
+            </div>
+            <a href="#">
+              <div class="downs">立即下载</div>
+            </a>
+          </div>
         <!-- APP下载 - start -->
+        </div>
       </div>
     </div>
     <Nav />
@@ -616,7 +633,51 @@ export default {
           name: '敬请期待',
           enname: 'WAIT'
         }
-      ]
+      ],
+      cates: [
+        {
+          id: 1,
+          name: '哈希',
+          list: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            },
+            {
+              id: 3
+            },
+            {
+              id: 4
+            },
+            {
+              id: 5
+            }
+          ]
+        },
+
+        {
+          id: 2,
+          name: '彩票',
+          list: [
+            {
+              id: 6
+            }
+          ]
+        },
+
+        {
+          id: 3,
+          name: '体育',
+          list: [
+            {
+              id: 7
+            }
+          ]
+        }
+      ],
+      cateIndex: 0
     }
   },
   created() {
@@ -639,23 +700,6 @@ export default {
     gameChange(index) {
       this.gameIndex = index
     },
-    gameEnter(item) {
-      if (item.gameId === 1) {
-        this.$router.push({ path: '/hash?id=' + item.id })
-      }
-      if (item.gameId === 2) {
-        this.$router.push({ path: '/champion?id=' + item.id })
-      }
-      if (item.gameId === 3) {
-        this.$router.push({ path: '/bull?id=' + item.id })
-      }
-      if (item.gameId === 4) {
-        this.$router.push({ path: '/comb?id=' + item.id })
-      }
-      if (item.gameId === 5) {
-        this.$router.push({ path: '/bjl?id=' + item.id })
-      }
-    },
     handleReloadBalance() {
       this.isReloadBalance = true
       const sleep = (time, callbakc) => {
@@ -666,6 +710,23 @@ export default {
       sleep(3000, () => {
         this.isReloadBalance = false
       })
+    },
+    handleGameClick(item) {
+      if (item.id === 1) {
+        this.$router.push({ path: '/comb?id=' + item.id })
+      }
+      if (item.id === 2) {
+        this.$router.push({ path: '/bjl?id=' + item.id })
+      }
+      if (item.id === 3) {
+        this.$router.push({ path: '/champion?id=' + item.id })
+      }
+      if (item.id === 4) {
+        this.$router.push({ path: '/hash?id=' + item.id })
+      }
+      if (item.id === 5) {
+        this.$router.push({ path: '/bull?id=' + item.id })
+      }
     }
   }
 }
@@ -798,6 +859,124 @@ export default {
     padding-left: 0.625rem;
     color: #ee4b00;
     font-weight: 700;
+  }
+}
+
+.lottory {
+  min-height: 32rem;
+  margin-top: 0.625rem;
+  .sub_left {
+    width: 5rem;
+    >div {
+      width: 4.375rem;
+      height: 3.125rem;
+      background: url(data:image/png;base64,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);
+      background-size: 100% 100%;
+      margin: 0.4375rem 0;
+      img {
+        width: 1.5625rem;
+        transition: all .5s ease;
+      }
+    }
+
+    .active {
+      .cate_1 {
+        background:url('../../assets/images/otherGame/blockchain_ac.png') center no-repeat;
+        background-size: contain;
+      }
+      .cate_2 {
+        background:url('../../assets/images/otherGame/live_ac.png') center no-repeat;
+        background-size: contain;
+      }
+      .cate_3 {
+        background:url('../../assets/images/otherGame/Sports_ac.png') center no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .cate {
+      width:1.56rem;
+      height:100%;
+    }
+
+    .cate_1 {
+      background:url('../../assets/images/otherGame/blockchain.png') center no-repeat;
+      background-size: contain;
+    }
+
+    .cate_2 {
+      background:url('../../assets/images/otherGame/live.png') center no-repeat;
+      background-size: contain;
+    }
+
+    .cate_3 {
+      background:url('../../assets/images/otherGame/Sports.png') center no-repeat;
+      background-size: contain;
+    }
+
+    .active {
+      background: url(data:image/png;base64,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);
+      background-size: 100% 100%;
+      color: #fff;
+    }
+  }
+
+  .gameContent {
+    flex: 1 1;
+    margin-left: 0.625rem;
+    min-height: 100%;
+    position: relative;
+    .gamelist {
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      .inner_box_hash {
+        flex-wrap: wrap;
+        width: 100%;
+        max-height: 100%;
+        display: flex;
+        position: absolute;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        >div {
+          width: 100%;
+          min-height: 6.875rem;
+          background-size: 100% 100%;
+        }
+
+        .game_1 {
+          background-image: url(../../assets/images/otherGame/HASH_COMB_0.png);
+        }
+
+        .game_2 {
+          background-image: url(../../assets/images/otherGame/HASH_BJL_0.png);
+        }
+
+        .game_3 {
+          background-image: url(../../assets/images/otherGame/CHAMPION_0.png);
+        }
+
+        .game_4 {
+          background-image: url(../../assets/images/otherGame/LUCKY_HASH_0.png);
+        }
+
+        .game_5 {
+          background-image: url(../../assets/images/otherGame/HASH_NIUNIU_0.png);
+        }
+
+        .game_6 {
+          background-image: url(../../assets/images/otherGame/ag_live_0.png);
+        }
+
+        .game_7 {
+          background-image: url(../../assets/images/otherGame/IM_sports_0.png);
+        }
+
+      }
+    }
   }
 }
 
