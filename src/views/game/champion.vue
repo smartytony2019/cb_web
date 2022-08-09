@@ -163,10 +163,7 @@
         <div class="view">
           <div class="gameContent">
             <div class="game_name_list">
-              <div class="name_list_item active"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
+              <div v-for="(item,index) in plays" :key="index" :class="{active: index==playIndex}" class="name_list_item" @click="handlePlay(item, index)"> {{ item.name }} </div>
             </div>
             <div class="content">
               <div>
@@ -197,7 +194,7 @@
         </div>
 
         <!-- 投注 -->
-        <Betting :game="game" :odds="odds" />
+        <Betting :play="play" :odds="odds" />
 
       </div>
     </div>
@@ -208,6 +205,7 @@
 
 import GameHeadDrop from '@/components/GameHeadDrop'
 import Betting from '@/components/Betting'
+import api from '@/api'
 export default {
   name: 'Champion',
   components: { GameHeadDrop, Betting },
@@ -223,18 +221,44 @@ export default {
       isShowDrop: false,
       list: [],
       sorted: [],
-      game: '',
-      odds: []
+      odds: [],
+      play: {},
+      plays: [],
+      playIndex: 0
     }
   },
   created() {
-    for (let i = 0; i < 10; i++) {
-      this.list.push({ name: i, code: 2000 + i, selected: false, odds: 1 + i })
-    }
-    console.log(this.list)
-    this.game = this.$route.query.id
+    // for (let i = 0; i < 10; i++) {
+    //   this.list.push({ name: i, code: 2000 + i, selected: false, odds: 1 + i })
+    // }
+    // console.log(this.list)
+    // this.game = this.$route.query.id
+
+    this.init()
   },
   methods: {
+    async init() {
+      // 获取游戏id
+      const id = this.$route.query.id
+      if (id === undefined || id === '' || id <= 0) {
+        this.$route.push({ path: '/' })
+      }
+
+      // 获取游戏信息
+      let res = await api.hashPlay.find({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.plays = res.data
+      this.play = this.plays[0]
+
+      // // 获取游戏赔率
+      res = await api.hashOdds.findByGameId({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.list = res.data
+    },
     handleSelectCode(item) {
       item.selected = !item.selected
 
@@ -260,7 +284,13 @@ export default {
       }
 
       this.odds = this.list.filter(m => m.selected)
-      console.log('111', this.odds)
+    },
+    handlePlay(item, index) {
+      this.playIndex = index
+      this.play = item
+      this.list.map(m => {
+        m.selected = false
+      })
     }
   }
 }

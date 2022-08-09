@@ -138,10 +138,7 @@
         <div class="view">
           <div class="gameContent">
             <div class="game_name_list">
-              <div class="name_list_item active"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
-              <div class="name_list_item"> 体验房 </div>
+              <div v-for="(item,index) in plays" :key="index" :class="{active: index==playIndex}" class="name_list_item" @click="handlePlay(item, index)"> {{ item.name }} </div>
             </div>
             <div class="content">
               <div>
@@ -178,7 +175,7 @@
                   <div>大</div>
                   <div>1.95</div>
                 </div> -->
-                <div v-for="(item,index) in list" :key="index" class="playBlockNew" :class="{playActive: selecteOddsId === item.id}" @click="handleSelectCode(item)">
+                <div v-for="(item,index) in list" :key="index" class="playBlockNew" :class="{playActive: selecteOddsId === item.id}" @click="handleSelectCode(item, index)">
                   <div>{{ item.name }}</div>
                   <div>{{ item.odds }}</div>
                 </div>
@@ -188,7 +185,7 @@
         </div>
 
         <!-- 投注 -->
-        <Betting :game="game" :odds="odds" />
+        <Betting :play="play" :odds="odds" />
       </div>
     </div>
   </div>
@@ -197,6 +194,7 @@
 <script>
 import GameHeadDrop from '@/components/GameHeadDrop'
 import Betting from '@/components/Betting'
+import api from '@/api'
 export default {
   name: 'Comb',
   components: { GameHeadDrop, Betting },
@@ -211,43 +209,73 @@ export default {
     return {
       isShowDrop: false,
       selecteOddsId: 0,
-      list: [
-        {
-          id: 1,
-          name: '大',
-          odds: '1.95',
-          code: '4000'
-        },
-        {
-          id: 2,
-          name: '小',
-          odds: '1.95',
-          code: '4001'
-        },
-        {
-          id: 3,
-          name: '单',
-          odds: '1.95',
-          code: '4002'
-        },
-        {
-          id: 4,
-          name: '双',
-          odds: '1.95',
-          code: '4003'
-        }
-      ],
+      // list: [
+      //   {
+      //     id: 1,
+      //     name: '大',
+      //     odds: '1.95',
+      //     code: '4000'
+      //   },
+      //   {
+      //     id: 2,
+      //     name: '小',
+      //     odds: '1.95',
+      //     code: '4001'
+      //   },
+      //   {
+      //     id: 3,
+      //     name: '单',
+      //     odds: '1.95',
+      //     code: '4002'
+      //   },
+      //   {
+      //     id: 4,
+      //     name: '双',
+      //     odds: '1.95',
+      //     code: '4003'
+      //   }
+      // ],
+      list: [],
       odds: [],
-      game: 0
+      play: {},
+      plays: [],
+      playIndex: 0
     }
   },
   created() {
-    this.game = this.$route.query.id
+    this.init()
   },
   methods: {
+    async init() {
+      // 获取游戏id
+      const id = this.$route.query.id
+      if (id === undefined || id === '' || id <= 0) {
+        this.$route.push({ path: '/' })
+      }
+
+      // 获取游戏信息
+      let res = await api.hashPlay.find({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.plays = res.data
+      this.play = this.plays[0]
+
+      // // 获取游戏赔率
+      res = await api.hashOdds.findByGameId({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.list = res.data
+    },
     handleSelectCode(item) {
       this.selecteOddsId = item.id
       this.odds[0] = item
+    },
+    handlePlay(item, index) {
+      this.playIndex = index
+      this.play = item
+      this.selecteOddsId = 0
     }
   }
 }

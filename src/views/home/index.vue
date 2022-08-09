@@ -143,7 +143,7 @@
 
             <!-- 游戏 - start -->
             <div class="lottory flex">
-              <div class="sub_left">
+              <div v-if="cates.length>0" class="sub_left">
 
                 <div v-for="(item,index) in cates" :key="index" class="flex-center-center" :class="{active:index===cateIndex}" @click="cateIndex=index">
                   <div class="cate" :class="'cate_'+item.id" />
@@ -154,11 +154,12 @@
 
               <div class="gameContent">
                 <div class="gamelist">
-                  <div class="inner_box_hash">
+                  <div v-if="cates.length>0" class="inner_box_hash">
                     <div v-for="(item,index) in cates[cateIndex].list" :key="index" class="game" :class="'game_'+item.id" @click="handleGameClick(item)" />
                   </div>
                 </div>
               </div>
+
             <!-- <div class="gameBox">
               <div class="title">哈希彩种 HOT</div>
               <van-tabs class="tab-style list-tab-style" swipeable @click="gameChange">
@@ -366,6 +367,7 @@
 
 <script>
 import Nav from '@/components/Nav'
+import api from '@/api/index'
 export default {
   name: 'Index',
   components: { Nav },
@@ -634,57 +636,24 @@ export default {
           enname: 'WAIT'
         }
       ],
-      cates: [
-        {
-          id: 1,
-          name: '哈希',
-          list: [
-            {
-              id: 1
-            },
-            {
-              id: 2
-            },
-            {
-              id: 3
-            },
-            {
-              id: 4
-            },
-            {
-              id: 5
-            }
-          ]
-        },
-
-        {
-          id: 2,
-          name: '彩票',
-          list: [
-            {
-              id: 6
-            }
-          ]
-        },
-
-        {
-          id: 3,
-          name: '体育',
-          list: [
-            {
-              id: 7
-            }
-          ]
-        }
-      ],
+      cates: [],
       cateIndex: 0
     }
   },
   created() {
     this.$store.dispatch('app/setNavIndex', 0)
     this.languageDefault = this.languageList[this.languageIndex]
+    this.init()
   },
   methods: {
+    async init() {
+      // 获取类目
+      const res = await api.category.findAll()
+      if (res && res.code !== 0) {
+        return
+      }
+      this.cates = res.data
+    },
     handleswitchLanguage(item) {
       this.languageIndex = item.id - 1
       this.switchLanguage = false

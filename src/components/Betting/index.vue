@@ -24,7 +24,7 @@
         </div>
       </div>
       <div>
-        <input v-model="form.amount" type="number" placeholder="输入金额" class="amount">
+        <input v-model="form.money" type="number" placeholder="输入金额" class="amount">
       </div>
     </div>
     <div class="flex-between-center m">
@@ -48,7 +48,7 @@
     <van-popup v-model="isShowBetConfirm" position="center" round>
       <div class="queren">
         <div class="title after">确认投注</div>
-        <div class="gameName">哈希PK拾</div>
+        <div class="gameName">{{ play.gameName }}</div>
         <div class="qlist after">
           <span>玩法</span>
           <span>投注金额</span>
@@ -210,6 +210,8 @@
 <script>
 import { Toast } from 'vant'
 import Loading from '@/components/Loading'
+import api from '@/api'
+
 export default {
   name: 'Betting',
   components: { Loading },
@@ -219,10 +221,10 @@ export default {
       type: Boolean,
       default: true
     },
-    game: {
+    play: {
       required: false,
-      type: String,
-      default: ''
+      type: Object,
+      default: () => ({})
     },
     odds: {
       required: false,
@@ -242,9 +244,9 @@ export default {
       isShowBetRecords: false,
 
       form: {
-        game: '',
-        odds: '',
-        amount: ''
+        playId: '',
+        codes: '',
+        money: ''
       },
 
       orderInfo: {
@@ -262,22 +264,23 @@ export default {
     }
   },
   created() {
-    console.log(this.game)
-    console.log(this.order)
   },
   methods: {
+    /**
+     * 投注按钮
+     */
     handleBet() {
       if (this.odds.length === 0) {
         Toast('请选择投注号码')
         return
       }
 
-      if (this.form.amount === '') {
+      if (this.form.money === '') {
         Toast('请输入投注金额')
         return
       }
 
-      if (this.game === '') {
+      if (this.play === undefined || this.play.id <= 0) {
         Toast('请选择投注类型')
         return
       }
@@ -286,25 +289,27 @@ export default {
       const count = this.odds.length
 
       // 总金额
-      const amount = this.form.amount * count
+      const amount = this.form.money * count
 
       // 投注号码
       const betNum = this.odds.map(item => item.name).join(',')
 
-      console.log(this.odds)
-
-      // 最高可赢金额1
-      const maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.amount
+      // 最高可赢金额
+      if (this.odds.length === 1) {
+        this.odds[0].odds
+      }
+      let maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.money
+      maxWin = maxWin.toFixed(2)
 
       this.orderInfo = {
         count,
         betNum,
         amount,
         maxWin,
-        betAmount: this.form.amount
+        betAmount: this.form.money
       }
 
-      console.log(this.orderInfo)
+      console.log('orderInfo', this.orderInfo)
 
       this.isShowBetConfirm = true
     },
@@ -313,14 +318,43 @@ export default {
     },
 
     /**
-     * 确认投注
+     * 确认投注按钮
      */
-    handleBetConfirm() {
-      this.form.game = this.game
-      this.form.odds = this.odds.map(item => item.code).join(',')
-      console.log(this.form)
-      // this.isShowBetConfirm = false
-      // this.isLoading = true
+    async handleBetConfirm() {
+      this.form.playId = this.play.id
+      this.form.codes = this.odds.map(item => item.code).join(',')
+
+      this.isShowBetConfirm = false
+      this.isLoading = true
+      const res = await api.hashBet.submit(this.form)
+      this.isLoading = false
+
+      if (res.code !== 0) {
+        Toast(res.msg)
+      }
+
+      // 开奖进度条
+      this.isSettleProccess = true
+
+      // 开奖后处理
+      const settledCallback = () => {
+        this.isSettleProccess = false
+        this.isShowBetRecords = true
+        console.log('complete')
+      }
+
+      // 定时器查询单号
+      let tmp = 10
+      const timer = setInterval(() => {
+        if (tmp > 0) {
+          console.log('tmp', tmp)
+          tmp--
+        } else {
+          clearInterval(timer)
+          settledCallback()
+        }
+      }, 1000)
+
       // const sleep = (time) => {
       //   return new Promise((resolve, reject) => {
       //     setTimeout(() => {
