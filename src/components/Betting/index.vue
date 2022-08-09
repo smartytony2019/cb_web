@@ -293,7 +293,7 @@ export default {
 
       console.log(this.odds)
 
-      // 最高可赢金额
+      // 最高可赢金额1
       const maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.amount
 
       this.orderInfo = {
