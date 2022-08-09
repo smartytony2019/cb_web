@@ -24,7 +24,7 @@
         </div>
       </div>
       <div>
-        <input type="number" placeholder="输入金额" class="amount">
+        <input v-model="form.amount" type="number" placeholder="输入金额" class="amount">
       </div>
     </div>
     <div class="flex-between-center m">
@@ -55,14 +55,14 @@
           <span>最高可赢</span>
         </div>
         <div class="qlist after">
-          <span>1,2,8</span>
-          <span>1</span>
-          <span>9.80</span>
+          <span>{{ orderInfo.betNum }}</span>
+          <span>{{ orderInfo.betAmount }}</span>
+          <span>{{ orderInfo.maxWin }}</span>
         </div>
         <div class="count after">
-          共<span>3</span>
+          共<span>{{ orderInfo.count }}</span>
           注 共
-          <span>3</span>
+          <span>{{ orderInfo.amount }}</span>
           USDT
         </div>
 
@@ -218,6 +218,16 @@ export default {
       required: false,
       type: Boolean,
       default: true
+    },
+    game: {
+      required: false,
+      type: String,
+      default: ''
+    },
+    odds: {
+      required: false,
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -229,7 +239,16 @@ export default {
 
       finished: true,
       isShowBetConfirm: false,
-      isShowBetRecords: false
+      isShowBetRecords: false,
+
+      form: {
+        game: '',
+        odds: '',
+        amount: ''
+      },
+
+      orderInfo: {
+      }
     }
   },
   computed: {
@@ -242,8 +261,51 @@ export default {
       }
     }
   },
+  created() {
+    console.log(this.game)
+    console.log(this.order)
+  },
   methods: {
     handleBet() {
+      if (this.odds.length === 0) {
+        Toast('请选择投注号码')
+        return
+      }
+
+      if (this.form.amount === '') {
+        Toast('请输入投注金额')
+        return
+      }
+
+      if (this.game === '') {
+        Toast('请选择投注类型')
+        return
+      }
+
+      // 注数
+      const count = this.odds.length
+
+      // 总金额
+      const amount = this.form.amount * count
+
+      // 投注号码
+      const betNum = this.odds.map(item => item.name).join(',')
+
+      console.log(this.odds)
+
+      // 最高可赢金额
+      const maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.amount
+
+      this.orderInfo = {
+        count,
+        betNum,
+        amount,
+        maxWin,
+        betAmount: this.form.amount
+      }
+
+      console.log(this.orderInfo)
+
       this.isShowBetConfirm = true
     },
     handleBetCencal() {
@@ -254,32 +316,35 @@ export default {
      * 确认投注
      */
     handleBetConfirm() {
-      this.isShowBetConfirm = false
-      this.isLoading = true
-      const sleep = (time) => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve()
-          }, time)
-        })
-      }
-      sleep(2000).then(() => {
-        this.isLoading = false
-        this.isSettleProccess = true
+      this.form.game = this.game
+      this.form.odds = this.odds.map(item => item.code).join(',')
+      console.log(this.form)
+      // this.isShowBetConfirm = false
+      // this.isLoading = true
+      // const sleep = (time) => {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve()
+      //     }, time)
+      //   })
+      // }
+      // sleep(2000).then(() => {
+      //   this.isLoading = false
+      //   this.isSettleProccess = true
 
-        sleep(2000).then(() => {
-          this.isSettleProccess = false
-          Toast.setDefaultOptions({ duration: 3000 })
-          // 成功
-          // Toast.success('恭喜老板，您中奖啦!')
+      //   sleep(2000).then(() => {
+      //     this.isSettleProccess = false
+      //     Toast.setDefaultOptions({ duration: 3000 })
+      //     // 成功
+      //     // Toast.success('恭喜老板，您中奖啦!')
 
-          // 失败
-          Toast({
-            message: '很遗憾,就差一点点!',
-            icon: 'data:image/png;base64,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'
-          })
-        })
-      })
+      //     // 失败
+      //     Toast({
+      //       message: '很遗憾,就差一点点!',
+      //       icon: 'data:image/png;base64,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'
+      //     })
+      //   })
+      // })
     },
     handleRecordClick() {
       this.isShowBetRecords = true

@@ -188,7 +188,7 @@
               <div class="select_content">
                 <div v-for="(item,index) in list" :key="index+''" class="select_item" @click="handleSelectCode(item)">
                   <div class="item flex-center-center" :class="{playActive: item.selected}">
-                    <div>{{ item.code }}</div>
+                    <div>{{ item.name }}</div>
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@
         </div>
 
         <!-- 投注 -->
-        <Betting />
+        <Betting :game="game" :odds="odds" />
 
       </div>
     </div>
@@ -222,14 +222,17 @@ export default {
     return {
       isShowDrop: false,
       list: [],
-      sorted: []
+      sorted: [],
+      game: '',
+      odds: []
     }
   },
   created() {
     for (let i = 0; i < 10; i++) {
-      this.list.push({ code: i, selected: false })
+      this.list.push({ name: i, code: 2000 + i, selected: false, odds: 1 + i })
     }
     console.log(this.list)
+    this.game = this.$route.query.id
   },
   methods: {
     handleSelectCode(item) {
@@ -255,6 +258,9 @@ export default {
           }
         })
       }
+
+      this.odds = this.list.filter(m => m.selected)
+      console.log('111', this.odds)
     }
   }
 }

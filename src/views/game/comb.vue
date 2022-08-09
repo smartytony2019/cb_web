@@ -20,6 +20,7 @@
             <GameHeadDrop :show="isShowDrop" @close="isShowDrop = false" />
           </div>
 
+          <!-- 开奖结果 - start -->
           <div class="en_name">Block Hash</div>
 
           <div class="subxt flex-between-center">
@@ -131,6 +132,7 @@
               </div>
             </div>
           </div>
+          <!-- 开奖结果 - end -->
         </div>
 
         <div class="view">
@@ -172,21 +174,13 @@
               </div>
 
               <div class="select_content">
-                <div class="playBlockNew playActive">
+                <!-- <div class="playBlockNew playActive">
                   <div>大</div>
                   <div>1.95</div>
-                </div>
-                <div class="playBlockNew">
-                  <div>小</div>
-                  <div>1.95</div>
-                </div>
-                <div class="playBlockNew">
-                  <div>单</div>
-                  <div>1.95</div>
-                </div>
-                <div class="playBlockNew">
-                  <div>双</div>
-                  <div>1.95</div>
+                </div> -->
+                <div v-for="(item,index) in list" :key="index" class="playBlockNew" :class="{playActive: selecteOddsId === item.id}" @click="handleSelectCode(item)">
+                  <div>{{ item.name }}</div>
+                  <div>{{ item.odds }}</div>
                 </div>
               </div>
             </div>
@@ -194,7 +188,7 @@
         </div>
 
         <!-- 投注 -->
-        <Betting />
+        <Betting :game="game" :odds="odds" />
       </div>
     </div>
   </div>
@@ -215,10 +209,46 @@ export default {
   },
   data() {
     return {
-      isShowDrop: false
+      isShowDrop: false,
+      selecteOddsId: 0,
+      list: [
+        {
+          id: 1,
+          name: '大',
+          odds: '1.95',
+          code: '4000'
+        },
+        {
+          id: 2,
+          name: '小',
+          odds: '1.95',
+          code: '4001'
+        },
+        {
+          id: 3,
+          name: '单',
+          odds: '1.95',
+          code: '4002'
+        },
+        {
+          id: 4,
+          name: '双',
+          odds: '1.95',
+          code: '4003'
+        }
+      ],
+      odds: [],
+      game: 0
     }
   },
   created() {
+    this.game = this.$route.query.id
+  },
+  methods: {
+    handleSelectCode(item) {
+      this.selecteOddsId = item.id
+      this.odds[0] = item
+    }
   }
 }
 </script>
