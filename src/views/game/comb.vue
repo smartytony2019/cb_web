@@ -209,32 +209,6 @@ export default {
     return {
       isShowDrop: false,
       selecteOddsId: 0,
-      // list: [
-      //   {
-      //     id: 1,
-      //     name: '大',
-      //     odds: '1.95',
-      //     code: '4000'
-      //   },
-      //   {
-      //     id: 2,
-      //     name: '小',
-      //     odds: '1.95',
-      //     code: '4001'
-      //   },
-      //   {
-      //     id: 3,
-      //     name: '单',
-      //     odds: '1.95',
-      //     code: '4002'
-      //   },
-      //   {
-      //     id: 4,
-      //     name: '双',
-      //     odds: '1.95',
-      //     code: '4003'
-      //   }
-      // ],
       list: [],
       odds: [],
       play: {},
