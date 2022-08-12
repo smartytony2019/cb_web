@@ -144,21 +144,21 @@
               <!-- 开奖结果 - start -->
               <div>
                 <div class="orderShow Hash_group">
-                  <!-- <div>
+                  <div v-if="!isOpenResult">
                     <span>等待开奖中...</span>
-                  </div> -->
+                  </div>
 
-                  <div class="flex-center-center kjnumber">
+                  <div v-else class="flex-center-center kjnumber">
                     <div>
-                      <span>{{ hashBlock }}</span>
+                      <span>{{ hash }}</span>
                       <span class="numberBox">
                         <span>{{ num1 }}</span>
                       </span>
                     </div>
 
-                    <a href="#" target="_blank">详情</a>
+                    <a :href="url" target="_blank">详情</a>
 
-                    <div class="betStatus not">未中奖</div>
+                    <div class="betStatus" :class="{not: flag ===1}">{{ betStatus }}</div>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@
         </div>
 
         <!-- 投注 -->
-        <Betting :play="play" :odds="odds" />
+        <Betting :play="play" :odds="odds" @beforeHashResult="beforeHashResult" @afterHashResult="afterHashResult" />
       </div>
     </div>
   </div>
@@ -216,8 +216,13 @@ export default {
       play: {},
       plays: [],
       playIndex: 0,
-      hashBlock: '',
-      num1: ''
+
+      isOpenResult: false,
+      hash: '',
+      url: '',
+      num1: '',
+      flag: '',
+      betStatus: ''
     }
   },
   computed: {
@@ -227,12 +232,13 @@ export default {
       },
       set(val) {
         if (val) {
-          this.hashBlock = val.substr(0, 5) + '...' + val.substr(val.length - 9, 9)
+          const blockHash = val.blockHash
+          this.hash = blockHash.substr(0, 5) + '...' + blockHash.substr(blockHash.length - 9, 9)
 
-          const arr = val.split('')
-          const isNumber = (val) => {
+          const arr = blockHash.split('')
+          const isNumber = (str) => {
             var regPos = /^[0-9]+.?[0-9]*/ // 判断是否是数字。
-            if (regPos.test(val)) {
+            if (regPos.test(str)) {
               return true
             } else {
               return false
@@ -244,13 +250,30 @@ export default {
               break
             }
           }
+
+          this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
+          if (val.network === 'mainnet') {
+            this.url = 'https://tronscan.org/#/block/' + val.blockHeight
+          }
+
+          if (val.flag === 1) {
+            this.betStatus = '未中奖'
+          } else if (val.flag === 2) {
+            this.betStatus = '已中奖'
+          } else if (val.flag === 3) {
+            this.betStatus = '和局'
+          }
+          this.flag = val.flag
+
+          this.isOpenResult = true
+        } else {
+          this.isOpenResult = false
         }
       }
     }
   },
   created() {
     this.init()
-    this.hashResult = '0000000001b8786f34f3020c53d2bc894e4dd7338332eff9bc6603ed23f3f3ad'
   },
   methods: {
     async init() {
@@ -274,6 +297,9 @@ export default {
         this.$route.push({ path: '/' })
       }
       this.list = res.data
+
+      // 获取开奖记录
+      await this.afterHashResult()
     },
     handleSelectCode(item) {
       this.selecteOddsId = item.id
@@ -283,6 +309,22 @@ export default {
       this.playIndex = index
       this.play = item
       this.selecteOddsId = 0
+      this.afterHashResult()
+    },
+
+    // 开奖前
+    beforeHashResult() {
+      this.isOpenResult = false
+    },
+
+    // 开奖后
+    async afterHashResult() {
+      const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
+      if (res.code === 0 && res.data.length > 0) {
+        this.hashResult = res.data[0]
+      } else {
+        this.hashResult = null
+      }
     }
   }
 }
@@ -537,6 +579,10 @@ export default {
         background: red;
         color: #fff;
         font-size: .8125rem!important;
+      }
+
+      .not {
+        background: #a8a8a8;
       }
 
     }

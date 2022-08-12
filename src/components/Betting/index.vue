@@ -211,7 +211,6 @@
 import { Toast } from 'vant'
 import Loading from '@/components/Loading'
 import api from '@/api'
-import { stat } from 'fs'
 
 export default {
   name: 'Betting',
@@ -338,14 +337,12 @@ export default {
       // 开奖进度条
       this.isSettleProccess = true
 
+      // 处理开奖结果显示
+      this.$emit('beforeHashResult')
+
       // 开奖后处理
       const settledCallback = (flag) => {
         if (flag === 1) {
-          // 成功
-          Toast.success('恭喜老板，您中奖啦!')
-        }
-
-        if (flag === 2) {
           // 失败
           Toast({
             message: '很遗憾,就差一点点!',
@@ -353,10 +350,17 @@ export default {
           })
         }
 
+        if (flag === 2) {
+          // 成功
+          Toast.success('恭喜老板，您中奖啦!')
+        }
+
         if (flag === 3) {
           // 和局
           Toast.success('大吉大利，和局啦!')
         }
+
+        this.$emit('afterHashResult')
         this.isSettleProccess = false
         console.log('complete')
       }
