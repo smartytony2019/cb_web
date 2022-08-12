@@ -1,34 +1,25 @@
 <!--
 @Author:      tony
 @Date:        2019-01-04T10:00:00+08:00
-@Description: 在线客服组件
+@Description: 投注组件
 -->
 <template>
   <div class="footer">
     <div class="flex-between-center">
-      <div class="clear">
+      <div class="clear" @click="form.money = ''">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAcCAYAAACQ0cTtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADXSURBVHgB7ZaxCoJQFIbPsUtGiw/Q3ls0NvYK1R45RVYPICi0GC1NvkNbj1DP0Z5LKKgnNQQF7QaJNJx/O/dc/o+fs/wIEk235hDDzgQVVKv2BOBhqFzd/eom81JkHzAW4zpQtgfQQNBo6TiqzEvIPmRmiVxrbVbtZ4a9QCAtuD97yRh88pIma1I4N+wdtKAuxMd2kxWHPGXdfb7V+46gpWlO1sbL31tNxjCGMYxhDGMYw/4ZVuqNFFOQFtKmGpc66PvFuZSMRHQGpAf8LPQjostB10ul9QWCDjaFep4AmAAAAABJRU5ErkJggg==">
       </div>
-      <div class="radiusBlock flex">
-        <div>
-          <img src="https://designer-trip.com/image/game/5.png">
-        </div>
-        <div>
-          <img src="https://designer-trip.com/image/game/20.png">
-        </div>
-        <div>
-          <img src="https://designer-trip.com/image/game/50.png">
-        </div>
-        <div>
-          <img src="https://designer-trip.com/image/game/100.png">
-        </div>
-      </div>
+
+      <!-- 投注筹码 - start -->
+      <Chips :type="1" @itemClick="handleMoneyChange" />
+      <!-- 投注筹码 - end -->
+
       <div>
         <input v-model="form.money" type="number" placeholder="输入金额" class="amount">
       </div>
     </div>
     <div class="flex-between-center m">
-      <div class="lottery" @click="handleRecordClick">
+      <div class="lottery" @click="isShowBetRecords = true">
         <p>投注</p>
         <p>记录</p>
       </div>
@@ -68,7 +59,7 @@
 
         <div class="ebtnbox flex-center-center">
           <div class="leftc">
-            <button class="van-button van-button--default van-button--normal" style="color: white; background: linear-gradient(rgb(239, 244, 255), rgb(176, 184, 201)); border: 0px;" @click="handleBetCencal">
+            <button class="van-button van-button--default van-button--normal" style="color: white; background: linear-gradient(rgb(239, 244, 255), rgb(176, 184, 201)); border: 0px;" @click="isShowBetConfirm = false">
               <div class="van-button__content">
                 <span class="van-button__text"> 取消 </span>
               </div>
@@ -100,20 +91,20 @@
               @load="onLoad"
             >
               <div class="dataList">
-                <div class="items" @click="handleTradeInfo">
+                <div v-for="(item,index) in betRecordList" :key="index" class="items" @click="showTradeInfo(item)">
                   <div class="flex-between-center">
-                    <span>玩法:哈希两面</span>
+                    <span>玩法:{{ item.gameName }}</span>
                   </div>
 
                   <div class="flex-between-center">
-                    <span>投注详情:小</span>
+                    <span>投注详情:{{ item.content }}</span>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAXCAYAAAA/ZK6/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC3SURBVHgBndO9DcMgEAVgjGLXHsEjeAA32SSeJN7E2YRIIFHiETxCCjr+YqKQAoE58gqkO71PugYkhOhRRbCUcqSULmDgn6Zp7oyxFQy+uUEQjuYiwomdR4IQ0kOBz9i2LUmhHMiiM/BBXdcJzvkABcg5N1hrSUBFECMQCMgYs14qwK61nqEn+fL1yA4BWyj7oXTSppTy5VdY4JryGXimyrmTHtM0zSgTXFOOQbH8A8cXXSDlv/IG9KlpCPF+fFMAAAAASUVORK5CYII="></img>
                   </div>
 
                   <div class="flex">
-                    <div>投注金额:1.00</div>
+                    <div>投注金额: {{ item.moneyAmount }}</div>
                     <div>
-                      中奖金额:<span style="color:red">1.95</span>
+                      中奖金额:<span style="color:red">{{ item.payoutMoney }}</span>
                     </div>
                   </div>
                 </div>
@@ -142,38 +133,38 @@
             <div class="flex-between-center after">
               <p>Block Hash</p>
               <p class="blue">
-                <a href="#" target="_blank">00000···6cea7619</a>
+                <a :href="url" target="_blank">{{ hash }}</a>
               </p>
             </div>
 
             <div class="flex-between-center after">
               <p>投注详情</p>
-              <p>小</p>
+              <p>{{ betItem.content }}</p>
             </div>
 
             <div class="flex-between-center after">
               <p>投注金额</p>
-              <p>1.00USDT</p>
+              <p>{{ betItem.moneyAmount }}USDT</p>
             </div>
 
             <div class="flex-between-center after">
               <p>奖金</p>
-              <p class="yellow">0.00USDT</p>
+              <p class="yellow">{{ betItem.profitMoney }}USDT</p>
             </div>
 
             <div class="flex-between-center after">
               <p>派奖金额</p>
-              <p class="yellow">0.00USDT</p>
+              <p class="yellow">{{ betItem.payoutMoney }}USDT</p>
             </div>
 
             <div class="flex-between-center after">
               <p>订单日期</p>
-              <p>2022/8/8 18:43:36</p>
+              <p>{{ betItem.createTime }}</p>
             </div>
 
             <div class="flex-between-center after">
               <p>状态</p>
-              <p class="status win">未中奖</p>
+              <p class="status" :class="{win: betStatus.flag === 2}">{{ betStatus }}</p>
             </div>
 
           </div>
@@ -182,14 +173,11 @@
     </van-popup>
     <!-- 投注详情信息 - end -->
 
-    <!-- <div class="van-toast van-toast--middle" style="z-index: 2004;"><i class="van-icon van-icon-smile van-toast__icon" /><div class="van-toast__text">恭喜老板，您中奖啦!</div></div> -->
-
-    <!-- <div class="van-toast van-toast--middle" style="z-index: 2004;">
-      <i class="van-icon van-toast__icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABnZJREFUeF7lW2nIVFUYfp6/EeSPivagsu1HFG1otpgtpn0GSWYLkhlJRotRmka0WYlthpQmVLZCWQaVlWZoKVGZEEgRbZSZEfkjqf7Ujyee4cwwy52Zc+7cWfx64TIf37znXZ577nvPuwzRY5K0N4BDw3UIAALYBuBnXyR/7aVJVt41knQggHEAJgE4Nji9RxuF/wYwDMobAN4l+W23jCwcAElnAjgDwLkATi/I8M8NBID1JNcXJLMkpjAAJF0CYDaAUUUamCHrUwBLSL5UhJ6OAZBkh+24AegleUcYCH/mptwASDoIwC3B+dwGFLDQO8FAeGckUy4AJE0GsAjAYckau7dgNsnFqeKTAZC0AMAdqYp6xL+c5MwUXUkASFoNYEKKgj7wbiTpt1AURQMgaQeA/aOk9p9pJ8l9YsyIAkDS1wCOihE4QDzbSPrE2ZLaAiDpIQC3thM0oN+/TPKKVra1BEDSNADPDahzsWbNJ/lgM+amAEg6G8AHsVoGnG8myeVZNmYCEA45dv7IAXcsxbxJJN+qX9AMgEcH4ISX4lwM73skL2gLQDjbfxwjcTfkmUrylWq7G3aApFf7kNj0CssPSZ7VFICQ0hqAGJoH4HsA5wOYEbOgCzxPA1gD4HAATSN9nd7pJFeU/1ezAyR568fk8/NILiwLkXQegJsBNDxjXXDaIl0UeYSkj+YlknR7JAibSZ7SAIAkl67WRRo8ISsPl3RVCJ7HRcpJZfspOL6kfqEkg/9OpMAhkm+bt7IDJHkLGcUY2kQys9wlyTU/F0i8I1wALYqc6j5M8pcsgZI2AhgTqWwZyevqAfgMwMmRAsxm/idIPt/EoCMCELMSZGaxvhkct4MNlLMUt53kwRUAJDlp+DGnoT4wLSC5oYmBdwG4O6fsdSRdXM1y3FVmy81bihtPck3pEZB0LYCnchpZXubIeg/JGiAl+bWTt5L7DMmGN4wkO25gO6FS8aQMwOsALs4pbbNrgyQ3dWEHWPY4kn/Wy5bk9Nwxy4E3D5VqBmUAvgJwTKKUvwH4ZFWKphkG9ioGuOkyB8BpifabfUQZADvTrmNTLb8SRDIc79dbwI9ZzSkvApCRDL263yOYq1n8rDcEtj6fA84B8H6iH6MMwIkA3HpKoRoABuQk6LOHs9gUGjIADn4Ogql0GwCfzAYhF/Br3KW7VLraAPjE9ljqymHCP+f/DsDcTh6B4bAJZuQNgp04/xcAp92/hUsA3MTYF8DxAA7oRHji2ovyvgYT9ZTYnwWwsl07O6TlUwFck0dJ4poxeQ9CKXq2AriP5MqURaEsf1MYr0lZmsJ7dCdH4RhFawFMJultX0OS3Gf0drcNpceB5D8ZfN2sUVZygddsaIxHCTxPkry+ml/SZQBcPmuWwKwCsKp+/KVb7TmabGAXWmAbSI6tc34ZgNjevUvXbmn9UJYhyS06t+qKohdITisD4HG27QVJdl4xmuR3AVxvddcKfOdT6EsAU0g6U/VN2jNUgEenCGnBW6prVtcEPyporG0WyaXBaGeGrhOckNPoLwCMJflHkDcFQE1jI6dcx5v9vLYagDsB3JtTYHnZDpLeTSUqqHKzmKQTnbLMbwCM7NBOD1XdWA+ABxwz63oJyipZoiTfdd/9lDpDM1UTSZZK3pLmA7g/waYs1kpZv74x8gmAUzsQ7u1aAlGSp8icMRZBK0hOD3I7qTFaxBaSJ5WNqgfA0xQvdmDxIpJzJTlQuWXlwFUUXQnAnSA/pjd0ILRmViCrOeqt1qsWVwd+5Fpac/drYkBVkElpMeWyoo+LGiZFmg1I+DFoOVzURyfyqm64+5k7IAQaB0IHxOFEmXNCrYakhlOpbCnJzB5luzE5t8vcNtudaTXJC5s5EDMoWdQRuR8gbiXZclahLQAhJjjBKbLX3wswdpEc0U5RFAABBPcA/Cuv3YEqyU47Y6MBCCD41xmXtxPa5+/XknSzJoqSAAggeDrsgSjpvWd6nKTfXtGUDEAAoYiBimgjIxkXkvTNSaJcAAQQhgD43To+SWPxzFsAeNojcxi6nbrcAJQFS7oUgCeuXE/oJXXkeNnQjgGoAsKVXu+IlEmzPIAV4njhAFQB4VPXRAD+9G8LiyAXbD2K41Nd5khOXiWF7YAsAyT5deT5A1+pB6md7hGEPoGLK12hrgJQbbGkvUIT1ED4ckO0DIqd9WnTn6W/Se7qisd1Qv8Dar4/ZMIlri0AAAAASUVORK5CYII=" class="van-icon__image"></i>
-      <div class="van-toast__text">很遗憾,就差一点点!</div>
-    </div> -->
+    <!-- 加载层 - start -->
     <Loading v-if="isLoading" />
+    <!-- 加载层 - end -->
 
+    <!-- 结算层 - start -->
     <div v-if="isSettleProccess" class="settle-proccess">
       <div class="loadEffect _loadEffect">
         <span />
@@ -203,6 +191,7 @@
         <div>正在开奖中...</div>
       </div>
     </div>
+    <!-- 结算层 - end -->
 
   </div>
 </template>
@@ -210,11 +199,12 @@
 <script>
 import { Toast } from 'vant'
 import Loading from '@/components/Loading'
+import Chips from './chips.vue'
 import api from '@/api'
 
 export default {
   name: 'Betting',
-  components: { Loading },
+  components: { Loading, Chips },
   props: {
     show: {
       required: false,
@@ -239,7 +229,7 @@ export default {
       isSettleProccess: false,
       isShowTradeInfo: false,
 
-      finished: true,
+      finished: false,
       isShowBetConfirm: false,
       isShowBetRecords: false,
 
@@ -250,7 +240,20 @@ export default {
       },
 
       orderInfo: {
-      }
+      },
+
+      betRecordForm: {
+        current: 0,
+        size: 10,
+        gameId: 0
+      },
+      betRecordList: [],
+      betRecordTotal: 0,
+
+      betRecordLoading: false,
+      betItem: {},
+
+      hashResult: ''
     }
   },
   computed: {
@@ -261,6 +264,25 @@ export default {
       set(val) {
         this.$emit('close', val)
       }
+    },
+    hash() {
+      if (this.betItem.hashResult) {
+        return this.betItem.hashResult.substr(0, 5) + '...' + this.betItem.hashResult.substr(this.betItem.hashResult.length - 9, 9)
+      }
+      return ''
+    },
+    betStatus() {
+      if (this.betItem.flag === 1) {
+        return '未中奖'
+      } else if (this.betItem.flag === 2) {
+        return '已中奖'
+      } else {
+        return '和局'
+      }
+    },
+
+    url() {
+      return 'https://nile.tronscan.org/#/block/28892405'
     }
   },
   created() {
@@ -312,9 +334,6 @@ export default {
       console.log('orderInfo', this.orderInfo)
 
       this.isShowBetConfirm = true
-    },
-    handleBetCencal() {
-      this.isShowBetConfirm = false
     },
 
     /**
@@ -377,21 +396,62 @@ export default {
         })
       }, 2000)
     },
-    handleRecordClick() {
-      this.isShowBetRecords = true
+
+    /**
+     * 获取注单列表
+     */
+    async fetchBetRecord() {
+      const res = await api.hashBet.findPage(this.betRecordForm)
+      if (res.code === 0) {
+        this.betRecordList = this.betRecordList.concat(res.data.records)
+        if (res.data.records.length !== this.betRecordForm.size) {
+          this.finished = true
+        }
+      }
     },
 
     /**
-     * 订单详情信息
+     * 筹码点击事件
      */
-    handleTradeInfo() {
+    handleMoneyChange(val) {
+      this.form.money = (this.form.money === '' ? 0 : parseInt(this.form.money)) + val
+    },
+
+    /**
+     * 显示订单信息
+     */
+    showTradeInfo(item) {
+      console.log(item)
       this.isShowTradeInfo = true
+      this.betItem = item
     },
 
-    onRefresh() {
+    /**
+     * 注单列表刷新
+     */
+    async onRefresh() {
+      console.log('onRefresh')
+      this.betRecordForm.current = 1
+      this.finished = false
+      this.betRecordList = []
+      await this.fetchBetRecord()
+      this.isLoadingRefresh = false
     },
-    onLoad() {
 
+    /**
+     * 注单列表更多
+     */
+    async onLoad() {
+      // 防止多次加载
+      if (this.betRecordLoading) {
+        return
+      }
+      console.log('onload')
+      this.betRecordLoading = true
+      this.betRecordForm.current += 1
+      await this.fetchBetRecord()
+      this.betRecordLoading = false
+      this.isLoadingRefresh = false
     }
   }
 }
@@ -424,23 +484,6 @@ export default {
     }
   }
 
-  .radiusBlock {
-    height: 2.0625rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 0 2rem;
-    >div {
-      flex: 1 1;
-      margin: 0 0 0 0.8rem;
-      width: 3rem;
-      height: 3rem;
-    }
-    img {
-      width: 3rem;
-      height: 3rem;
-    }
-  }
   .amount {
     width: 95%;
     height: 2rem;
