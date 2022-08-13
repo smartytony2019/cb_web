@@ -28,19 +28,15 @@
             <!-- 资产 - start -->
             <div class="assets-box">
               <div class="bg-box">
-                <div class="left">
-                  <div class="title">总资产<i class="reload" /></div>
-
-                  <div class="money flex-between-center">
-                    <div class="title">0.00<span>USDT</span></div>
-                  </div>
-
-                  <div class="finance flex-between-center">
-                    <div class="title">今日赢亏: 300$ <span>-0.2%</span></div>
-                  </div>
+                <div class="title">总资产</div>
+                <div class="assetsAdd">
+                  <div class="val">TDJJqGNpkZpSioBegZM8yyq1K7YnZA17nu</div>
+                  <button>复制</button>
                 </div>
-
-                <div class="right" @click="$router.push('/mine/finance')">资产详情</div>
+                <div class="money flex-between-center">
+                  <div class="title">USDT:<span>0.00</span></div>
+                  <div class="title">TRX:<span>0.00</span></div>
+                </div>
               </div>
             </div>
             <!-- 资产 - end -->
@@ -201,7 +197,7 @@ export default {
 .page {
   background-color: #f5f5f5;
   .mine-info-box {
-    padding: 6rem 0.625rem 0 0.625rem;
+    padding: 4.125rem 0.625rem 0 0.625rem;
     background-image: url(https://designer-trip.com/image/mine_bg.png);
     .service {
       width: 100%;
@@ -245,60 +241,18 @@ export default {
     }
 
     .assets-box {
+      height: 5.5rem;
       margin: 2.0625rem auto;
-      .bg-box {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .left {
-        .title {
-          i {
-            display: inline-block;
-            width: .9rem;
-            height: .9rem;
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAYAAAClI5npAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANpSURBVHgBxVhbTttAFD0zQRWtKjXdQVhBU6lQPsMKmq6AsAIC9L/Jdym4K2hYAdkB/uRRqekKSHeQj6rQQjw9187YExMHJ8T0SInssWfumTt37pxrYEF40zS1t3vmK2bEEh6I9aapmBLEcI0/HzNCYU7Umqb8W2ObIzQ5SFnaDNB7NsSG76lB3nFyEVhtmmoJGJx6qi/34u5SNOtKRpfOcIijb57y8RACKfci0Hh9c4P+kxI8dtzE/eiqIXYs8UnQWQ8YUNtBCd+tcYG5QblH955/Vg1lsEWf990+XIK06+ucwOXarvmIWQisfwg7eM7aDpRC23Xp6YHqnB2oFWm3bSQlM17h+0fueHynlUVCTTJuDFpOk89Bt6a5cbRUh2Q6IKkt20YPHtJA3b4n454fqHYmgbRxXrfZoYWckGC98FQvNWaL4ySzN9ghSe8OgdEsLuc1Pg1pEhLMF58ionEM0F3HTp/OoowLTvdVi3HRtfc64HLZa/lb2zN1uqIatjCyueZtLBh/GUfOLqlJLokJ0Pi2fZHX7WkBNy9k+2qFL/aeiSxcEjW29py9bC0UhCrTN5PYpd3eT4d4qYc6STScvo8CIV5QQZIjrjQamm55Zxskf6NgqFISjMQrbVRyoDwnSRSM69vEBm1XNde9MrofzHKMzgtZBrsbGAsVbQMCdw+SwqASW2WN/wztJIcyHgnG8bqmP/qWgMgsFAzJBc4x35cg/GEf/rLpuEAsLyU2qB9+av7F24LpsY6CwVMxlnL0RFf/CdBxnm8+wjLU4qsAvu5Fe98fNYnUbqIgrO6aBhIl7cuhF52Grq5T2C7CC3LoMenEooQBGJ6MIQEKBh+OF64iKb5QmOj4rYQ3Cj0q625MQBBQvzvv16dJ6VkxUtkNe69u8d5exwRETDIrxSSypLQIT8xoPC10XcEzSZaPq9hUdUP51mGnF/dVPOmqyhpPa02VwTpNQtARrUjx2rJl2SSdH5IUzzlFa5bxTAJTSERV0vi50Q84+AUrpdB4JHCPx97nLjvbT2qBXARCErbiQa4M2aHG27lmqiXxk1HbvVVVrvKc3qhxlo3MilikvKahaDuHxIf0UrpKmpuARfhRYgknPD+qkV2EUnv5Ft68amrmLyQs28W9NeRwbx7M842oz6DasO5+KP4BbpqPIwMTRs8AAAAASUVORK5CYII=) no-repeat;
-            background-size: 100% 100%;
-            padding-top:.2rem;
-            margin-left: 0.6rem;
-          }
-        }
-      }
-      .right {
-        padding: 0.6rem 0.6rem 0 0;
-      }
       .title {
         font-family: Microsoft YaHei UI;
         font-style: normal;
         font-weight: 500;
         font-size: .9375rem;
-        line-height: 2rem;
+        line-height: 2.5rem;
         text-transform: uppercase;
         color: #575a6b;
         span {
           color: #ff782c;
-        }
-      }
-      .money {
-        .title {
-          font-size: 2rem;
-          span {
-            font-size:.5rem;
-            padding-left:.2rem;
-          }
-        }
-      }
-
-      .finance{
-        .title {
-          font-size: .5rem;
-          span {
-            font-size:.3rem;
-            background:#666;
-            border-radius: 10%;
-            color:#ddd;
-            padding:0 0.2rem;
-          }
         }
       }
 
@@ -334,7 +288,7 @@ export default {
     }
 
     .main-item {
-      margin: 2rem auto 0;
+      margin: 3.75rem auto 0;
       background: #fff;
       box-shadow: 0 0.3125rem 1.25rem rgb(0 0 0 / 10%);
       border-radius: 0.625rem;

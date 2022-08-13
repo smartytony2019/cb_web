@@ -146,6 +146,12 @@ export const constantRoutes = [
         path: '/',
         component: () => import('@/views/mine'),
         meta: { title: '' }
+      },
+
+      {
+        path: '/mine/finance',
+        component: () => import('@/views/mine/finance'),
+        meta: { title: '' }
       }
     ]
   },
