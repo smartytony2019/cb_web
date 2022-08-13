@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="flex-between-center m">
-      <div class="lottery" @click="isShowBetRecords = true">
+      <div class="lottery" @click="handleBetRecord">
         <p>投注</p>
         <p>记录</p>
       </div>
@@ -164,7 +164,7 @@
 
             <div class="flex-between-center after">
               <p>状态</p>
-              <p class="status" :class="{win: betStatus.flag === 2}">{{ betStatus }}</p>
+              <p class="status" :class="{win: betItem.flag === 2}">{{ betStatus }}</p>
             </div>
 
           </div>
@@ -266,8 +266,19 @@ export default {
       }
     },
     hash() {
-      if (this.betItem.hashResult) {
-        return this.betItem.hashResult.substr(0, 5) + '...' + this.betItem.hashResult.substr(this.betItem.hashResult.length - 9, 9)
+      if (this.betItem.blockHash) {
+        return this.betItem.blockHash.substr(0, 5) + '...' + this.betItem.blockHash.substr(this.betItem.blockHash.length - 9, 9)
+      }
+      return ''
+    },
+    url() {
+      if (this.betItem && this.betItem.blockHeight > 0) {
+        if (this.betItem.network === 'mainnet') {
+          return 'https://tronscan.org/#/block/' + this.betItem.blockHeight
+        }
+        if (this.betItem.network === 'nile') {
+          return 'https://nile.tronscan.org/#/block/' + this.betItem.blockHeight
+        }
       }
       return ''
     },
@@ -279,10 +290,6 @@ export default {
       } else {
         return '和局'
       }
-    },
-
-    url() {
-      return 'https://nile.tronscan.org/#/block/28892405'
     }
   },
   created() {
@@ -408,6 +415,16 @@ export default {
           this.finished = true
         }
       }
+    },
+
+    /**
+     * 获取投注记录
+     */
+    handleBetRecord() {
+      this.betRecordList = []
+      this.betRecordForm.current = 0
+      this.onLoad()
+      this.isShowBetRecords = true
     },
 
     /**
