@@ -32,7 +32,10 @@
                   <div class="title">总资产<i class="reload" /></div>
 
                   <div class="money flex-between-center">
-                    <div class="title">0.00<span>USDT</span></div>
+                    <div class="title">
+                      <span>0.00<b>USDT</b></span>
+                      <span>0.00<b>TRX</b></span>
+                    </div>
                   </div>
 
                   <div class="finance flex-between-center">
@@ -47,10 +50,10 @@
 
             <!-- 按钮 - start -->
             <div class="main-item">
-              <div class="item">
+              <!-- <div class="item">
                 <img src="@/assets/images/invitecode.png">
                 <p>邀请码</p>
-              </div>
+              </div> -->
               <div class="item" @click="$router.push({path:'/wallet'})">
                 <img src="@/assets/images/myWallet.png">
                 <p>我的钱包</p>
@@ -66,6 +69,10 @@
               <div class="item" @click="$router.push({path:'/record'})">
                 <img src="@/assets/images/jiaoyi.png">
                 <p>交易记录</p>
+              </div>
+              <div class="item" @click="$router.push({path:'/transfer'})">
+                <img src="@/assets/images/invitecode.png">
+                <p>资金划转</p>
               </div>
             </div>
             <!-- 按钮 - end -->
@@ -281,10 +288,21 @@ export default {
       }
       .money {
         .title {
-          font-size: 2rem;
-          span {
-            font-size:.5rem;
-            padding-left:.2rem;
+          >span {
+            font-size: 1.5rem;
+            color: #575a6b;
+            b {
+              font-size:.5rem;
+              padding-left:.2rem;
+              color: #ff782c;
+            }
+            &:last-child {
+              padding-left: .5rem;
+              font-size: 1rem;
+              b {
+                color: #4080ff;
+              }
+            }
           }
         }
       }

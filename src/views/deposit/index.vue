@@ -39,15 +39,27 @@
 
           <div class="withdrawType">
             <div class="title">我的钱包地址</div>
+            <div class="qr">
+              <vue-qr
+                :logo-src="logoSrc"
+                :size="191"
+                :margin="0"
+                :auto-color="true"
+                :dot-scale="1"
+                :text="qrText"
+                color-dark="#333"
+                color-light="#fff"
+              />
+            </div>
             <div class="xlaccount">
               <div>TWpeC2SeRuHtudTnAGETZ7zRQaeZtgDKrf</div>
               <div class="copy">复制</div>
             </div>
           </div>
 
-          <div class="btnGroup">
+          <!-- <div class="btnGroup">
             <div class="btn_submit depositBtn">存款流程</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -55,6 +67,7 @@
 </template>
 <script>
 
+import VueQr from 'vue-qr'
 export default {
   name: 'Promote',
   metaInfo: {
@@ -64,8 +77,14 @@ export default {
       { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' }
     ]
   },
+  components: {
+    VueQr
+  },
   data() {
     return {
+      logoSrc: '',
+      qrText: 'http://www.baidu.com',
+
       tabIndex: 0,
       imageList: [],
       tabs: {
@@ -154,6 +173,17 @@ export default {
     background: #fff;
     margin-bottom: 0.625rem;
     padding: 1rem;
+
+    .qr {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:0.825rem;
+      img {
+        width:50%;
+      }
+    }
+
     .title {
       padding-bottom: 0.625rem;
       font-size: 1rem;
@@ -189,19 +219,21 @@ export default {
 
     .xlaccount {
       width: 100%;
-      height: 3.4375rem;
+      /* height: 3.4375rem; */
       background: #eff7ff;
       -webkit-backdrop-filter: blur(.106667rem);
       backdrop-filter: blur(0.106667rem);
       border-radius: 0.3125rem;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
       margin-bottom: 0.625rem;
       color: #333;
       font-size: .8125rem;
+      padding:.5rem 0;
       .copy {
         color: #4080ff;
+        padding-left: 1.5rem;
       }
     }
   }

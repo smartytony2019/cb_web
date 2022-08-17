@@ -208,6 +208,19 @@ export const constantRoutes = [
     ]
   },
 
+  // 资金划转
+  {
+    path: '/transfer',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/transfer'),
+        meta: { title: '' }
+      }
+    ]
+  },
+
   // 报表
   {
     path: '/report',
