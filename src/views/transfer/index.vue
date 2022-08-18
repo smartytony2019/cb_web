@@ -29,7 +29,7 @@
             <div class="middle">
               <div class="item" @click="handleItemClick(0)">
                 <div class="con">
-                  <span>资金帐户</span>
+                  <span>{{ columns[selected.from] }}</span>
                   <span>USDT</span>
                 </div>
 
@@ -40,7 +40,7 @@
 
               <div class="item" @click="handleItemClick(1)">
                 <div class="con">
-                  <span>交易帐户</span>
+                  <span>{{ columns[selected.to] }}</span>
                   <span>USDT</span>
                 </div>
 
@@ -50,7 +50,7 @@
               </div>
             </div>
             <div class="right">
-              <van-icon name="sort" />
+              <van-icon name="sort" @click="exchange" />
             </div>
           </div>
 
@@ -61,20 +61,21 @@
               </div>
 
               <div class="input_box">
-                <input type="number" placeholder="请输入划转金额" class="withdrawinput">
+                <input v-model="form.money" type="number" placeholder="请输入划转金额" class="withdrawinput">
               </div>
 
               <div class="all_box">
-                <span>全部划转</span>
+                <span @click="handleTransferAll">全部划转</span>
               </div>
             </div>
             <div class="info">
-              最多可转: <span>0 USDT</span>
+              最多可转: <span>{{ transferble || '-' }} USDT</span>
+              <b v-if="selected.from === 0">** 需要TRX燃料费</b>
             </div>
           </div>
 
           <div class="btnGroup">
-            <div class="btn_submit">确定</div>
+            <button class="btn_submit" @click="handleConfirm">确定</button>
           </div>
         </div>
       </div>
@@ -89,10 +90,15 @@
         @cancel="showPicker = false"
       />
     </van-popup>
+
+    <!-- 加载层 - start -->
+    <Loading v-if="isLoading" />
+    <!-- 加载层 - end -->
   </div>
 </template>
 <script>
-
+import api from '@/api'
+import Loading from '@/components/Loading'
 export default {
   name: 'Promote',
   metaInfo: {
@@ -102,35 +108,104 @@ export default {
       { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' }
     ]
   },
+  components: { Loading },
   data() {
     return {
+      isReloadBalance: false,
+      balance: {},
+      isLoading: false,
       value: '',
       defaultIndex: 0,
       columns: ['资金帐户', '交易帐户'],
       showPicker: false,
-      form: {
+      selected: {
         from: 0,
-        to: 0
+        to: 1
+      },
+      form: {
+        direction: 0,
+        money: ''
       },
       itemIndex: 0
     }
   },
+  computed: {
+    transferble() {
+      if (this.selected.from === 0) {
+        return this.balance && this.balance.fundingAccount
+      } else {
+        return this.balance && this.balance.tradingAccount
+      }
+    }
+  },
   created() {
+    this.init()
   },
   methods: {
+    async init() {
+      this.loadBalance()
+    },
+    async loadBalance() {
+      const res = await api.member.balance()
+      if (res && res.code === 0) {
+        this.balance = res.data
+      }
+    },
+    async reloadBalance() {
+      this.balance = {}
+      this.isReloadBalance = true
+      await this.loadBalance()
+      this.isReloadBalance = false
+    },
     handleItemClick(item) {
       this.itemIndex = item
-      this.defaultIndex = item === 0 ? this.form.from : this.form.to
+      this.defaultIndex = item === 0 ? this.selected.from : this.selected.to
       this.showPicker = true
     },
     onConfirm(value, index) {
       if (this.itemIndex === 0) {
-        this.form.from = index
+        this.selected.from = index === 0 ? 0 : 1
+        this.selected.to = index === 1 ? 0 : 1
       } else {
-        this.form.to = index
+        this.selected.to = index === 0 ? 0 : 1
+        this.selected.from = index === 1 ? 0 : 1
       }
       this.value = value
       this.showPicker = false
+    },
+    exchange() {
+      const tmp = this.selected.from
+      this.selected.from = this.selected.to
+      this.selected.to = tmp
+    },
+    async handleConfirm() {
+      if (this.form.money <= 0) {
+        this.$toast('请输入正确的划转金额')
+        return
+      }
+
+      this.form.direction = this.selected.from
+      this.isLoading = true
+      const res = await api.member.transfer(this.form)
+      const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms))
+      }
+      await sleep(3000)
+      this.isLoading = false
+      if (res && res.code === 0) {
+        this.form.direction = 0
+        this.form.money = ''
+        this.selected.from = 0
+        this.selected.to = 1
+
+        this.$toast('转账成功')
+        this.reloadBalance()
+      } else {
+        this.$toast(res.msg || '转账失败')
+      }
+    },
+    handleTransferAll() {
+      this.form.money = this.transferble
     }
   }
 }
@@ -213,6 +288,11 @@ export default {
     .info {
       span {
         color: #36373b;
+      }
+      b {
+        color:#ff782c;
+        font-weight: normal;
+        padding-left: 2rem;
       }
     }
 
@@ -325,6 +405,9 @@ export default {
     padding: 0 2.75rem;
 
     .btn_submit {
+      width:100%;
+      display: block;
+      border:0;
       margin: 1.25rem 0;
       display: flex;
       align-items: center;
