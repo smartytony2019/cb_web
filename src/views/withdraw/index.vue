@@ -179,6 +179,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index-page {
+  height:100% !important;
+}
 .page {
   background: #f2f7ff;
 
