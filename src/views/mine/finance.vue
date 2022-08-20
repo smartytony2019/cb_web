@@ -201,12 +201,6 @@ export default {
 .finance-page {
   height:100%;
 }
-.red {
-  color:red;
-}
-.blue {
-  color:blue;
-}
 .page {
   width: 100%;
   height: 100%;

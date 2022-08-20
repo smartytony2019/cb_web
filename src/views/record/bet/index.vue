@@ -13,7 +13,7 @@
               <i class="iconfont  icon-fanhui2" />
             </div>
           </div>
-          <div class="flex-center-center title">帐户明细</div>
+          <div class="flex-center-center title">注单列表</div>
           <div class="flex-right" />
         </div>
 

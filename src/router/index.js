@@ -74,6 +74,11 @@ export const constantRoutes = [
         path: '/record/bet/list',
         component: () => import('@/views/record/bet/list'),
         meta: { title: '' }
+      },
+      {
+        path: '/record/bet/detail',
+        component: () => import('@/views/record/bet/detail'),
+        meta: { title: '' }
       }
     ]
   },

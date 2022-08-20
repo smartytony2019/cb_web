@@ -414,12 +414,6 @@ export default {
       }
 
       .bull {
-        .red {
-          color: #fc3939!important;
-        }
-        .blue {
-          color: #4080ff!important;
-        }
         .threeBox {
           height: 3.6875rem;
           margin-top: 0;

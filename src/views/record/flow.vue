@@ -93,6 +93,7 @@
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'Record',
   metaInfo: {
@@ -114,13 +115,24 @@ export default {
         { text: '投注', value: 3 },
         { text: '活动', value: 4 },
         { text: '兑换', value: 5 }
-      ]
+      ],
+      list: []
     }
   },
   created() {
-    // this.onRefresh()
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.memberFlow.findPage({ page: 1, size: 10 })
+      console.log(res)
+      if (res && res.code === 0) {
+        this.list = res.data.records
+      }
+    },
+    async get() {
+
+    },
     onRefresh() {
       this.isLoading = true
       setTimeout(() => {
@@ -128,7 +140,6 @@ export default {
       }, 2000)
     },
     onLoad() {
-
     }
   }
 }

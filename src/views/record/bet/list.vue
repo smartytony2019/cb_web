@@ -33,9 +33,9 @@
                 @load="onLoad"
               >
 
-                <div class="item after flex-between-center">
+                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
                   <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/jiaoyi.png">
+                    <img src="@/assets/images/otherGame/Sports_ac.png">
                     <div>
                       <div>哈希 - PK拾</div>
                       <div class="time">2022-7-18 19:51:21</div>
@@ -49,9 +49,9 @@
                   </div>
                 </div>
 
-                <div class="item after flex-between-center">
+                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
                   <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/jiaoyi.png">
+                    <img src="@/assets/images/otherGame/live_ac.png">
                     <div>
                       <div>哈希 - PK拾</div>
                       <div class="time">2022-7-18 19:51:21</div>
@@ -65,9 +65,9 @@
                   </div>
                 </div>
 
-                <div class="item after flex-between-center">
+                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
                   <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/jiaoyi.png">
+                    <img src="@/assets/images/otherGame/blockchain_ac.png">
                     <div>
                       <div>哈希 - PK拾</div>
                       <div class="time">2022-7-18 19:51:21</div>
@@ -133,6 +133,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.index-page {
+  height:100% !important;
+}
 
 .header {
   min-height: 3.4375rem;
