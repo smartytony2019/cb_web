@@ -26,58 +26,26 @@
         <div class="view">
           <div class="Record_List">
 
-            <van-pull-refresh v-model="isLoading" :head-height="80" @refresh="onRefresh">
+            <van-pull-refresh v-model="isLoadingRefresh" :head-height="80" @refresh="onRefresh">
               <van-list
                 :finished="finished"
                 finished-text="没有更多了"
                 @load="onLoad"
               >
 
-                <div class="item after flex-between-center">
+                <div v-for="(item,index) in list" :key="index" class="item after flex-between-center">
                   <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
+                    <img src="@/assets/images/bi.png">
                     <div>
-                      <div>充值</div>
-                      <div class="time">2022-7-18 19:51:21</div>
+                      <div>{{ item.item }}</div>
+                      <div class="time">{{ item.createTime }}</div>
                     </div>
                   </div>
 
                   <div class="item_right">
-                    <span class="add">+100</span>
-                    <span>余额: 100</span>
-                    <span>币种: TRX</span>
-                  </div>
-                </div>
-
-                <div class="item after flex-between-center">
-                  <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
-                    <div>
-                      <div>投注</div>
-                      <div class="time">2022-7-18 19:51:21</div>
-                    </div>
-                  </div>
-
-                  <div class="item_right">
-                    <span class="sub">-100</span>
-                    <span>余额: 100</span>
-                    <span>币种: USDT</span>
-                  </div>
-                </div>
-
-                <div class="item after flex-between-center">
-                  <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
-                    <div>
-                      <div>提现</div>
-                      <div class="time">2022-7-18 19:51:21</div>
-                    </div>
-                  </div>
-
-                  <div class="item_right">
-                    <span class="sub">-20</span>
-                    <span>余额: 100</span>
-                    <span>币种: USDT</span>
+                    <span class="add">{{ flowMoney(item) }}</span>
+                    <span>余额: {{ item.afterMoney }}</span>
+                    <span>币种: {{ item.ext }}</span>
                   </div>
                 </div>
 
@@ -105,8 +73,9 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
-      finished: true,
+      recordLoading: false,
+      isLoadingRefresh: false,
+      finished: false,
       value1: 0,
       option1: [
         { text: '所有', value: 0 },
@@ -116,36 +85,63 @@ export default {
         { text: '活动', value: 4 },
         { text: '兑换', value: 5 }
       ],
-      list: []
+      list: [],
+      form: {
+        current: 0,
+        size: 10,
+        type: 0
+      }
     }
+  },
+  computed: {
   },
   created() {
     this.init()
   },
   methods: {
     async init() {
-      const res = await api.memberFlow.findPage({ page: 1, size: 10 })
-      console.log(res)
+      // this.fetch()
+    },
+    async fetch() {
+      console.log('------fetch------')
+      const res = await api.memberFlow.findPage(this.form)
       if (res && res.code === 0) {
-        this.list = res.data.records
+        this.list = this.list.concat(res.data.records)
+        this.finished = res.data.records.length !== this.form.size
       }
     },
-    async get() {
-
+    async onRefresh() {
+      console.log('onRefresh')
+      this.form.current = 1
+      this.finished = false
+      this.list = []
+      await this.fetch()
+      this.isLoadingRefresh = false
     },
-    onRefresh() {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
+    async onLoad() {
+      // 防止多次加载
+      if (this.recordLoading) {
+        return
+      }
+      console.log('onLoad')
+      this.recordLoading = true
+      this.form.current += 1
+      await this.fetch()
+      this.recordLoading = false
+      this.isLoadingRefresh = false
     },
-    onLoad() {
+    flowMoney(item) {
+      return item.flowMoney > 0 ? '+' + item.flowMoney : item.flowMoney
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.index-page {
+  height: 100% !important;
+}
 
 .header {
   min-height: 3.4375rem;

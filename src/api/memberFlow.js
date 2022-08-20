@@ -6,5 +6,5 @@ import request from '@/utils/request'
  * @returns Promise
  */
 export async function findPage(params = {}) {
-  return request.post(`/api/memberFlow/findPage/${params.page}/${params.size}`, params)
+  return request.post(`/api/memberFlow/findPage/${params.current}/${params.size}`, params)
 }
