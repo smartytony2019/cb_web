@@ -143,10 +143,10 @@ export default {
   },
   methods: {
     async init() {
-      this.loadBalance()
+      this.loadBalance(0)
     },
-    async loadBalance() {
-      const res = await api.member.balance()
+    async loadBalance(deep) {
+      const res = await api.member.balance({ deep })
       if (res && res.code === 0) {
         this.balance = res.data
       }
@@ -154,7 +154,7 @@ export default {
     async reloadBalance() {
       this.balance = {}
       this.isReloadBalance = true
-      await this.loadBalance()
+      await this.loadBalance(1)
       this.isReloadBalance = false
     },
     handleItemClick(item) {

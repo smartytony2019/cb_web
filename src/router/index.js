@@ -51,14 +51,32 @@ export const constantRoutes = [
     component: () => import('@/views/setting')
   },
   {
-    path: '/record',
-    component: () => import('@/views/record')
-  },
-  {
     path: '/offline',
     component: () => import('@/views/offline')
   },
 
+  {
+    path: '/record/flow',
+    component: Layout,
+    redirect: '/',
+    children: [
+      {
+        path: '/record/flow',
+        component: () => import('@/views/record/flow'),
+        meta: { title: '' }
+      },
+      {
+        path: '/record/bet/index',
+        component: () => import('@/views/record/bet/index'),
+        meta: { title: '' }
+      },
+      {
+        path: '/record/bet/list',
+        component: () => import('@/views/record/bet/list'),
+        meta: { title: '' }
+      }
+    ]
+  },
   {
     path: '/',
     name: 'Home',

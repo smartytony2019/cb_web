@@ -21,15 +21,16 @@
         </div>
 
         <div class="view">
+          <!-- 资金帐户 - start -->
           <div class="withdrawType">
-            <div class="title">我的余额</div>
+            <div class="title">资金帐户</div>
             <div class="money-detail flex">
               <div class="detail-item flex-column-center">
                 <h4>
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGFSURBVHgB7ZY9S8NgEIDvYotftILgLrRYF52cHPygUpNODla66O6/yE9wdBM6iKCDW4tQCJKlY9FBt26CgopRIzbJedGoQZOGxKpQ8gzJe++9ue+EAMTExHQJDNKL4toRIhCEgqha3V/28fdqKxFkApGWIDyWz/5HAgL8E4EZc5CVbzuEK1z+tCO2eOf46xEIIKjHnkhS6ZxvE46ocD8XISRhS42FwvowJ+QOOJ3NSv0QMomOpS4WyzNExhgiGkSmZjEAD+xY6HMdEzKZwdlcrnTHWp2IJjmGSw4uUasdKH62faPkcu5pWnJTVXdvPHSBpRbF8jiiuc06CTx67pmxLMtCo3H6lEo9b4ni6k67PXRSr1euPw1Qky8XTuxNdyL5/MZoMqnPCQLNE8EZ+Axax768RW1NcfkWWOSSU4uneYSnepqNGry239dHtn3F63vTxAF2aMuqrpuKohze+tmOOtV2JjlH/JOpfidSwN1w/GNix73vOOp0up6zvw8Y8kchJuYXeQGe8YZ6Dwq84AAAAABJRU5ErkJggg==">
                   USDT
                 </h4>
-                <h2>0</h2>
+                <h2>{{ balance.fundingAccount || '-' }}</h2>
               </div>
 
               <div class="detail-item">
@@ -37,19 +38,23 @@
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOGSURBVHgBrZRdSFRREMfPva5hS98Z0UtZRkVBaH48Je0qgSDUi70ZYdBDIIKQGIjuh99CSVER+SA9RCGEpWUvmaspBWUqiBaUJkUGRZiGwqJrv8l7xa53XY0G5s7cMzP/mTNnztH8fn+bUmobPBIKhTocDsfrmZmZAa/X+0P9B9J8Pl8W8pHx/wneCjs1TRtDDpG0T9f1V8jhQCDwBp5RqyDN4/FsAGAUfQIOzc3NHUdugXeSJBl5BN4Dxxs+ffgMREVFDQaDwQFieylyImwC+dAOH2IdPAloIdXmEtS42LGmpmb99PR0Euo+QDPwicM3gf81yHdqvsUFYL21SyDV9lPZboKzcbxEhZdLSkp8KgIRm0BsPereP4Call5aWtpr2qPkQ19/ut3uTIxOWnYjPT39CcmqXS7XgdTU1M7u7u5gGPBNxNyUduLvhqUD19LS0gKdnZ1fxEc3nTHeRZwUnQpkN26cM51OZx9AcTbg0qIe/LbCKdIa2upHr2MS2/hPXdiBENV+IKAK+YIdjcLjiYmJt2JiYvayXk5VXVQlk6Vo3TFa2Ir6GM4G7JeJQ9xzMNbKzpAvNUtVVRjW06Y8y7qXs7mIegEOUuUVZLXI2dnZeCo+gn4Qn/1Imbrtxnk8+ytBeXl5MgFPcYoDc9yS5Kz0F3UtLDYZzZ1wCB4hpkdGFjnE/2k4iV26NGtv6WM7js20oc7Gdg+xnylrItl7bnwP1Y+QPLjIx4PIJ1ES6x8dVhAM9QCcQ12SQLYuwwBIrY1N8eykYPei5gm4rOlWp6mpqRZEAg4uG4wdVD5iBy5TBXgr7OMMr5vrSxLU1tZO4tSAmmuDE4/tm3WRs9tF4nbU+zIQi226sqdmAk7IRTIXKisr5RGUln61OnMWVxEhRrrQarNNAHAA0QcvjCvv0D41PzHDi33Lyso8FHOYnWUUFRVNriiBQY0EnjF/GLmNAm6ZmAKAi+Es81BXnMB4OmLNwyaZ9P+zaa+oqJCX1MdaCT6D4XDCJjAu2h2Ac4yEh7gfE4Ytjr43yU1mYmrUMqQtZwToKAla5BlHyiUbRPejy43txp6jIpAeIUEXop/K85EbAf0OuF9s0dHRhWoF5IjkwNv0kOfgPOCbAT+FjGU5rbi4eEytgPSIDrreAOg2wGPhQyTMCTcx/5TAOOzbxm8pc9+hVkERWyTEDh4gJpmYarVK+g0YSM719+DmSwAAAABJRU5ErkJggg==">
                   TRX
                 </h4>
-                <h2>0</h2>
+                <h2>{{ balance.trx || '-' }}</h2>
               </div>
             </div>
           </div>
+          <!-- 资金帐户 - end -->
 
+          <!-- 提现类型 - start -->
           <div class="withdrawType">
             <div class="title">提现类型</div>
             <div class="withtype flex">
-              <div class="bk">USDT</div>
-              <div>TRX</div>
+              <div :class="{bk:form.type === 0}" @click="form.type=0">USDT</div>
+              <div :class="{bk:form.type === 1}" @click="form.type=1">TRX</div>
             </div>
           </div>
+          <!-- 提现类型 - end -->
 
+          <!-- 提现金额 - start -->
           <div class="withdrawType">
             <div class="title">提现金额</div>
             <div class="xlaccount cell">
@@ -58,28 +63,31 @@
               </div>
 
               <div class="input_box">
-                <input type="number" placeholder="请输入提现金额" class="withdrawinput">
+                <input v-model="form.money" type="number" placeholder="请输入提现金额" class="withdrawinput">
               </div>
             </div>
           </div>
+          <!-- 提现金额 - start -->
 
+          <!-- 提现账户 - start -->
           <div class="withdrawType">
-            <div class="title">虚拟币账户</div>
+            <div class="title">提现账户</div>
             <div class="xlaccount">
               <div class="qb">
                 <img src="data:image/png;base64,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">
               </div>
 
-              <div>TDJJqGNpkZpSioBegZM8yyq1K7YnZA17nu</div>
+              <div>{{ info.withdrawWallet || '-' }}</div>
 
               <div class="copy">
                 <i class="iconfont icon-xuanzhong" />
               </div>
             </div>
           </div>
+          <!-- 提现账户 - end -->
 
           <div class="btnGroup">
-            <div class="btn_submit">立即提现</div>
+            <div class="btn_submit" @click="handleConfirm">确定</div>
           </div>
         </div>
       </div>
@@ -88,6 +96,7 @@
 </template>
 <script>
 
+import api from '@/api'
 export default {
   name: 'Promote',
   metaInfo: {
@@ -99,80 +108,38 @@ export default {
   },
   data() {
     return {
-      tabIndex: 0,
-      imageList: [],
-      tabs: {
-        nav: [
-          {
-            id: 0,
-            name: '全部活动',
-            type: 0
-          },
-          {
-            id: 1,
-            name: '限时活动',
-            type: 1
-          },
-          {
-            id: 2,
-            name: '新手活动',
-            type: 2
-          },
-          {
-            id: 3,
-            name: '日常活动',
-            type: 3
-          }
-        ],
-        images: [
-          {
-            id: 1,
-            type: 1,
-            image: 'https://designer-trip.com/image/Activity/newcomer1Cn.jpg',
-            time: '2022-07-02 - 2022-07-09'
-          },
-          {
-            id: 2,
-            type: 1,
-            image: 'https://designer-trip.com/image/Activity/newcomer2Cn.jpg',
-            time: '2022-07-02 - 2022-07-09'
-          },
-          {
-            id: 3,
-            type: 2,
-            image: 'https://designer-trip.com/image/Activity/newcomer3Cn.png',
-            time: '2022-07-02 - 2022-07-09'
-          },
-          {
-            id: 4,
-            type: 3,
-            image: 'https://designer-trip.com/image/Activity/dailitiaocaoCn.jpg',
-            time: '2022-07-02 - 2022-07-09'
-          }
-        ]
-      }
+      form: {
+        type: 0,
+        money: ''
+      },
+      info: {},
+      balance: {}
     }
   },
   created() {
-    this.imageList = this.tabs.images
+    this.init()
   },
   methods: {
-    handleTabChange(index) {
-      this.tabIndex = index
-      if (index === 0) {
-        this.imageList = this.tabs.images
-      } else {
-        const item = this.tabs.nav[index]
-        this.imageList = this.tabs.images.filter(f => f.type === item.type)
+    async init() {
+      let res = await api.member.info()
+      if (res && res.code === 0) {
+        this.info = res.data
+      }
+
+      res = await api.member.balance({ deep: 0 })
+      if (res && res.code === 0) {
+        this.balance = res.data
       }
     },
-    handleItemClick(item) {
-      this.$router.push({
-        path: '/activity/detail',
-        query: {
-          id: item.id
-        }
-      })
+    async handleConfirm() {
+      const res = await api.member.withdraw(this.form)
+      if (res.code === 0) {
+        this.$toast('提现成功')
+        this.form.type = 0
+        this.form.money = ''
+      } else {
+        this.$toast(res.msg || '提现失败')
+      }
     }
   }
 }

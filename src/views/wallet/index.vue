@@ -22,6 +22,7 @@
         <div class="view">
 
           <div class="box">
+            <!-- 总资产 - start -->
             <div class="money-box bg-box">
               <div class="totalMoney">总资产</div>
               <div class="totalUsdt">
@@ -42,14 +43,36 @@
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
+            <!-- 总资产 - end -->
+            <!--
+            <div class="money-box bg-box">
+              <div class="typeData">
+                <div @click="$router.push({path:'deposit'})">
+                  <img src="https://designer-trip.com/image/mycukuan.png">
+                  <p>存款</p>
+                </div>
+                <div @click="$router.push({path:'withdraw'})">
+                  <img src="https://designer-trip.com/image/qukuan.png">
+                  <p>提款</p>
+                </div>
+                <div @click="$router.push({path:'/exchange'})">
+                  <img src="https://designer-trip.com/image/wallet.png">
+                  <p>兑换</p>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- 我的钱包地址 - start -->
             <div class="money-box bg-box">
               <div class="address">
                 <div style="text-align: left;">我的钱包地址</div>
                 <div class="child-wallet">TChHWApCSBKRu4snrm5sXPSJyt9PSWPBZm</div>
               </div>
             </div>
+            <!-- 我的钱包地址 - end -->
+
           </div>
 
         </div>
@@ -82,10 +105,10 @@ export default {
   },
   methods: {
     async init() {
-      this.loadBalance()
+      this.loadBalance(0)
     },
-    async loadBalance() {
-      const res = await api.member.balance()
+    async loadBalance(deep) {
+      const res = await api.member.balance({ deep })
       if (res && res.code === 0) {
         this.balance = res.data
       }
@@ -93,7 +116,7 @@ export default {
     async reloadBalance() {
       this.balance = {}
       this.isReloadBalance = true
-      await this.loadBalance()
+      await this.loadBalance(1)
       this.isReloadBalance = false
     },
     onRefresh() {

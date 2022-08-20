@@ -69,9 +69,9 @@
                 <img src="@/assets/images/bi.png">
                 <p>存款</p>
               </div>
-              <div class="item" @click="$router.push({path:'/record'})">
+              <div class="item" @click="$router.push({path:'/exchange'})">
                 <img src="@/assets/images/jiaoyi.png">
-                <p>交易记录</p>
+                <p>兑换</p>
               </div>
               <div class="item" @click="$router.push({path:'/transfer'})">
                 <img src="@/assets/images/invitecode.png">
@@ -121,6 +121,32 @@
               </div>
             </div>
             <!-- 佣金 - end -->
+
+            <!-- 列表 - start -->
+            <div class="data-list">
+              <div class="bg-box">
+                <div class="list-item flex-between-center after" @click="$router.push({path:'/record/flow'})">
+                  <div class="item-left flex-center-center">
+                    <img src="@/assets/images/financial_ic.png">
+                    <p>帐户流水</p>
+                  </div>
+                  <div class="item-right">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
+                  </div>
+                </div>
+
+                <div class="list-item flex-between-center after" @click="$router.push({path:'/record/bet/index'})">
+                  <div class="item-left flex-center-center">
+                    <img src="@/assets/images/marke_ic.png">
+                    <p>注单列表</p>
+                  </div>
+                  <div class="item-right">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAYAAAAbifjMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHySURBVHgBnZWxUttAEIZ3z4ZMqPwISm17RhRxWvsNSMXZKWK6DKbQG4Q8AUlhTbqYxgiaKE/gpI0LxCB6P4IqGNCgZffGmpEBixP/jOXTnP9v19pbLe5+Gs2AyMEs6wXBzwVUlAICFwAdUmqm9RcHKkrVgHr8neSQnR2vUQWAchkM9t17wHNZE0B0d73RC8PviQ1AyWU69SPMaG9JdDe3UutMVL4IAn9ShLzZSo9sALXiTRzPo2b7PQOwy7duq91xri7nf6wBIjb8K0LazQ8Yx///WgOeQBC6ZZDaOrItZC0gh7RbnXcMcNdBSgEifrBhEdJsdRZX8fwi30ew1O5gJAfNlTURDM9OxseyVraAt5sbcuQjExVhovVBt1IGouHQa9zcpufscvjIJ5RSrxJApLXnEKazHGL9F1a0DItESaUMTHTF0QEc/iTyKrAGSHdKl+KyEmzeli6u2wKKZinj9MQ3FbEC6P5oQksz3JN3duof53svAowZ4bOJnNEhm38U90uroAcHhyvmwP/2+DdYagb6WmZeC7A1PwsomlmT0+l4D0q0Auj3R16GcGRrXgFovT8khb9M2gQRt+s2WMhUQQZL0Xx3Y1rXSnUzlRBnMpLYvVCUfQzDsdVUMhnwSPvN5oaYkapP6Do/hQVkBK8xix4A44f37kiIIg4AAAAASUVORK5CYII=">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 列表 - end -->
 
             <!-- 列表 - start -->
             <div class="data-list">
@@ -208,10 +234,10 @@ export default {
   },
   methods: {
     async init() {
-      this.loadBalance()
+      this.loadBalance(0)
     },
-    async loadBalance() {
-      const res = await api.member.balance()
+    async loadBalance(deep) {
+      const res = await api.member.balance({ deep })
       if (res && res.code === 0) {
         this.balance = res.data
       }
@@ -219,7 +245,7 @@ export default {
     async reloadBalance() {
       this.balance = {}
       this.isReloadBalance = true
-      await this.loadBalance()
+      await this.loadBalance(1)
       this.isReloadBalance = false
     }
   }

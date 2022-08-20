@@ -13,7 +13,7 @@
               <i class="iconfont  icon-fanhui2" />
             </div>
           </div>
-          <div class="flex-center-center title">交易记录</div>
+          <div class="flex-center-center title">帐户明细</div>
           <div class="flex-right" />
         </div>
 
@@ -42,43 +42,43 @@
                     </div>
                   </div>
 
-                  <div class="item_right"> 100Trx </div>
+                  <div class="item_right">
+                    <span class="add">+100</span>
+                    <span>余额: 100</span>
+                    <span>币种: TRX</span>
+                  </div>
                 </div>
 
                 <div class="item after flex-between-center">
                   <div class="item_left flex-center-center">
                     <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
                     <div>
-                      <div>充值</div>
+                      <div>投注</div>
                       <div class="time">2022-7-18 19:51:21</div>
                     </div>
                   </div>
 
-                  <div class="item_right"> 100Trx </div>
+                  <div class="item_right">
+                    <span class="sub">-100</span>
+                    <span>余额: 100</span>
+                    <span>币种: USDT</span>
+                  </div>
                 </div>
 
                 <div class="item after flex-between-center">
                   <div class="item_left flex-center-center">
                     <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
                     <div>
-                      <div>充值</div>
+                      <div>提现</div>
                       <div class="time">2022-7-18 19:51:21</div>
                     </div>
                   </div>
 
-                  <div class="item_right"> 100Trx </div>
-                </div>
-
-                <div class="item after flex-between-center">
-                  <div class="item_left flex-center-center">
-                    <img data-v-97d68c6c="" src="https://designer-trip.com/image/bi.png">
-                    <div>
-                      <div>充值</div>
-                      <div class="time">2022-7-18 19:51:21</div>
-                    </div>
+                  <div class="item_right">
+                    <span class="sub">-20</span>
+                    <span>余额: 100</span>
+                    <span>币种: USDT</span>
                   </div>
-
-                  <div class="item_right"> 100Trx </div>
                 </div>
 
               </van-list>
@@ -108,11 +108,12 @@ export default {
       finished: true,
       value1: 0,
       option1: [
-        { text: '充值', value: 0 },
-        { text: '提现', value: 1 },
-        { text: '投注', value: 2 },
-        { text: '活动', value: 3 },
-        { text: '兑换', value: 4 }
+        { text: '所有', value: 0 },
+        { text: '充值', value: 1 },
+        { text: '提现', value: 2 },
+        { text: '投注', value: 3 },
+        { text: '活动', value: 4 },
+        { text: '兑换', value: 5 }
       ]
     }
   },
@@ -177,6 +178,26 @@ export default {
         .time {
           font-size: .75rem;
           margin-top: 0.3125rem;
+        }
+      }
+
+      .item_right {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2rem;
+        >span {
+          font-size:.5rem;
+          text-align: right;
+          color:#b3b3b3;
+          &:first-child {
+            font-size:1rem;
+          }
+          &.add {
+            color:#e82300;
+          }
+          &.sub {
+            color:#4080ff;
+          }
         }
       }
     }
