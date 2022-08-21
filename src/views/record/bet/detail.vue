@@ -27,6 +27,10 @@
             </div>
 
             <div class="flex-between-center ">
+              <span>订单号</span>
+              <span>{{ sn }}</span>
+            </div>
+            <div class="flex-between-center ">
               <span>交易类型</span>
               <span>下注</span>
             </div>
@@ -38,17 +42,17 @@
 
             <div class="flex-between-center ">
               <span>状态</span>
-              <span class="blue">中奖</span>
+              <span :class="flag === 1 ? 'blue' : 'red'">{{ betStatus }}</span>
             </div>
 
             <div class="flex-between-center ">
               <span>交易时间</span>
-              <span>2022/8/12 16:15:51</span>
+              <span>{{ createTime }}</span>
             </div>
 
             <div class="flex-between-center ">
               <span>订单号</span>
-              <span>a44e5204···eda6e34c</span>
+              <a :href="url" target="_blank">{{ hash }}</a>
             </div>
 
             <p class="help"> 如需帮助，请<span class="blue">联系客服</span></p>
@@ -60,6 +64,7 @@
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'Record',
   metaInfo: {
@@ -71,29 +76,67 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
-      finished: true,
-      value1: 0,
-      option1: [
-        { text: '所有时间', value: 0 },
-        { text: '今天', value: 1 },
-        { text: '昨天', value: 2 },
-        { text: '一个月内', value: 3 }
-      ]
+      detail: {},
+      betStatus: '',
+      flag: 0,
+      hash: '',
+      sn: '',
+      createTime: '',
+      url: ''
+    }
+  },
+  computed: {
+    item: {
+      get() {
+        return {}
+      },
+      set(val) {
+        const blockHash = val.blockHash
+        this.hash = blockHash.substr(0, 5) + '...' + blockHash.substr(blockHash.length - 9, 9)
+
+        const arr = blockHash.split('')
+        const isNumber = (str) => {
+          var regPos = /^[0-9]+.?[0-9]*/ // 判断是否是数字。
+          if (regPos.test(str)) {
+            return true
+          } else {
+            return false
+          }
+        }
+        for (let i = arr.length - 1; i > 0; i--) {
+          if (isNumber(arr[i])) {
+            this.num1 = arr[i]
+            break
+          }
+        }
+
+        this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
+        if (val.network === 'mainnet') {
+          this.url = 'https://tronscan.org/#/block/' + val.blockHeight
+        }
+        if (val.flag === 1) {
+          this.betStatus = '未中奖'
+        } else if (val.flag === 2) {
+          this.betStatus = '已中奖'
+        } else if (val.flag === 3) {
+          this.betStatus = '和局'
+        }
+        this.flag = val.flag
+        this.sn = val.sn
+        this.createTime = val.createTime
+      }
     }
   },
   created() {
-    // this.onRefresh()
+    this.init()
   },
   methods: {
-    onRefresh() {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
-    },
-    onLoad() {
-
+    async init() {
+      const id = this.$route.query.id
+      const res = await api.hashBet.find({ id })
+      if (res && res.code === 0) {
+        this.item = res.data
+      }
     }
   }
 }

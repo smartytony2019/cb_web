@@ -20,7 +20,7 @@
         <div class="view">
           <ul>
             <li>
-              <div class="item" @click="$router.push({path:'/record/bet/list'})">
+              <div class="item" @click="$router.push({path:'/record/bet/list?id=1'})">
                 <div class="icon cate_1" />
                 <div class="text">
                   <div class="name">哈希注单</div>
@@ -29,7 +29,7 @@
               </div>
             </li>
             <li>
-              <div class="item" @click="$router.push({path:'/record/bet/list'})">
+              <div class="item" @click="$router.push({path:'/record/bet/list?id=2'})">
                 <div class="icon cate_2" />
                 <div class="text">
                   <div class="name">彩票注单</div>
@@ -38,7 +38,7 @@
               </div>
             </li>
             <li>
-              <div class="item" @click="$router.push({path:'/record/bet/list'})">
+              <div class="item" @click="$router.push({path:'/record/bet/list?id=3'})">
                 <div class="icon cate_3" />
                 <div class="text">
                   <div class="name">体育注单</div>

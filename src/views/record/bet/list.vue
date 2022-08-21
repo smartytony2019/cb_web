@@ -19,70 +19,37 @@
 
         <div class="tradeRecord before">
           <van-dropdown-menu>
-            <van-dropdown-item v-model="value1" :options="option1" />
+            <van-dropdown-item v-model="form.type" :options="option1" @change="handleMenuChange" />
           </van-dropdown-menu>
         </div>
 
         <div class="view">
           <div class="Record_List">
 
-            <van-pull-refresh v-model="isLoading" :head-height="80" @refresh="onRefresh">
+            <van-pull-refresh v-model="isLoadingRefresh" @refresh="onRefresh">
               <van-list
                 :finished="finished"
                 finished-text="没有更多了"
                 @load="onLoad"
               >
 
-                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
+                <div v-for="(item,index) in list" :key="index" class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail?id='+item.id})">
                   <div class="item_left flex-center-center">
-                    <img src="@/assets/images/otherGame/Sports_ac.png">
+                    <img :src="imgSrc">
                     <div>
-                      <div>哈希 - PK拾</div>
-                      <div class="time">2022-7-18 19:51:21</div>
+                      <div>{{ item.cateName }} - {{ item.gameName }} - {{ item.playName }}</div>
+                      <div class="time">{{ item.createTime }}</div>
                     </div>
                   </div>
 
                   <div class="item_right">
-                    <span class="add">+100</span>
-                    <span>投注金额: 100</span>
-                    <span>派彩金额: 20</span>
-                  </div>
-                </div>
-
-                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
-                  <div class="item_left flex-center-center">
-                    <img src="@/assets/images/otherGame/live_ac.png">
-                    <div>
-                      <div>哈希 - PK拾</div>
-                      <div class="time">2022-7-18 19:51:21</div>
-                    </div>
-                  </div>
-
-                  <div class="item_right">
-                    <span class="sub">-100</span>
-                    <span>投注金额: 100</span>
-                    <span>派彩金额: 20</span>
-                  </div>
-                </div>
-
-                <div class="item after flex-between-center" @click="$router.push({path:'/record/bet/detail'})">
-                  <div class="item_left flex-center-center">
-                    <img src="@/assets/images/otherGame/blockchain_ac.png">
-                    <div>
-                      <div>哈希 - PK拾</div>
-                      <div class="time">2022-7-18 19:51:21</div>
-                    </div>
-                  </div>
-
-                  <div class="item_right">
-                    <span class="sub">-20</span>
-                    <span>投注金额: 100</span>
-                    <span>派彩金额: 20</span>
+                    <span class="add">{{ profitMoney(item) }}</span>
+                    <span>投注金额: {{ item.moneyAmount }}</span>
+                    <span>派彩金额: {{ item.payoutMoney }}</span>
                   </div>
                 </div>
 
               </van-list>
-
             </van-pull-refresh>
 
           </div>
@@ -93,6 +60,7 @@
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'Record',
   metaInfo: {
@@ -104,29 +72,84 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
-      finished: true,
-      value1: 0,
+      recordLoading: false,
+      isLoadingRefresh: false,
+      finished: false,
+      gameId: '',
+      imgSrc: '',
       option1: [
         { text: '所有时间', value: 0 },
         { text: '今天', value: 1 },
         { text: '昨天', value: 2 },
         { text: '一个月内', value: 3 }
-      ]
+      ],
+      list: [],
+      form: {
+        current: 0,
+        size: 10,
+        type: 0,
+        gameId: ''
+      }
     }
   },
   created() {
-    // this.onRefresh()
+    this.init()
   },
   methods: {
-    onRefresh() {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
+    async init() {
+      const id = this.$route.query.id || '1'
+      if (id === '1') {
+        this.imgSrc = require('@/assets/images/otherGame/blockchain_ac.png')
+      }
+      if (id === '2') {
+        this.imgSrc = require('@/assets/images/otherGame/live_ac.png')
+      }
+      if (id === '3') {
+        this.imgSrc = require('@/assets/images/otherGame/Sports_ac.png')
+      }
+      this.form.gameId = id
     },
-    onLoad() {
+    profitMoney(item) {
+      return item.profitMoney > 0 ? '+' + item.profitMoney : item.profitMoney
+    },
+    async fetch() {
+      console.log('------fetch------')
+      const res = await api.hashBet.findPage(this.form)
+      if (res && res.code === 0) {
+        this.list = this.list.concat(res.data.records)
+        this.finished = res.data.records.length !== this.form.size
+      }
+      this.recordLoading = false
+    },
+    async onRefresh() {
+      console.log('onRefresh', this.isLoadingRefresh)
+      this.form.current = 1
+      this.finished = false
+      this.list = []
+      this.recordLoading = true
+      await this.fetch()
+      this.isLoadingRefresh = false
+    },
+    async onLoad() {
+      // 防止多次加载
+      if (this.recordLoading || this.isLoadingRefresh) {
+        return
+      }
 
+      console.log('onLoad', this.isLoadingRefresh)
+      this.form.current += 1
+      this.recordLoading = true
+      await this.fetch()
+      this.isLoadingRefresh = false
+    },
+    async handleMenuChange(val) {
+      this.form.type = val
+      this.form.current = 1
+      this.list = []
+      this.finished = false
+      this.recordLoading = true
+      await this.fetch()
+      this.isLoadingRefresh = false
     }
   }
 }

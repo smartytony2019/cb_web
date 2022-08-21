@@ -26,7 +26,7 @@
         <div class="view">
           <div class="Record_List">
 
-            <van-pull-refresh v-model="isLoadingRefresh" :head-height="80" @refresh="onRefresh">
+            <van-pull-refresh v-model="isLoadingRefresh" @refresh="onRefresh">
               <van-list
                 :finished="finished"
                 finished-text="没有更多了"
@@ -109,25 +109,27 @@ export default {
         this.list = this.list.concat(res.data.records)
         this.finished = res.data.records.length !== this.form.size
       }
+      this.recordLoading = false
     },
     async onRefresh() {
-      console.log('onRefresh')
+      console.log('onRefresh', this.isLoadingRefresh)
       this.form.current = 1
       this.finished = false
       this.list = []
+      this.recordLoading = true
       await this.fetch()
       this.isLoadingRefresh = false
     },
     async onLoad() {
       // 防止多次加载
-      if (this.recordLoading) {
+      if (this.recordLoading || this.isLoadingRefresh) {
         return
       }
-      console.log('onLoad')
-      this.recordLoading = true
+      console.log('onLoad', this.isLoadingRefresh)
+
       this.form.current += 1
+      this.recordLoading = true
       await this.fetch()
-      this.recordLoading = false
       this.isLoadingRefresh = false
     },
     flowMoney(item) {
