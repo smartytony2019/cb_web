@@ -1,10 +1,11 @@
 <!--
 @Author:      tony
 @Date:        2019-01-04T10:00:00+08:00
-@Description: 钱包
+@Description: 哈希PK拾
 -->
+
 <template>
-  <div class="wrapper exchange">
+  <div class="wrapper offline">
     <div class="flex-1 index-page">
       <div class="page">
         <div class="header flex">
@@ -19,21 +20,24 @@
           </div>
         </div>
 
+        <!-- <Comb /> -->
+        <!-- <Champion /> -->
+        <!-- <Bull /> -->
+        <Hash />
+
       </div>
     </div>
   </div>
 </template>
 <script>
 
+import Comb from './components/comb.vue'
+import Bull from './components/bull.vue'
+import Champion from './components/champion.vue'
+import Hash from './components/hash.vue'
 export default {
-  name: 'Wallet',
-  metaInfo: {
-    title: '页面标题',
-    meta: [
-      { name: 'viewport', content: '页width=device-width,initial-scale=1面描述' },
-      { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' }
-    ]
-  },
+  name: 'Offline',
+  components: { Comb, Champion, Bull, Hash },
   data() {
     return {
       activeName: 'a'
@@ -47,6 +51,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index-page {
+  height:100% !important;
+}
 .page {
   width: 100%;
   height: 100%;
@@ -213,6 +220,53 @@ export default {
   }
   .flex-right {
     color: #1a1c1e;
+  }
+}
+
+.view {
+  padding: 0 0.625rem;
+  padding-bottom: 1.875rem;
+  flex: 1 1;
+  overflow-y: auto;
+  .addressBox, .gz{
+    padding: 0.9375rem 1.25rem;
+    background-color: #fff;
+    margin-top: 0.9375rem;
+    .title {
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 0.625rem;
+    }
+
+    div {
+      line-height: 1.5625rem;
+    }
+
+    .qr {
+      width: 16.5625rem;
+      height: 16.5625rem;
+      margin: 0 auto;
+    }
+
+    .tips {
+      color: red;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .address {
+      padding: 0.9375rem 0.625rem;
+      background-color: #eff7ff;
+      border-radius: 0.3125rem;
+      margin-bottom: 0.625rem;
+      font-size: .9375rem;
+      font-weight: 500;
+    }
+    .btn-copy {
+      color: white;
+      background: linear-gradient(rgb(255, 184, 162), rgb(255, 110, 64));
+      border: 0px;
+    }
   }
 }
 

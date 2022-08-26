@@ -101,13 +101,6 @@ import api from '@/api'
 import Loading from '@/components/Loading'
 export default {
   name: 'Promote',
-  metaInfo: {
-    title: '页面标题',
-    meta: [
-      { name: 'viewport', content: '页width=device-width,initial-scale=1面描述' },
-      { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' }
-    ]
-  },
   components: { Loading },
   data() {
     return {

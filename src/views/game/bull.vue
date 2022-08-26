@@ -1,7 +1,7 @@
 <!--
 @Author:      tony
 @Date:        2019-01-04T10:00:00+08:00
-@Description: 哈希两面
+@Description: 幸运牛牛
 -->
 <template>
   <div class="wrapper">
@@ -12,7 +12,7 @@
             <div class="head flex-between-center">
               <div class="flex-center-center" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui2" />
-                <span>幸运哈希 体验房</span>
+                <span>幸运牛牛 体验房</span>
               </div>
 
               <div class="icon-drop" @click="isShowDrop = !isShowDrop">
@@ -147,13 +147,6 @@ import Betting from '@/components/Betting'
 export default {
   name: 'Bull',
   components: { GameHeadDrop, Betting },
-  metaInfo: {
-    title: '页面标题',
-    meta: [
-      { name: 'viewport', content: '页width=device-width,initial-scale=1面描述' },
-      { name: 'viewport', content: 'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' }
-    ]
-  },
   data() {
     return {
       isShowDrop: false
