@@ -239,6 +239,9 @@ img{
 
   .van-tabs__nav {
     background: #e9ecf1!important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .van-tab {
@@ -246,7 +249,7 @@ img{
     border-radius: 0.5rem;
     margin: 0.625rem 0.625rem 0 0.625rem;
     background: #fff;
-    // min-width: 6.25rem;
+    min-width: 6.25rem;
   }
   .van-tab--active {
     background: #4080ff!important;
@@ -255,6 +258,7 @@ img{
 
   .van-tab__text {
     font-size: 1rem;
+    line-height: 2.125rem;
   }
 
   .van-tabs__line {

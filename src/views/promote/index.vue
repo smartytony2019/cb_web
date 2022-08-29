@@ -110,11 +110,12 @@
                     </div>
 
                     <div>
-                      <button class="van-button van-button--primary van-button--large van-button--round" style="color: white; background: linear-gradient(187.43deg, rgb(255, 174, 80) 5.93%, rgb(234, 105, 32) 94.39%); border: 0px;">
+                      <van-button class="btn-apply" type="primary" round size="large">申请佣金</van-button>
+                      <!-- <button class="van-button van-button--primary van-button--large van-button--round" style="color: white; background: linear-gradient(187.43deg, rgb(255, 174, 80) 5.93%, rgb(234, 105, 32) 94.39%); border: 0px;">
                         <div class="van-button__content">
                           <span class="van-button__text">申请佣金</span>
                         </div>
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -447,6 +448,16 @@ export default {
 <style lang="scss" scoped>
 .page {
   background: #e5e5e5;
+}
+
+.btn-apply {
+  color: white;
+  background: linear-gradient(187.43deg, rgb(255, 174, 80) 5.93%, rgb(234, 105, 32) 94.39%);
+  border: 0px;
+  height: 3.125rem;
+  span {
+    font-size: 1.125rem;
+  }
 }
 
 .view {

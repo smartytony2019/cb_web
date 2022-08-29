@@ -20,10 +20,21 @@
           </div>
         </div>
 
-        <!-- <Comb /> -->
-        <!-- <Champion /> -->
-        <!-- <Bull /> -->
-        <Hash />
+        <template v-if="gameId == 1">
+          <Comb :game="game" />
+        </template>
+
+        <template v-if="gameId == 3">
+          <Champion :game="game" />
+        </template>
+
+        <template v-if="gameId == 4">
+          <Hash :game="game" />
+        </template>
+
+        <template v-if="gameId == 5">
+          <Bull :game="game" />
+        </template>
 
       </div>
     </div>
@@ -35,17 +46,37 @@ import Comb from './components/comb.vue'
 import Bull from './components/bull.vue'
 import Champion from './components/champion.vue'
 import Hash from './components/hash.vue'
+import api from '@/api'
 export default {
   name: 'Offline',
   components: { Comb, Champion, Bull, Hash },
   data() {
     return {
-      activeName: 'a'
+      gameId: 1,
+      game: {}
     }
   },
   created() {
+    this.gameId = this.$route.query.id
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.game.find({ id: this.gameId })
+      console.log(res)
+      if (res === undefined || res.code !== 0) {
+        this.$toast('获取数据失败')
+        this.$router.go(-1)
+        return
+      }
+
+      if (res.data.address === '' || res.data.address === undefined) {
+        this.$router.go(-1)
+        return
+      }
+
+      this.game = res.data
+    }
   }
 }
 </script>
