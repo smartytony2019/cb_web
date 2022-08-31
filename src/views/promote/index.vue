@@ -60,27 +60,27 @@
                       </div>
                       <div class="listContent flex-column-center">
                         <div><img src="@/assets/images/promote/m2.png"></div>
-                        <div class="mar">直属人数</div>
+                        <div class="mar">团队人数</div>
                         <div>1</div>
                       </div>
                       <div class="listContent flex-column-center">
                         <div><img src="@/assets/images/promote/m3.png"></div>
-                        <div class="mar">直属人数</div>
+                        <div class="mar">今日下属业绩</div>
                         <div>1</div>
                       </div>
                       <div class="listContent flex-column-center">
                         <div><img src="@/assets/images/promote/m4.png"></div>
-                        <div class="mar">直属人数</div>
+                        <div class="mar">今日直属业绩</div>
                         <div>1</div>
                       </div>
                       <div class="listContent flex-column-center">
                         <div><img src="@/assets/images/promote/m5.png"></div>
-                        <div class="mar">直属人数</div>
+                        <div class="mar">昨日佣金</div>
                         <div>1</div>
                       </div>
                       <div class="listContent flex-column-center">
                         <div><img src="@/assets/images/promote/m6.png"></div>
-                        <div class="mar">直属人数</div>
+                        <div class="mar">昨日总业绩</div>
                         <div>1</div>
                       </div>
                     </div>
