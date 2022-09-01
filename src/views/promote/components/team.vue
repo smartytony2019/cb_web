@@ -52,13 +52,17 @@
         <div>0</div>
       </div>
     </div>
+    <van-calendar v-model="isShowCalendar" color="#1989fa" :min-date="minDate" :max-date="maxDate" />
   </div>
 </template>
 <script>
+import dayjs from 'dayjs'
 export default {
   name: 'Team',
   data() {
     return {
+      minDate: new Date(dayjs().year(), dayjs().month(), 1),
+      maxDate: new Date(dayjs().year(), dayjs().month(), 1),
       isShowCalendar: false
     }
   },

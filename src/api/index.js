@@ -6,6 +6,7 @@ import * as hashPlay from './hashPlay'
 import * as hashResult from './hashResult'
 import * as member from './member'
 import * as memberFlow from './memberFlow'
+import * as promote from './promote'
 
 export default {
   category,
@@ -15,5 +16,6 @@ export default {
   hashBet,
   hashResult,
   member,
-  memberFlow
+  memberFlow,
+  promote
 }

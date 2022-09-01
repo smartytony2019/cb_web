@@ -136,6 +136,7 @@
         <div class="line">50/万</div>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -148,6 +149,9 @@ export default {
   created() {
   },
   methods: {
+    handleDateSelect() {
+      this.isShowCalendar = !this.isShowCalendar
+    }
   }
 }
 </script>

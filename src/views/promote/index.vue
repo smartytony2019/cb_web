@@ -188,7 +188,6 @@
         </div>
       </div>
     </div>
-    <van-calendar v-model="isShowCalendar" color="#1989fa" :min-date="minDate" :max-date="maxDate" />
     <Nav />
   </div>
 </template>
@@ -208,7 +207,6 @@ export default {
       maxDate: new Date(dayjs().year(), dayjs().month(), 1),
       isLoadingRefresh: false,
       finished: true,
-      isShowCalendar: false, // 是否显示日历
       tabs: [
         {
           name: '我的推广'
