@@ -343,8 +343,55 @@ img{
   }
 }
 
-.finance-page {
-  .van-list__finished-text {
-    line-height: 35px;
+// .finance-page {
+//   .van-list__finished-text {
+//     color: #969799;
+//     font-size: .875rem;
+//     line-height: 3.125rem;
+//     text-align: center;
+//   }
+// }
+
+.van-list__error-text, .van-list__finished-text, .van-list__loading {
+  color: #969799;
+  font-size: .875rem;
+  line-height: 3.125rem;
+  text-align: center;
+}
+
+
+.van-calendar__footer {
+  .van-calendar__confirm {
+    height: 2.25rem;
+    margin: 0.4375rem 0;
   }
+}
+
+.van-calendar__header-subtitle, .van-calendar__header-title, .van-calendar__month-title {
+  height: 2.75rem;
+  font-weight: 500;
+  line-height: 2.75rem;
+  text-align: center;
+  font-size: .875rem;
+}
+
+.van-calendar__day {
+  position: relative;
+  width: 14.285%;
+  height: 4rem;
+  font-size: 1rem;
+}
+
+.van-calendar__selected-day {
+  width: 3.375rem;
+  height: 3.375rem;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+
+.van-calendar__weekday {
+  flex: 1;
+  font-size: .75rem;
+  line-height: 1.875rem;
+  text-align: center;
 }

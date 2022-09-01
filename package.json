@@ -17,6 +17,7 @@
     "axios": "0.18.1",
     "core-js": "^3.23.3",
     "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.5",
     "element-ui": "2.13.2",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
