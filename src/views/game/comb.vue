@@ -166,7 +166,8 @@
 
               <!-- 游戏说明 - start -->
               <div class="flex-between-center new_win">
-                <div />
+
+                <div>限注：{{ play.min }}USDT-{{ play.max }}USDT</div>
                 <div>
                   游戏说明
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATgSURBVHgBxVndcdtGEN4FoLxYmjAVhK7AdAWmKohcgVyBCYaUZ/Ik8CkzEmlBbkBSBVYHhisQXYGpCsKZMC8OgfXu4XAASJA8QPT4exAB427xYXdv/4zQEP7wsgsJdMjFVwDYAYIWALXSpzgHpBlfzJDoC/9G4fgsggbAOot9P2gl3lGPN/k5GUsQzvhvhPG3URj+NbPdZkVQiJF3dM5v8aul8MuJNUYw01Lb/Fc+oAPVZG9tie4k+HYw7iFiUNYYztl0d2zGe1j+Nw3DYL5pv3IFwjcE7ApI7QJJNn88Ct+/u4WmBHvDyVVJa5ZCN5L98+INoXteIgoYXo8HfahDMDXp4Ue+7OYLacTaCrdpy5ro8DJgjZ4XWEzxmXscBv012U6VgMQ9jAw50RomL/kUBvsgJxBZIlMfHH4HR4NF/LFq7ZoGS2YVcvG3413OLH6WgPOK/bKthCI9wnJ5u3Of/3eb3F8+5SZfN3eJoPIRx7mxJVflCiVYnNZVkuxKfdZwuEZwbaGY9fLd1FbwRsiHHjkvq/zLyGILsE9+0rdzPHSfZ+uNDybuQVD4itE2cqvrU0j2gHu+iNS1+Wdq07/J1TZZkmXUIUzRokViDpDSoNKGd/AV9BdfTwbPtwn0/YsOec5Ddk8EX5x40c0OkZYnpjeBerdFrlrkJg9GSYfub6JFx2jDfHA8gl3w8KRwN3fi/0+KJ1x8DpfusTwzqwi720SGYX9eevdiqQ6qIogS5VMhM5sgnCQFzQB9rjoE8kL+MRojwhewA/rd6qPYJ3vy66UOanwpAgt8eH92Aj8ISHBHCEKuJdxEg13zEJM72BPED8uyVdllw/C+cNdxiuZqWrOtk+P4KCGoiOXy3mrz0isepK6DDv6ub6awJ9DB0U0xBKmwZVkDKt/FNAVydHghJm7rZ3vJsypVEuU+KgePcy/UAalqXPyiJQTTOi8rNp8ASZVr5RmnS6gJzumP+rLlwB6har38xqrQqEJCYIpjIZiaFo2pG8EfjE9KfieFbQNyaq+Dv+pLziSo8ybtSPq70TVXlgF/CzINzhyKkzQ+Ibb94Kpep1ZC3rNwPLWLeRWQnAw6h/Ppf/TYxhEB/KGeLpbyIIImIIpUHkivP0NTeMLBVIFTj70wj3+kioAIGkCb9BaeiIQ7QMzL6MjR2SNN0Ain8JNRKlyYm65m6Fo/b6Wx7OdAvRvLhUsaB5ee6QEkljU5LNzgn3IW+ac3mHyVa2iAYhyVXsYQTItFSLUoX6CLxTpg0wTqJPN+9qGw7v63w0ne0HOzlcXQPJPEbgB5sXiuRha1GBZGI4S18rp/dtFhNwv03lmmvRJBpcXENC4cKZwbXdPZ8UuSftqI49yqbcjISf+SuKZpX81Aa407p6xQV7RPyqfW5IqtLrtZOBmW3KtyNtMbjqXY7BqSTvx6Vxtam5y0GmyljJx0hh8mw87quspqhjuy15AVsNLXkvOgnHgfxLjaFlmqUS+EFGlbq9ZvHb+VzC34AeO3KrNaE9wk1IxzpcnaMsAUbYH3rMPp64SHoKdrQ1BIRsU5TCOC6Yv4NHNzvzEV8nyPY5OMPuY8WJ+r2pKro00lnIq58cJqnFdziK6Jro5zraA0dl13CFqLYBE6kHcJeWJAUo1ju/zfEBL0aYoxl15cMTVtab8DN1+gbklGWtAAAAAASUVORK5CYII=">
@@ -434,7 +435,7 @@ export default {
 }
 
 .Hash_group {
-    background-image: url(https://designer-trip.com/image/game/group.hash.png);
+    background-image: url(../../assets/images/game/group.hash.png);
 }
 
 .view {

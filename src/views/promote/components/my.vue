@@ -32,32 +32,32 @@
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m1.png"></div>
           <div class="mar">直属人数</div>
-          <div>1</div>
+          <div>{{ data.directNum }}</div>
         </div>
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m2.png"></div>
           <div class="mar">团队人数</div>
-          <div>1</div>
+          <div>{{ data.teamNum }}</div>
         </div>
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m3.png"></div>
           <div class="mar">今日下属业绩</div>
-          <div>1</div>
+          <div>{{ data.subPerformance }}</div>
         </div>
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m4.png"></div>
           <div class="mar">今日直属业绩</div>
-          <div>1</div>
+          <div>{{ data.directPerformance }}</div>
         </div>
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m5.png"></div>
           <div class="mar">昨日佣金</div>
-          <div>1</div>
+          <div>{{ data.yesterdayCommission }}</div>
         </div>
         <div class="listContent flex-column-center">
           <div><img src="@/assets/images/promote/m6.png"></div>
           <div class="mar">昨日总业绩</div>
-          <div>1</div>
+          <div>{{ data.yesterdayCommission }}</div>
         </div>
       </div>
     </div>
@@ -73,34 +73,52 @@
           <div><img src="@/assets/images/promote/t1.png"></div>
           <div>
             <div>可用佣金</div>
-            <div class="text3">0</div>
+            <div class="text3">{{ data.availableCommission }}</div>
           </div>
         </div>
         <div class="flex-between-center m1">
           <div><img src="@/assets/images/promote/t2.png"></div>
           <div>
             <div>佣金合计</div>
-            <div class="text3">0</div>
+            <div class="text3">{{ data.commissionTotal }}</div>
           </div>
         </div>
       </div>
 
       <div>
-        <van-button class="btn-apply" type="primary" round size="large">申请佣金</van-button>
+        <van-button class="btn-apply" type="primary" round size="large" @click="handleSubmit">申请佣金</van-button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'My',
   data() {
     return {
+      data: {}
     }
   },
   created() {
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.promote.myTeam()
+      console.log(res)
+      if (res && res.code === 0) {
+        this.data = res.data
+      }
+    },
+    async handleSubmit() {
+      const res = await api.promote.applySubmit({})
+      if (res && res.code === 0) {
+        this.$toast('申请成功')
+      } else {
+        this.$toast(res.msg || '申请失败')
+      }
+    }
   }
 }
 </script>

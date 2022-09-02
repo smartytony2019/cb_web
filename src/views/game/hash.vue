@@ -317,7 +317,7 @@ export default {
     margin-left: 0.3125rem;
   }
   .Hash_group {
-    background-image: url(https://designer-trip.com/image/game/group.hash.png);
+    background-image: url(../../assets/images/game/group.hash.png);
   }
   .orderShow {
     display: flex;

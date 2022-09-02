@@ -17,7 +17,7 @@
         <div>
           <img src="@/assets/images/promote/m6.png">
         </div>
-        <div>0</div>
+        <div>{{ data.teamPerformance || '-' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -25,7 +25,7 @@
         <div>
           <img src="@/assets/images/promote/m7.png">
         </div>
-        <div>0</div>
+        <div>{{ data.selfPerformance || '-' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -33,7 +33,7 @@
         <div>
           <img src="@/assets/images/promote/m4.png">
         </div>
-        <div>0</div>
+        <div>{{ data.directPerformance || '-' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -41,7 +41,7 @@
         <div>
           <img src="@/assets/images/promote/m3.png">
         </div>
-        <div>0</div>
+        <div>{{ data.subPerformance || '-' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -49,7 +49,7 @@
         <div>
           <img src="@/assets/images/promote/m5.png">
         </div>
-        <div>0</div>
+        <div>{{ data.totalCommission || '-' }}</div>
       </div>
     </div>
     <van-calendar v-model="isShowCalendar" color="#1989fa" :min-date="minDate" :max-date="maxDate" />
@@ -57,18 +57,30 @@
 </template>
 <script>
 import dayjs from 'dayjs'
+import api from '@/api'
 export default {
   name: 'Team',
   data() {
     return {
       minDate: new Date(dayjs().year(), dayjs().month(), 1),
       maxDate: new Date(dayjs().year(), dayjs().month(), 1),
-      isShowCalendar: false
+      date: '20220902',
+      isShowCalendar: false,
+
+      data: {}
     }
   },
   created() {
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.promote.teamPerformance({ date: this.date })
+      console.log(res)
+      if (res && res.code === 0) {
+        this.data = res.data
+      }
+    },
     handleDateSelect() {
       this.isShowCalendar = !this.isShowCalendar
     }

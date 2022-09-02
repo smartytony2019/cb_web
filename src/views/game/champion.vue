@@ -278,6 +278,7 @@ export default {
 
       this.odds = this.list.filter(m => m.selected)
     },
+
     handlePlay(item, index) {
       this.playIndex = index
       this.play = item

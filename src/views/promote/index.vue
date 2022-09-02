@@ -48,139 +48,7 @@
 
               <!-- 代理返佣表 -->
               <template v-if="index == 4">
-                <div class="promoteForm">
-                  <div class="table-box">
-                    <div class="title">代理返佣表</div>
-                  </div>
-
-                  <div class="table-content">
-                    <div class="content-item">
-                      <div class="line">代理级别</div>
-                      <div class="line">团队业绩/日</div>
-                      <div class="line">返佣额度</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-
-                    <div class="content-item">
-                      <div class="line">1</div>
-                      <div class="line">0-2000</div>
-                      <div class="line">50/万</div>
-                    </div>
-                  </div>
-                </div>
+                <Rebate />
               </template>
 
             </van-tab>
@@ -198,9 +66,10 @@ import My from './components/my'
 import Direct from './components/direct'
 import Team from './components/team'
 import Tutorial from './components/tutorial'
+import Rebate from './components/rebate'
 export default {
   name: 'Promote',
-  components: { Nav, My, Direct, Team, Tutorial },
+  components: { Nav, My, Direct, Team, Tutorial, Rebate },
   data() {
     return {
       minDate: new Date(dayjs().year(), dayjs().month(), 1),

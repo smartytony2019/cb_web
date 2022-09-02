@@ -6,7 +6,7 @@ import request from '@/utils/request'
  * @returns Promise
  */
 export async function myTeam(params = {}) {
-  return request.post(`/api/myTeam`)
+  return request.post(`/api/agent/myTeam`)
 }
 
 /**
@@ -15,7 +15,7 @@ export async function myTeam(params = {}) {
  * @returns Promise
  */
 export async function myPerformance(params = {}) {
-  return request.post(`/api/myPerformance`)
+  return request.post(`/api/agent/myPerformance`)
 }
 
 /**
@@ -24,7 +24,7 @@ export async function myPerformance(params = {}) {
  * @returns Promise
  */
 export async function teamPerformance(params = {}) {
-  return request.post(`/api/teamPerformance`)
+  return request.post(`/api/agent/teamPerformance/${params.date}`)
 }
 
 /**
@@ -33,7 +33,7 @@ export async function teamPerformance(params = {}) {
  * @returns Promise
  */
 export async function rebate(params = {}) {
-  return request.post(`/api/rebate`)
+  return request.post(`/api/agent/rebate`)
 }
 
 /**
@@ -42,6 +42,6 @@ export async function rebate(params = {}) {
  * @returns Promise
  */
 export async function applySubmit(params = {}) {
-  return request.post(`/api/applySubmit`)
+  return request.post(`/api/agent/applySubmit`)
 }
 

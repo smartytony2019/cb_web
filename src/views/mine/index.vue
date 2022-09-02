@@ -258,7 +258,7 @@ export default {
   background-color: #f5f5f5;
   .mine-info-box {
     padding: 6rem 0.625rem 0 0.625rem;
-    background-image: url(https://designer-trip.com/image/mine_bg.png);
+    background-image: url(../../assets/images/game/mine_bg.png);
     .service {
       width: 100%;
       color: #fff;

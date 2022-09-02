@@ -14,7 +14,7 @@
             <img src="@/assets/images/promote/m1.png">
           </div>
           <div class="mar">直属人数</div>
-          <div>0</div>
+          <div>{{ data.directNum }}</div>
         </div>
 
         <div class="listContent flex-column-center">
@@ -22,7 +22,7 @@
             <img src="@/assets/images/promote/m8.png">
           </div>
           <div class="mar">团队人数</div>
-          <div>0</div>
+          <div>{{ data.teamNum }}</div>
         </div>
 
         <div class="listContent flex-column-center">
@@ -30,7 +30,7 @@
             <img src="@/assets/images/promote/m7.png">
           </div>
           <div class="mar">今日总业绩</div>
-          <div>0</div>
+          <div>{{ data.todayPerformanceTotal }}</div>
         </div>
       </div>
     </div>
@@ -75,17 +75,28 @@
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'Direct',
   data() {
     return {
       isLoadingRefresh: false,
-      finished: true
+      finished: true,
+
+      data: {}
     }
   },
   created() {
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.promote.myPerformance({})
+      console.log(res)
+      if (res && res.code === 0) {
+        this.data = res.data
+      }
+    },
     onRefresh() {
       console.log(111)
     },

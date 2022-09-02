@@ -16,139 +16,35 @@
         <div class="line">返佣额度</div>
       </div>
 
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
+      <div v-for="(item,index) in list" :key="index" class="content-item">
+        <div class="line">{{ item.id }}</div>
+        <div class="line">{{ item.min }}-{{ item.max }}</div>
+        <div class="line">{{ item.rebate }}/万</div>
       </div>
 
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
-
-      <div class="content-item">
-        <div class="line">1</div>
-        <div class="line">0-2000</div>
-        <div class="line">50/万</div>
-      </div>
     </div>
 
   </div>
 </template>
 <script>
+import api from '@/api'
 export default {
   name: 'Rebate',
   data() {
     return {
+      list: []
     }
   },
   created() {
+    this.init()
   },
   methods: {
+    async init() {
+      const res = await api.promote.rebate({})
+      if (res && res.code === 0) {
+        this.list = res.data
+      }
+    },
     handleDateSelect() {
       this.isShowCalendar = !this.isShowCalendar
     }

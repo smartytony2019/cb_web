@@ -674,22 +674,22 @@ export default {
       })
     },
     handleGameClick(item) {
-      this.$router.push({ path: '/offline?id=' + item.id })
-      // if (item.id === 1) {
-      //   this.$router.push({ path: '/comb?id=' + item.id })
-      // }
-      // if (item.id === 2) {
-      //   this.$router.push({ path: '/bjl?id=' + item.id })
-      // }
-      // if (item.id === 3) {
-      //   this.$router.push({ path: '/champion?id=' + item.id })
-      // }
-      // if (item.id === 4) {
-      //   this.$router.push({ path: '/hash?id=' + item.id })
-      // }
-      // if (item.id === 5) {
-      //   this.$router.push({ path: '/bull?id=' + item.id })
-      // }
+      // this.$router.push({ path: '/offline?id=' + item.id })
+      if (item.id === 1) {
+        this.$router.push({ path: '/comb?id=' + item.id })
+      }
+      if (item.id === 2) {
+        this.$router.push({ path: '/bjl?id=' + item.id })
+      }
+      if (item.id === 3) {
+        this.$router.push({ path: '/champion?id=' + item.id })
+      }
+      if (item.id === 4) {
+        this.$router.push({ path: '/hash?id=' + item.id })
+      }
+      if (item.id === 5) {
+        this.$router.push({ path: '/bull?id=' + item.id })
+      }
     }
   }
 }

@@ -23,8 +23,21 @@
             <div>
               <div class="en_name">Block Hash</div>
               <div class="orderShow bjl_group">
-                <div>
+                <div v-if="!isOpenResult">
                   <span>等待开奖中...</span>
+                </div>
+
+                <div v-else class="flex-center-center kjnumber">
+                  <div>
+                    <span>{{ hash }}</span>
+                    <span class="numberBox">
+                      <span v-for="(item,index) in num1" :key="index">{{ item }}</span>
+                    </span>
+                  </div>
+
+                  <a :href="url" target="_blank">详情</a>
+
+                  <div class="betStatus" :class="{not: flag ===1}">{{ betStatus }}</div>
                 </div>
               </div>
             </div>
@@ -59,21 +72,21 @@
             <div class="orderContent flex-between-center">
               <div class="porkerFlex flex-between-center">
                 <div class="white">
-                  <img src="https://designer-trip.com/image/game/bei.png">
+                  <img src="@/assets/images/game/bei.png">
                 </div>
                 <div class="white">
-                  <img src="https://designer-trip.com/image/game/bei.png">
+                  <img src="@/assets/images/game/bei.png">
                 </div>
               </div>
               <div class="white m">
-                <img src="https://designer-trip.com/image/game/vs.png">
+                <img src="@/assets/images/game/vs.png">
               </div>
               <div class="porkerFlex flex-between-center">
                 <div class="white">
-                  <img src="https://designer-trip.com/image/game/bei.png">
+                  <img src="@/assets/images/game/bei.png">
                 </div>
                 <div class="white">
-                  <img src="https://designer-trip.com/image/game/bei.png">
+                  <img src="@/assets/images/game/bei.png">
                 </div>
               </div>
             </div>
@@ -81,41 +94,41 @@
             <div class="orderFlex flex-between-center">
               <div class="flex-between-center">
                 <div class="itemImg itemImgOrange flex-center-center">庄</div>
-                <div class="boxs flex-center-center">...</div>
+                <div class="boxs flex-center-center">{{ zhuangNum || '...' }}</div>
               </div>
               <div class="flex-between-center">
                 <div class="itemImg itemImgGreen flex-column-center">闲</div>
-                <div class="boxs flex-center-center">...</div>
+                <div class="boxs flex-center-center">{{ xianNum || '...' }}</div>
               </div>
             </div>
 
             <!-- 投注区 - start -->
-            <div class="playContent flex-between-center">
-              <div class="l_bet flex-column-center activePlayItem">
-                <div class="bigSize">庄</div>
-                <div class="smallSize">1.95</div>
+            <div v-if="list.length>0" class="playContent flex-between-center">
+              <div class="l_bet flex-column-center" :class="{activePlayItem:list['400410'].selected}" @click="handleSelectCode(list['400410'])">
+                <div class="bigSize">{{ list['400410'].name }}</div>
+                <div class="smallSize">{{ list['400410'].odds }}</div>
               </div>
 
               <div class="middle">
-                <div class="firstBox flex-column-center activePlayItem">
-                  <div>庄对</div>
-                  <div>11</div>
+                <div class="firstBox flex-column-center" :class="{activePlayItem:list['400411'].selected}" @click="handleSelectCode(list['400411'])">
+                  <div>{{ list['400411'].name }}</div>
+                  <div>{{ list['400411'].odds }}</div>
                 </div>
 
-                <div class="twoBox flex-column-center activePlayItem">
-                  <div>闲对</div>
-                  <div>11</div>
+                <div class="twoBox flex-column-center" :class="{activePlayItem:list['400412'].selected}" @click="handleSelectCode(list['400412'])">
+                  <div>{{ list['400412'].name }}</div>
+                  <div>{{ list['400412'].odds }}</div>
                 </div>
 
-                <div class="threeBox flex-column-center activePlayItem">
-                  <div>和</div>
-                  <div>8</div>
+                <div class="threeBox flex-column-center" :class="{activePlayItem:list['400414'].selected}" @click="handleSelectCode(list['400414'])">
+                  <div>{{ list['400414'].name }}</div>
+                  <div>{{ list['400414'].odds }}</div>
                 </div>
               </div>
 
-              <div class="r_bet flex-column-center activePlayItem">
-                <div class="bigSize">闲</div>
-                <div class="smallSize">1.95</div>
+              <div class="r_bet flex-column-center" :class="{activePlayItem:list['400413'].selected}" @click="handleSelectCode(list['400413'])">
+                <div class="bigSize">{{ list['400413'].name }}</div>
+                <div class="smallSize">{{ list['400413'].odds }}</div>
               </div>
             </div>
             <!-- 投注区 - end -->
@@ -123,7 +136,8 @@
         </div>
 
         <!-- 投注 -->
-        <Betting />
+        <!-- <Betting /> -->
+        <Betting :play="play" :odds="odds" @beforeHashResult="beforeHashResult" @afterHashResult="afterHashResult" />
       </div>
     </div>
   </div>
@@ -133,17 +147,146 @@
 import GameHeadDrop from '@/components/GameHeadDrop'
 import Betting from '@/components/Betting'
 
+import api from '@/api'
 export default {
   name: 'Bjl',
   components: { GameHeadDrop, Betting },
   data() {
     return {
-      isShowDrop: false
+      isShowDrop: false,
+      selecteOddsId: 0,
+      list: [],
+      odds: [],
+      play: {},
+      plays: [],
+      playIndex: 0,
+
+      isOpenResult: false,
+      hash: '',
+      url: '',
+      num1: [],
+      flag: '',
+      betStatus: '',
+      poker1: null,
+      poker2: null,
+      poker3: null,
+      poker4: null,
+      zhuangNum: '',
+      xianNum: ''
+    }
+  },
+  computed: {
+    hashResult: {
+      get() {
+        return this.show
+      },
+      set(val) {
+        if (val) {
+          const blockHash = val.blockHash
+          this.hash = blockHash.substr(0, 2) + '...' + blockHash.substr(blockHash.length - 5, 4)
+
+          const arr = blockHash.split('')
+          const isNumber = (str) => {
+            var regPos = /^[0-9]+.?[0-9]*/ // 判断是否是数字。
+            if (regPos.test(str)) {
+              return true
+            } else {
+              return false
+            }
+          }
+          this.num1 = []
+          for (let i = arr.length - 1; i > 0; i--) {
+            if (isNumber(arr[i])) {
+              this.num1.push(arr[i])
+            }
+            if (this.num1.length === 4) {
+              break
+            }
+          }
+
+          // this.poker1 = require('')
+
+          this.zhuangNum = (parseInt(this.num1[0]) + parseInt(this.num1[1])) % 10
+          this.xianNum = (parseInt(this.num1[2]) + parseInt(this.num1[3])) % 10
+
+          this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
+          if (val.network === 'mainnet') {
+            this.url = 'https://tronscan.org/#/block/' + val.blockHeight
+          }
+
+          if (val.flag === 1) {
+            this.betStatus = '未中奖'
+          } else if (val.flag === 2) {
+            this.betStatus = '已中奖'
+          } else if (val.flag === 3) {
+            this.betStatus = '和局'
+          }
+          this.flag = val.flag
+
+          this.isOpenResult = true
+        } else {
+          this.isOpenResult = false
+        }
+      }
     }
   },
   created() {
-  }
+    this.init()
+  },
+  methods: {
+    async init() {
+      // 获取游戏id
+      const id = this.$route.query.id
+      if (id === undefined || id === '' || id <= 0) {
+        this.$route.push({ path: '/' })
+      }
 
+      // 获取游戏信息
+      let res = await api.hashPlay.find({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.plays = res.data
+      this.play = this.plays[0]
+
+      // // 获取游戏赔率
+      res = await api.hashOdds.findByGameId({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      const tmp = []
+      res.data.forEach(element => {
+        element['selected'] = false
+        console.log(element)
+        tmp[element.code] = element
+      })
+      console.log(tmp)
+      this.list = tmp
+
+      // 获取开奖记录
+      await this.afterHashResult()
+    },
+    handleSelectCode(item) {
+      this.list.forEach(element => {
+        element.selected = false
+      })
+      item.selected = true
+      this.odds[0] = item
+    },
+    beforeHashResult() {
+      this.isOpenResult = false
+    },
+
+    // 开奖后
+    async afterHashResult() {
+      const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
+      if (res.code === 0 && res.data.length > 0) {
+        this.hashResult = res.data[0]
+      } else {
+        this.hashResult = null
+      }
+    }
+  }
 }
 </script>
 
@@ -163,11 +306,11 @@ export default {
 }
 
 .itemImgOrange {
-    background-image: url(https://designer-trip.com/image/game/orange.png);
+    background-image: url(../../assets/images/game/orange.png);
 }
 
 .itemImgGreen {
-  background-image: url(https://designer-trip.com/image/game/green.png);
+  background-image: url(../../assets/images/game/green.png);
 }
 .page {
   color: #fff;
@@ -206,10 +349,10 @@ export default {
     font-size: 1rem;
   }
   .bjl_group {
-    background-image: url(https://designer-trip.com/image/game/group.bjl.png);
+    background-image: url(../../assets/images/game/group.bjl.png);
   }
   .Hash_bjl_banner {
-    background-image: url(https://designer-trip.com/image/game/banner.bjl.png);
+    background-image: url(../../assets/images/game/banner.bjl.png);
   }
   .orderShow {
     display: flex;
@@ -226,6 +369,53 @@ export default {
     >div {
       text-align: center;
       width: 100%;
+    }
+
+    .kjnumber {
+      >div {
+        &:first-child {
+          font-size: 1.25rem;
+          letter-spacing: .0625rem;
+          >.numberBox {
+            span {
+              display: inline-block;
+              padding: 0.125rem 0.375rem;
+              margin: 0 0.125rem;
+              border-radius: 0.25rem;
+              background-color: #4080ff;
+              &:nth-child(-n+2) {
+                background-color: #fc3939;
+              }
+            }
+          }
+        }
+        &:last-child {
+          font-size: .9375rem;
+          margin-left: 0.625rem;
+        }
+      }
+
+      a {
+        font-size: .9375rem;
+        padding: 0.1875rem 0.3125rem;
+        background: url(data:image/png;base64,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);
+        background-size: 100% 100%;
+        color: #fff;
+        margin-left: 0.3125rem;
+      }
+
+      .betStatus {
+        padding: 0.1875rem 0.3125rem;
+        border-radius: 0.1875rem;
+        background: red;
+        color: #fff;
+        font-size: .8125rem!important;
+      }
+
+      .not {
+        background: #a8a8a8;
+      }
+
     }
   }
 

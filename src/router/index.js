@@ -31,32 +31,55 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login'),
-    hidden: true
-  },
+
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
+
   {
-    path: '/test',
-    component: () => import('@/views/activity/test'),
-    hidden: true
+    path: '/login',
+    component: Layout,
+    redirect: '/',
+    children: [{
+      path: '/',
+      component: () => import('@/views/login'),
+      meta: { title: '' }
+    }]
   },
+
   {
     path: '/help',
-    component: () => import('@/views/help')
+    component: Layout,
+    redirect: '/',
+    children: [{
+      path: '/',
+      component: () => import('@/views/help'),
+      meta: { title: '' }
+    }]
   },
+
   {
     path: '/setting',
-    component: () => import('@/views/setting')
+    component: Layout,
+    redirect: '/',
+    children: [{
+      path: '/',
+      component: () => import('@/views/setting'),
+      meta: { title: '' }
+    }]
   },
+
   {
     path: '/offline',
-    component: () => import('@/views/offline')
+    component: Layout,
+    redirect: '/',
+    children: [{
+      path: '/',
+      component: () => import('@/views/offline'),
+      meta: { title: '' }
+    }]
   },
 
   {

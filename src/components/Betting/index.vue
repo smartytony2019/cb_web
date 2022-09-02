@@ -188,8 +188,8 @@
         <span />
         <span />
         <span />
-        <div>正在开奖中...</div>
       </div>
+      <div class="t">正在开奖中...</div>
     </div>
     <!-- 结算层 - end -->
 
@@ -677,6 +677,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .loadEffect {
     width: 100px;
@@ -750,6 +751,11 @@ export default {
       position: absolute;
       bottom: -2rem;
     }
+  }
+
+  .t {
+    color: #40b49d;
+    padding: 1.2rem 0 0 0;
   }
 }
 
