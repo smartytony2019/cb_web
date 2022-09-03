@@ -12,7 +12,7 @@
             <div class="head flex-between-center">
               <div class="flex-center-center" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui2" />
-                <span>哈希百家乐 体验房</span>
+                <span>哈希百家乐 {{ play.name }}</span>
               </div>
 
               <div class="icon-drop" @click="isShowDrop = !isShowDrop">
@@ -43,19 +43,16 @@
             </div>
             <div class="Hash_game_banner Hash_bjl_banner">
               <div class="bannerContent">
-                <div class="bannerTitle">哈希百家乐 体验房</div>
-                <div class="bannerText">最高赔率: 11</div>
-                <div class="bannerText">限注：0USDT-200USDT</div>
+                <div class="bannerTitle">哈希百家乐 {{ play.name }}</div>
+                <div class="bannerText">最高赔率: {{ play.maxOdds }}</div>
+                <div class="bannerText">限注：{{ play.min }}USDT-{{ play.max }}USDT</div>
               </div>
             </div>
 
             <div class="gameContent">
               <div class="game_name_list">
                 <div>
-                  <div class="name_list_item active"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
+                  <div v-for="(item,index) in plays" :key="index" class="name_list_item" :class="{active:index==playIndex}" @click="handlePlay(item,index)">{{ item.name }}</div>
                 </div>
               </div>
               <div class="flex-between-center new_win">
@@ -72,10 +69,10 @@
             <div class="orderContent flex-between-center">
               <div class="porkerFlex flex-between-center">
                 <div class="white">
-                  <img src="@/assets/images/game/bei.png">
+                  <img :src="poker1">
                 </div>
                 <div class="white">
-                  <img src="@/assets/images/game/bei.png">
+                  <img :src="poker2">
                 </div>
               </div>
               <div class="white m">
@@ -83,10 +80,10 @@
               </div>
               <div class="porkerFlex flex-between-center">
                 <div class="white">
-                  <img src="@/assets/images/game/bei.png">
+                  <img :src="poker3">
                 </div>
                 <div class="white">
-                  <img src="@/assets/images/game/bei.png">
+                  <img :src="poker4">
                 </div>
               </div>
             </div>
@@ -166,10 +163,10 @@ export default {
       num1: [],
       flag: '',
       betStatus: '',
-      poker1: null,
-      poker2: null,
-      poker3: null,
-      poker4: null,
+      poker1: require('@/assets/images/game/bei.png'),
+      poker2: require('@/assets/images/game/bei.png'),
+      poker3: require('@/assets/images/game/bei.png'),
+      poker4: require('@/assets/images/game/bei.png'),
       zhuangNum: '',
       xianNum: ''
     }
@@ -196,14 +193,17 @@ export default {
           this.num1 = []
           for (let i = arr.length - 1; i > 0; i--) {
             if (isNumber(arr[i])) {
-              this.num1.push(arr[i])
+              this.num1.unshift(arr[i])
             }
             if (this.num1.length === 4) {
               break
             }
           }
 
-          // this.poker1 = require('')
+          this.poker1 = require(`@/assets/images/game/poker/1${this.num1[0]}.png`)
+          this.poker2 = require(`@/assets/images/game/poker/2${this.num1[1]}.png`)
+          this.poker3 = require(`@/assets/images/game/poker/3${this.num1[2]}.png`)
+          this.poker4 = require(`@/assets/images/game/poker/4${this.num1[3]}.png`)
 
           this.zhuangNum = (parseInt(this.num1[0]) + parseInt(this.num1[1])) % 10
           this.xianNum = (parseInt(this.num1[2]) + parseInt(this.num1[3])) % 10
@@ -225,6 +225,10 @@ export default {
           this.isOpenResult = true
         } else {
           this.isOpenResult = false
+          this.poker1 = require(`@/assets/images/game/bei.png`)
+          this.poker2 = require(`@/assets/images/game/bei.png`)
+          this.poker3 = require(`@/assets/images/game/bei.png`)
+          this.poker4 = require(`@/assets/images/game/bei.png`)
         }
       }
     }
@@ -272,6 +276,15 @@ export default {
       item.selected = true
       this.odds[0] = item
     },
+
+    handlePlay(item, index) {
+      this.playIndex = index
+      this.play = item
+      this.selecteOddsId = 0
+      this.afterHashResult()
+    },
+
+    // 开奖前
     beforeHashResult() {
       this.isOpenResult = false
     },

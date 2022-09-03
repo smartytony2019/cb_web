@@ -12,7 +12,7 @@
             <div class="head flex-between-center">
               <div class="flex-center-center" @click="$router.go(-1)">
                 <i class="iconfont icon-fanhui2" />
-                <span>幸运牛牛 体验房</span>
+                <span>幸运牛牛 {{ play.name }}</span>
               </div>
 
               <div class="icon-drop" @click="isShowDrop = !isShowDrop">
@@ -24,38 +24,47 @@
             <div>
               <div class="en_name">Block Hash</div>
               <div class="orderShow bjl_group">
-                <div>
+                <div v-if="!isOpenResult">
                   <span>等待开奖中...</span>
                 </div>
-              </div>
-            </div>
 
-            <div class="Hash_game_banner Hash_bjl_banner">
-              <div class="bannerContent">
-                <div class="bannerTitle">幸运哈希 体验房</div>
-                <div class="bannerText">赔率:1.98</div>
-                <div class="bannerText">限注：0USDT-200USDT</div>
-              </div>
-            </div>
+                <div v-else class="flex-center-center kjnumber">
+                  <div>
+                    <span>{{ hash }}</span>
+                    <span class="numberBox">
+                      <span>{{ num1 }}</span>
+                    </span>
+                  </div>
 
-            <div class="gameContent">
-              <div class="game_name_box">
-                <div class="game_name_list">
-                  <div class="name_list_item active"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
-                  <div class="name_list_item"> 体验房 </div>
+                  <a :href="url" target="_blank">详情</a>
+
+                  <div class="betStatus" :class="{not: flag ===1}">{{ betStatus }}</div>
                 </div>
               </div>
-              <div class="flex-between-center new_win">
-                <div />
-                <div>
-                  游戏说明
-                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGuSURBVHgBrVaLcYMwDBW9DOAN6hHYIHSCjtB0ArIB6QRtJ3A7QboB6QRkA9iAbqBKiTgUYmRyl3enM8iS0M8yAAYQ0RHtiGqiFkf0wiuJvGUjmzHsaQlEhbD+iA6yMrwixhfRW5ZlHaRAxrfiISMQrQ3ZXGSGqLYp4zsR5nTksBAcsUrhDgzPGQ3nPrLvxFA+o+9EF68iEcVevHARxaDShip9PiLbiqzXG0GUvBH6EF2t3mMO5bJXayMnjyJhB1XAdSRiRmXouQd6fxb+J1xjaM8PasHfgSnt+COvRUTvW9YSJOQWboDKNWM/I3M6jOPDbcYbVQc/I7dnJ1b0zEXqlhqnpYHxBG+M08vp9Su4De9inJWfyPgxqSG53C+Qcyot5QJ5rm3PEXQQ74QpdCrTnp8jPfKXKvGqgDtBHbZShx4WKDqMzKmIXLjoMByPf57wqk9FG50MaAw7JVOoIr/AfIQtToedbJrjWjnyaBhvzC5TBW8xcddO9HIcR0eVEp5emVZdCrycuFeeW5c+e7IRVqeIwSksZGUciF4XXfrTD+H516TGyxutFV6Fibb9B6S0vMRZ5cBCAAAAAElFTkSuQmCC">
+
+              <div class="Hash_game_banner Hash_bjl_banner">
+                <div class="bannerContent">
+                  <div class="bannerTitle">幸运哈希 {{ play.name }}</div>
+                  <div class="bannerText">赔率:1.98</div>
+                  <div class="bannerText">限注：0USDT-200USDT</div>
+                </div>
+              </div>
+
+              <div class="gameContent">
+                <div class="game_name_box">
+                  <div class="game_name_list">
+                    <div v-for="(item,index) in plays" :key="index" :class="{active: index==playIndex}" class="name_list_item" @click="handlePlay(item, index)"> {{ item.name }} </div>
+                  </div>
+                </div>
+                <div class="flex-between-center new_win">
+                  <div />
+                  <div>
+                    游戏说明
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGuSURBVHgBrVaLcYMwDBW9DOAN6hHYIHSCjtB0ArIB6QRtJ3A7QboB6QRkA9iAbqBKiTgUYmRyl3enM8iS0M8yAAYQ0RHtiGqiFkf0wiuJvGUjmzHsaQlEhbD+iA6yMrwixhfRW5ZlHaRAxrfiISMQrQ3ZXGSGqLYp4zsR5nTksBAcsUrhDgzPGQ3nPrLvxFA+o+9EF68iEcVevHARxaDShip9PiLbiqzXG0GUvBH6EF2t3mMO5bJXayMnjyJhB1XAdSRiRmXouQd6fxb+J1xjaM8PasHfgSnt+COvRUTvW9YSJOQWboDKNWM/I3M6jOPDbcYbVQc/I7dnJ1b0zEXqlhqnpYHxBG+M08vp9Su4De9inJWfyPgxqSG53C+Qcyot5QJ5rm3PEXQQ74QpdCrTnp8jPfKXKvGqgDtBHbZShx4WKDqMzKmIXLjoMByPf57wqk9FG50MaAw7JVOoIr/AfIQtToedbJrjWjnyaBhvzC5TBW8xcddO9HIcR0eVEp5emVZdCrycuFeeW5c+e7IRVqeIwSksZGUciF4XXfrTD+H516TGyxutFV6Fibb9B6S0vMRZ5cBCAAAAAElFTkSuQmCC">
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="gameContainer">
@@ -76,21 +85,23 @@
             <div class="playContent flex-between-center">
               <!-- 左边区域 - start -->
               <div class="niuniu">
-                <div class="l_bet l_top flex-column-center activePlayItem">
+                <!-- 庄(平倍) -->
+                <div class="l_bet l_top flex-column-center" :class="{activePlayItem:list['400210'].selected}" @click="handleSelectCode(list['400210'])">
                   <div class="bigSize">
-                    庄<span>(平倍)</span>
+                    {{ list['400210'].name }}<span>(平倍)</span>
                   </div>
                   <div class="smallSize">
-                    1:0.95
+                    1:{{ list['400210'].odds }}
                   </div>
                 </div>
 
-                <div class="l_bet r_bottom flex-column-center activePlayItem">
+                <!-- 闲(平倍) -->
+                <div class="l_bet r_bottom flex-column-center" :class="{activePlayItem:list['400214'].selected}" @click="handleSelectCode(list['400214'])">
                   <div class="bigSize">
-                    闲<span>(平倍)</span>
+                    {{ list['400214'].name }}<span>(平倍)</span>
                   </div>
                   <div class="smallSize">
-                    1:0.95
+                    1:{{ list['400214'].odds }}
                   </div>
                 </div>
               </div>
@@ -98,33 +109,40 @@
 
               <!-- 中间区域 - start -->
               <div class="middle bull">
-                <div class="threeBox flex-column-center red activePlayItem">
-                  <div>庄<span>(超级翻倍)</span></div>
-                  <div>1:0.95</div>
+                <!-- 庄(超级翻倍) -->
+                <div class="threeBox flex-column-center red" :class="{activePlayItem:list['400211'].selected}" @click="handleSelectCode(list['400211'])">
+                  <div>{{ list['400211'].name }}<span>(超级翻倍)</span></div>
+                  <div>1:{{ list['400211'].odds }}</div>
                 </div>
-                <div class="threeBox flex-column-center activePlayItem">
-                  <div>和局</div>
-                  <div>9.5</div>
+
+                <!-- 和局 -->
+                <div class="threeBox flex-column-center" :class="{activePlayItem:list['400213'].selected}" @click="handleSelectCode(list['400213'])">
+                  <div>{{ list['400213'].name }}</div>
+                  <div>{{ list['400213'].odds }}</div>
                 </div>
-                <div class="threeBox flex-column-center blue activePlayItem">
-                  <div>闲<span>(超级翻倍)</span></div>
-                  <div>1:0.95</div>
+
+                <!-- 闲(超级翻倍) -->
+                <div class="threeBox flex-column-center blue" :class="{activePlayItem:list['400215'].selected}" @click="handleSelectCode(list['400215'])">
+                  <div>{{ list['400215'].name }}<span>(超级翻倍)</span></div>
+                  <div>1:{{ list['400215'].odds }}</div>
                 </div>
               </div>
               <!-- 中间区域 - end -->
 
               <!-- 右边区域 - start -->
               <div class="niuniu">
-                <div class="r_bet r_top flex-column-center activePlayItem">
+                <!-- 庄(翻倍) -->
+                <div class="r_bet r_top flex-column-center" :class="{activePlayItem:list['400212'].selected}" @click="handleSelectCode(list['400212'])">
                   <div class="bigSize">
-                    庄<span>(翻倍)</span>
+                    {{ list['400212'].name }}<span>(翻倍)</span>
                   </div>
-                  <div class="smallSize">1:0.95</div>
+                  <div class="smallSize">1:{{ list['400212'].odds }}</div>
                 </div>
 
-                <div class="r_bet flex-column-center activePlayItem">
-                  <div class="bigSize">闲<span>(翻倍)</span></div>
-                  <div class="smallSize">1:0.95</div>
+                <!-- 闲(翻倍) -->
+                <div class="r_bet flex-column-center" :class="{activePlayItem:list['400216'].selected}" @click="handleSelectCode(list['400216'])">
+                  <div class="bigSize">{{ list['400216'].name }}<span>(翻倍)</span></div>
+                  <div class="smallSize">1:{{ list['400216'].odds }}</div>
                 </div>
               </div>
               <!-- 右边区域 - end -->
@@ -133,7 +151,8 @@
         </div>
 
         <!-- 投注 -->
-        <Betting />
+        <Betting :play="play" :odds="odds" @beforeHashResult="beforeHashResult" @afterHashResult="afterHashResult" />
+
       </div>
     </div>
   </div>
@@ -144,15 +163,143 @@
 import GameHeadDrop from '@/components/GameHeadDrop'
 import Betting from '@/components/Betting'
 
+import api from '@/api'
 export default {
   name: 'Bull',
   components: { GameHeadDrop, Betting },
   data() {
     return {
-      isShowDrop: false
+      isShowDrop: false,
+      list: [],
+      sorted: [],
+      odds: [],
+      play: {},
+      plays: [],
+      playIndex: 0,
+
+      isOpenResult: false,
+      hash: '',
+      url: '',
+      num1: [],
+      flag: '',
+      betStatus: ''
+    }
+  },
+  computed: {
+    hashResult: {
+      get() {
+        return this.show
+      },
+      set(val) {
+        if (val) {
+          const blockHash = val.blockHash
+          this.hash = blockHash.substr(0, 5) + '...' + blockHash.substr(blockHash.length - 5, 4)
+
+          const arr = blockHash.split('')
+          const isNumber = (str) => {
+            var regPos = /^[0-9]+.?[0-9]*/ // 判断是否是数字。
+            if (regPos.test(str)) {
+              return true
+            } else {
+              return false
+            }
+          }
+          for (let i = arr.length - 1; i > 0; i--) {
+            if (isNumber(arr[i])) {
+              this.num1 = arr[i]
+              break
+            }
+          }
+
+          this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
+          if (val.network === 'mainnet') {
+            this.url = 'https://tronscan.org/#/block/' + val.blockHeight
+          }
+
+          if (val.flag === 1) {
+            this.betStatus = '未中奖'
+          } else if (val.flag === 2) {
+            this.betStatus = '已中奖'
+          } else if (val.flag === 3) {
+            this.betStatus = '和局'
+          }
+          this.flag = val.flag
+
+          this.isOpenResult = true
+        } else {
+          this.isOpenResult = false
+        }
+      }
     }
   },
   created() {
+    this.init()
+  },
+  methods: {
+    async init() {
+      // 获取游戏id
+      const id = this.$route.query.id
+      if (id === undefined || id === '' || id <= 0) {
+        this.$route.push({ path: '/' })
+      }
+
+      // 获取游戏信息
+      let res = await api.hashPlay.find({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.plays = res.data
+      this.play = this.plays[0]
+
+      // 获取游戏赔率
+      res = await api.hashOdds.findByGameId({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      const tmp = []
+      res.data.forEach(element => {
+        element['selected'] = false
+        tmp[element.code] = element
+      })
+      console.log(tmp)
+      this.list = tmp
+
+      // 获取开奖记录
+      await this.afterHashResult()
+    },
+
+    handleSelectCode(item) {
+      this.list.forEach(element => {
+        element.selected = false
+      })
+      item.selected = true
+      this.odds[0] = item
+    },
+
+    handlePlay(item, index) {
+      this.playIndex = index
+      this.play = item
+      this.selecteOddsId = 0
+      this.afterHashResult()
+      this.list.map(m => {
+        m.selected = false
+      })
+    },
+
+    // 开奖前
+    beforeHashResult() {
+      this.isOpenResult = false
+    },
+
+    // 开奖后
+    async afterHashResult() {
+      const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
+      if (res.code === 0 && res.data.length > 0) {
+        this.hashResult = res.data[0]
+      } else {
+        this.hashResult = null
+      }
+    }
   }
 
 }
@@ -276,6 +423,11 @@ export default {
         color: #646566;
         font-size: 1rem;
         margin-left: 0.625rem;
+        &.active {
+          background: linear-gradient(180deg,#6f9fff,#2064ea);
+          color: #fff;
+          font-weight: 700;
+        }
         &:first-child {
           margin-left: 0;
         }
