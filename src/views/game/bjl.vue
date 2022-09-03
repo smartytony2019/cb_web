@@ -136,7 +136,6 @@
         </div>
 
         <!-- 投注 -->
-        <!-- <Betting /> -->
         <Betting :play="play" :odds="odds" @beforeHashResult="beforeHashResult" @afterHashResult="afterHashResult" />
       </div>
     </div>

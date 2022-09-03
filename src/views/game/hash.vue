@@ -15,7 +15,7 @@
         <div class="head flex-between-center">
           <div class="flex-center-center" @click="$router.go(-1)">
             <i class="iconfont icon-fanhui2" />
-            <span>幸运哈希 体验房</span>
+            <span>幸运哈希 {{ play.name }}</span>
           </div>
           <div class="icon-drop" @click="isShowDrop = !isShowDrop">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAYAAAAdx42aAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACUSURBVHgB7dZBDYUwEATQ2W/gIwUHWMAJSCiKCA7qACTgAFBQdiBY6Fz2JW16a7NtZmullARg8NGgvsn8AAU658+nDJ2dFWDpO2iuYEEIQc04eRa0EOSAmWUG0ezrHhpZ3QvAXpCgk743wPv/o67L38CJEILa9ydURDEzYOMBVl+00Hh6wQHNj/jBXjDhLUdt3HO8AYZ7MoUEz+JsAAAAAElFTkSuQmCC">
@@ -24,40 +24,46 @@
         </div>
 
         <div class="view">
+          <!-- 开奖区域 - start -->
           <div>
             <div class="en_name">Block Hash</div>
             <div class="orderShow Hash_group">
-              <div v-if="result === undefined">
+              <div v-if="!isOpenResult">
                 <span>等待开奖中...</span>
               </div>
+
               <div v-else class="flex-center-center kjnumber">
                 <div>
-                  <span>{{ hashCode }}</span>
+                  <span>{{ hash }}</span>
                   <span class="numberBox">
-                    <span>6</span>
-                    <span>c</span>
+                    <span v-for="(item,index) in num1" :key="index">{{ item }}</span>
                   </span>
                 </div>
-                <a href="#">详情</a>
-                <div class="betStatus">已中奖</div>
+
+                <a :href="url" target="_blank">详情</a>
+
+                <div class="betStatus" :class="{not: flag ===1}">{{ betStatus }}</div>
               </div>
             </div>
           </div>
+          <!-- 开奖区域 - end -->
 
           <div class="Hash_game_banner Lucky_hash_banner">
             <div class="bannerContent">
-              <div class="bannerTitle">幸运哈希 体验房</div>
-              <div class="bannerText">赔率:1.98</div>
-              <div class="bannerText">限注：0USDT-200USDT</div>
+              <div class="bannerTitle">幸运哈希 {{ play.name }}</div>
+              <div class="bannerText">赔率:{{ play.maxOdds }}</div>
+              <div class="bannerText">限注：{{ play.min }}USDT-{{ play.max }}USDT</div>
             </div>
           </div>
 
           <div class="gameContent">
+            <!-- 房间区域 - start -->
             <div class="game_name_list">
               <div>
-                <div v-for="(item,index) in rooms" :key="index+''" class="name_list_item" :class="{active:item.type==roomType}" @click="roomClick(item)">{{ item.name }}</div>
+                <div v-for="(item,index) in plays" :key="index" class="name_list_item" :class="{active:index==playIndex}" @click="handlePlay(item,index)">{{ item.name }}</div>
               </div>
             </div>
+            <!-- 房间区域 - end -->
             <div class="flex-between-center new_win">
               <div>最新中奖信息</div>
               <div>
@@ -67,6 +73,7 @@
             </div>
           </div>
 
+          <!-- 订单滚动区域 - start -->
           <div class="orderList">
             <div class="list-title flex">
               <div>Block Hash </div>
@@ -202,10 +209,11 @@
               </ul>
             </div>
           </div>
+          <!-- 订单滚动区域 - end -->
         </div>
 
         <!-- 投注 -->
-        <Betting />
+        <Betting :play="play" :odds="odds" @beforeHashResult="beforeHashResult" @afterHashResult="afterHashResult" />
       </div>
     </div>
   </div>
@@ -214,51 +222,112 @@
 <script>
 import GameHeadDrop from '@/components/GameHeadDrop'
 import Betting from '@/components/Betting'
+import api from '@/api'
 export default {
   name: 'Hash',
   components: { GameHeadDrop, Betting },
   data() {
     return {
       isShowDrop: false,
-      isShowBetConfirm: true,
-      roomType: 1,
-      result: '000000000288f0dc73f321bc1ede29140086ef5d200b84756d27800d38e4296c',
-      rooms: [
-        {
-          name: '体验房',
-          type: 1
-        },
-        {
-          name: '初级房',
-          type: 2
-        },
-        {
-          name: '中级房',
-          type: 3
-        },
-        {
-          name: '高级房',
-          type: 4
-        }
-      ]
+      selecteOddsId: 0,
+      list: [],
+      odds: [],
+      play: {},
+      plays: [],
+      playIndex: 0,
+
+      isOpenResult: false,
+      hash: '',
+      url: '',
+      num1: [],
+      flag: '',
+      betStatus: ''
     }
   },
   computed: {
-    hashCode() {
-      return this.result.substr(0, 4) + '...' + this.result.substr(-4)
+    hashResult: {
+      get() {
+        return this.show
+      },
+      set(val) {
+        if (val) {
+          const blockHash = val.blockHash
+          this.hash = blockHash.substr(0, 3) + '...' + blockHash.substr(blockHash.length - 7, 5)
+
+          const arr = blockHash.split('')
+          this.num1 = []
+          this.num1.push(arr[arr.length - 2])
+          this.num1.push(arr[arr.length - 1])
+
+          this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
+          if (val.network === 'mainnet') {
+            this.url = 'https://tronscan.org/#/block/' + val.blockHeight
+          }
+
+          if (val.flag === 1) {
+            this.betStatus = '未中奖'
+          } else if (val.flag === 2) {
+            this.betStatus = '已中奖'
+          } else if (val.flag === 3) {
+            this.betStatus = '和局'
+          }
+          this.flag = val.flag
+
+          this.isOpenResult = true
+        } else {
+          this.isOpenResult = false
+        }
+      }
     }
   },
   created() {
+    this.init()
   },
   methods: {
-    roomClick(item) {
-      this.roomType = item.type
+    async init() {
+      // 获取游戏id
+      const id = this.$route.query.id
+      if (id === undefined || id === '' || id <= 0) {
+        this.$route.push({ path: '/' })
+      }
+
+      // 获取游戏信息
+      let res = await api.hashPlay.find({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.plays = res.data
+      this.play = this.plays[0]
+
+      // // 获取游戏赔率
+      res = await api.hashOdds.findByGameId({ id })
+      if (res.code !== 0) {
+        this.$route.push({ path: '/' })
+      }
+      this.odds = res.data
+
+      // 获取开奖记录
+      await this.afterHashResult()
     },
-    handleBetCencal() {
-      this.isShowBetConfirm = false
+
+    handlePlay(item, index) {
+      this.playIndex = index
+      this.play = item
+      this.selecteOddsId = 0
+      this.afterHashResult()
     },
-    handleBetConfirm() {
-      this.isShowBetConfirm = false
+    beforeHashResult() {
+      this.isOpenResult = false
+    },
+
+    // 开奖后
+    async afterHashResult() {
+      const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
+      if (res.code === 0 && res.data.length > 0) {
+        this.hashResult = res.data[0]
+      } else {
+        this.hashResult = null
+      }
     }
   }
 

@@ -11,7 +11,7 @@
       </div>
 
       <!-- 投注筹码 - start -->
-      <Chips :type="1" @itemClick="handleMoneyChange" />
+      <Chips :type="play.type || 1" @itemClick="handleMoneyChange" />
       <!-- 投注筹码 - end -->
 
       <div>
@@ -299,8 +299,11 @@ export default {
      * 投注按钮
      */
     handleBet() {
-      if (this.odds.length === 0) {
-        Toast('请选择投注号码')
+      console.log('play', this.play)
+      console.log('odds', this.odds)
+
+      if (this.play === undefined || this.play.id <= 0) {
+        Toast('请选择投注类型')
         return
       }
 
@@ -309,8 +312,8 @@ export default {
         return
       }
 
-      if (this.play === undefined || this.play.id <= 0) {
-        Toast('请选择投注类型')
+      if (this.odds.length === 0) {
+        Toast('请选择投注号码')
         return
       }
 
@@ -321,13 +324,10 @@ export default {
       const amount = this.form.money * count
 
       // 投注号码
-      const betNum = this.odds.map(item => item.name).join(',')
+      const betNum = this.play.gameName
 
       // 最高可赢金额
-      if (this.odds.length === 1) {
-        this.odds[0].odds
-      }
-      let maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.money
+      let maxWin = maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.money
       maxWin = maxWin.toFixed(2)
 
       this.orderInfo = {
@@ -421,6 +421,7 @@ export default {
      * 获取投注记录
      */
     handleBetRecord() {
+      this.betRecordForm.gameId = this.play.gameId
       this.betRecordList = []
       this.betRecordForm.current = 0
       this.onLoad()
