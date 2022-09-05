@@ -44,7 +44,10 @@ export const constantRoutes = [
     children: [{
       path: '/',
       component: () => import('@/views/login'),
-      meta: { title: '' }
+      meta: {
+        title: '',
+        requireAuth: true
+      }
     }]
   },
 
@@ -309,5 +312,26 @@ export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
+
+// 这里设置路由拦截
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.requireAuth) { //判断是否需要登录验证
+
+//       var num = sessionStorage.getItem("accessToken"); //这里是登录页面缓存的token
+//       if (num == 12321) { //判断token等于时候就跳转路由
+//           next();//这个跳转是上面路由跳转
+//       }
+//       else { //token不一样时候就返回登录页面
+//           next({
+//               path: '/login',//返回登录界面
+//               // query: {redirect: to.fullPath}
+//           })
+//       }
+//   }
+//   else {
+//       //如果不需要登录权限就直接跳转到该路由
+//       next();
+//   }
+// }
 
 export default router

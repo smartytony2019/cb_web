@@ -8,7 +8,7 @@ const service = axios.create({
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json; charset=UTF-8'
-  },
+  }
 })
 service.interceptors.request.use(
   config => {

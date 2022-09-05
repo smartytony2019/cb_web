@@ -9,9 +9,22 @@
       </div>
       <div class="verifybox-bottom" :style="{ padding: mode == 'pop' ? '15px' : '0' }">
         <!-- 验证码容器 -->
-        <components :is="componentType" v-if="componentType" ref="instance" :captcha-type="captchaType"
-          :type="verifyType" :figure="figure" :arith="arith" :mode="mode" :v-space="vSpace" :explain="explain"
-          :img-size="imgSize" :block-size="blockSize" :bar-size="barSize" :default-img="defaultImg" />
+        <components
+          :is="componentType"
+          v-if="componentType"
+          ref="instance"
+          :captcha-type="captchaType"
+          :type="verifyType"
+          :figure="figure"
+          :arith="arith"
+          :mode="mode"
+          :v-space="vSpace"
+          :explain="explain"
+          :img-size="imgSize"
+          :block-size="blockSize"
+          :bar-size="barSize"
+          :default-img="defaultImg"
+        />
       </div>
     </div>
   </div>
@@ -79,7 +92,7 @@ export default {
     },
     barSize: {
       type: Object
-    },
+    }
   },
   data() {
     return {
@@ -120,7 +133,7 @@ export default {
             break
         }
       }
-    },
+    }
   },
   mounted() {
     this.uuid()
@@ -181,7 +194,7 @@ export default {
         this.clickShow = true
       }
     }
-  },
+  }
 }
 </script>
 <style>

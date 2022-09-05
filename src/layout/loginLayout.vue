@@ -4,19 +4,14 @@
 
 <script>
 import common from '@/utils/common'
-import store from '@/store'
 export default {
   name: 'Layout',
-  beforeCreate() {
-    console.log('beforeCreate')
+  mounted() {
+    console.log('mounted')
   },
   created() {
     console.log('created')
     common.resetCanvas()
-    const info = store.getters.info
-    if (info === undefined || info === '' || info.id <= 0) {
-      this.$router.push({ path: '/' })
-    }
   }
 }
 </script>
