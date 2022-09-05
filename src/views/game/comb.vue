@@ -267,6 +267,7 @@ export default {
     }
   },
   created() {
+    document.getElementsByTagName('html')[0].style.fontSize = '16px'
     this.init()
   },
   methods: {

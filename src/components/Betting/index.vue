@@ -299,9 +299,6 @@ export default {
      * 投注按钮
      */
     handleBet() {
-      console.log('play', this.play)
-      console.log('odds', this.odds)
-
       if (this.play === undefined || this.play.id <= 0) {
         Toast('请选择投注类型')
         return
@@ -324,7 +321,15 @@ export default {
       const amount = this.form.money * count
 
       // 投注号码
-      const betNum = this.play.gameName
+      let betNum = ''
+      if(this.odds.length === 1) {
+        betNum = this.play.gameId === 4 ? this.play.gameName : this.odds[0].name
+      } else {
+        this.odds.forEach(e=>{
+          betNum = betNum + e.name + ","
+        })
+        betNum = betNum.substring(0, betNum.length - 1)
+      }
 
       // 最高可赢金额
       let maxWin = maxWin = this.odds.reduce((prev, curr) => curr.odds > prev.odds ? curr : prev).odds * this.form.money

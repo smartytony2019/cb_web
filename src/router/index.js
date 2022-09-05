@@ -31,7 +31,6 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-
   {
     path: '/404',
     component: () => import('@/views/404'),
