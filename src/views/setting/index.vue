@@ -18,17 +18,17 @@
         </div>
 
         <div class="view">
-          <div class="item after">
+          <div class="item after" @click="$router.push({path:'/loginPassword'})">
             <div>登录密码</div>
             <i class="iconfont icon-jinrujiantou" />
           </div>
 
-          <div class="item after">
+          <div class="item after" @click="$router.push({path:'/withdrawPassword'})">
             <div>提现密码</div>
             <i class="iconfont icon-jinrujiantou" />
           </div>
 
-          <div class="logout flex-center-center">退出</div>
+          <div class="logout flex-center-center" @click="handleLogout">退出</div>
         </div>
       </div>
     </div>
@@ -48,17 +48,18 @@ export default {
     }
   },
   created() {
-    // this.onRefresh()
+    this.init()
   },
   methods: {
-    onRefresh() {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
+    async init() {
     },
-    onLoad() {
-
+    async handleLogout() {
+      const res = await this.$store.dispatch('member/logout', {})
+      if (res && res.code === 0) {
+        this.$router.push({ path: '/' })
+      } else {
+        this.$toast('操作失败')
+      }
     }
   }
 }

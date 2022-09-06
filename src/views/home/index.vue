@@ -366,6 +366,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Nav from '@/components/Nav'
 import api from '@/api/index'
 export default {
@@ -633,6 +634,11 @@ export default {
       cateIndex: 0
     }
   },
+  computed: {
+    ...mapGetters([
+      'info'
+    ])
+  },
   created() {
     this.$store.dispatch('app/setNavIndex', 0)
     this.languageDefault = this.languageList[this.languageIndex]
@@ -674,21 +680,24 @@ export default {
       })
     },
     handleGameClick(item) {
-      // this.$router.push({ path: '/offline?id=' + item.id })
-      if (item.id === 1) {
-        this.$router.push({ path: '/comb?id=' + item.id })
-      }
-      if (item.id === 2) {
-        this.$router.push({ path: '/bjl?id=' + item.id })
-      }
-      if (item.id === 3) {
-        this.$router.push({ path: '/champion?id=' + item.id })
-      }
-      if (item.id === 4) {
-        this.$router.push({ path: '/hash?id=' + item.id })
-      }
-      if (item.id === 5) {
-        this.$router.push({ path: '/bull?id=' + item.id })
+      if (this.info && this.info.id > 0) {
+        if (item.id === 1) {
+          this.$router.push({ path: '/comb?id=' + item.id })
+        }
+        if (item.id === 2) {
+          this.$router.push({ path: '/bjl?id=' + item.id })
+        }
+        if (item.id === 3) {
+          this.$router.push({ path: '/champion?id=' + item.id })
+        }
+        if (item.id === 4) {
+          this.$router.push({ path: '/hash?id=' + item.id })
+        }
+        if (item.id === 5) {
+          this.$router.push({ path: '/bull?id=' + item.id })
+        }
+      } else {
+        this.$router.push({ path: '/offline?id=' + item.id })
       }
     }
   }

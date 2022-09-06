@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
+import { Toast } from 'vant'
 import * as cookies from '@/utils/cookies'
 import consts from '@/utils/consts'
 

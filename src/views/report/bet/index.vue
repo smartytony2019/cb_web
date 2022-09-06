@@ -62,19 +62,23 @@
                   <div class="titleOne">
                     <div class="flex-between-center">
                       <div class="oneTab">日期</div>
-                      <div class="twoTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
+                      <div class="twoTab">投注次数</div>
+                      <div class="threeTab">投注金额</div>
+                      <div class="threeTab">中奖金额</div>
+                      <div class="threeTab">输赢</div>
+                    </div>
+
+                    <div class="flex-between-center">
+                      <div class="oneTab">2022-09-05</div>
+                      <div class="twoTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
                     </div>
 
                     <div class="flex-between-center bg">
                       <div class="oneTab">总计</div>
                       <div class="twoTab">1</div>
-                      <div class="threeTab">1</div>
-                      <div class="threeTab">1</div>
                       <div class="threeTab">1</div>
                       <div class="threeTab">1</div>
                       <div class="threeTab">1</div>
@@ -172,7 +176,6 @@ export default {
       font-size: .8125rem;
       color: #333;
       background: #fff;
-      width: 170%;
       div {
         text-align: center;
         line-height: 2.75rem;
@@ -180,20 +183,13 @@ export default {
       >div {
         width: 100%;
       }
+      .one {
+        width: 25%;
+      }
       .oneTab, .twoTab, .threeTab {
         border-right: 0.0625rem solid #f2f7ff;
         border-bottom: 0.0625rem solid #f2f7ff;
-        width: 22%;
-      }
-
-      .oneTab {
-        width: 25%!important;
-        position: absolute;
-        background-color: #fff;
-      }
-
-      .twoTab {
-        margin-left: 14.5%;
+        width: 16%;
       }
     }
 

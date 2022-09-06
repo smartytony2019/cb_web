@@ -80,40 +80,16 @@
     <!-- 玩法说明 - end -->
 
     <!-- 在线客服 - start -->
-    <van-popup
-      v-model="isShowService"
-      :style="{ background: 'none' }"
-    >
-      <div class="bg_service">
-        <div style="text-align: center;">
-          <img src="@/assets/images/kf_port.png" style="width: 90px; height: 90px;">
-        </div>
-
-        <div class="t1">Hi,请联系以下客服</div>
-
-        <div class="list flex-center-center">
-          <div class="service_icon" />
-          <a href="#" target="_blank">24小时在线客服</a>
-        </div>
-
-        <div class="list flex-center-center">
-          <div class="telegram_icon" />
-          <a href="#" target="_blank">Telegram客服</a>
-        </div>
-
-        <div class="list flex-center-center">
-          <div class="telegram_icon" />
-          <a href="#" target="_blank">Telegram频道</a>
-        </div>
-      </div>
-    </van-popup>
+    <OnlineService :show="isShowService" @close="isShowService=false" />
     <!-- 在线客服 - end -->
   </div>
 </template>
 
 <script>
+import OnlineService from '@/components/OnlineService'
 export default {
   name: 'GameHeadDrop',
+  components: { OnlineService },
   props: {
     show: {
       required: false,

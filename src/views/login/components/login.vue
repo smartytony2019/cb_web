@@ -46,8 +46,8 @@
       </div>
 
       <div class="bottom">
-        <div>先去逛逛</div>
-        <div>在线客服</div>
+        <div @click="$router.push({path:'/'})">先去逛逛</div>
+        <div @click="isShowService=true">在线客服</div>
       </div>
 
     </div>
@@ -65,18 +65,25 @@
       :locale="'en-US'"
       @success="success"
     />
+
+    <!-- 在线客服 - start -->
+    <OnlineService :show="isShowService" @close="isShowService=false" />
+    <!-- 在线客服 - end -->
   </div>
 </template>
 
 <script>
+import OnlineService from '@/components/OnlineService'
 import Verify from '@/components/verifition/Verify'
 export default {
-  name: 'Index',
+  name: 'Login',
   components: {
-    Verify
+    Verify,
+    OnlineService
   },
   data() {
     return {
+      isShowService: false,
       form: {
         username: '',
         pwd: ''

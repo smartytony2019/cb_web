@@ -82,6 +82,7 @@
 </template>
 <script>
 
+import { mapGetters } from 'vuex'
 import api from '@/api'
 export default {
   name: 'Wallet',
@@ -92,6 +93,11 @@ export default {
       isLoadingRefresh: false,
       finished: true
     }
+  },
+  computed: {
+    ...mapGetters([
+      'info'
+    ])
   },
   created() {
     this.init()

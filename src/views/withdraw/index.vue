@@ -77,7 +77,7 @@
                 <img src="data:image/png;base64,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">
               </div>
 
-              <div>{{ info.withdrawWallet || '-' }}</div>
+              <div>{{ info.withdrawWallet }}</div>
 
               <div class="copy">
                 <i class="iconfont icon-xuanzhong" />
@@ -96,6 +96,7 @@
 </template>
 <script>
 
+import { mapGetters } from 'vuex'
 import api from '@/api'
 export default {
   name: 'Promote',
@@ -105,21 +106,20 @@ export default {
         type: 0,
         money: ''
       },
-      info: {},
       balance: {}
     }
+  },
+  computed: {
+    ...mapGetters([
+      'info'
+    ])
   },
   created() {
     this.init()
   },
   methods: {
     async init() {
-      let res = await api.member.info()
-      if (res && res.code === 0) {
-        this.info = res.data
-      }
-
-      res = await api.member.balance({ deep: 0 })
+      const res = await api.member.balance({ deep: 0 })
       if (res && res.code === 0) {
         this.balance = res.data
       }

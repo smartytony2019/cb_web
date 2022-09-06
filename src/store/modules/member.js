@@ -79,10 +79,11 @@ const actions = {
   // member logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      api.member.logout({}).then(() => {
-        cookies.remove() // must remove  token  first
+      api.member.logout({}).then(response => {
+        cookies.remove(consts.tokenKey)
+        cookies.remove(consts.memberKey)
         commit('RESET_STATE')
-        resolve()
+        resolve(response)
       }).catch(error => {
         reject(error)
       })
@@ -92,7 +93,8 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      cookies.remove() // must remove  token  first
+      cookies.remove(consts.tokenKey)
+      cookies.remove(consts.memberKey)
       commit('RESET_STATE')
       resolve()
     })

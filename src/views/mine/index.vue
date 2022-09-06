@@ -17,9 +17,9 @@
 
             <!-- 登录信息 - start -->
             <div class="login-info">
-              <div class="port flex-center-center"> S </div>
+              <div class="port flex-center-center"> {{ info.username && info.username.substring(0,1).toUpperCase() }} </div>
               <div class="login-right">
-                <p>smartytony</p>
+                <p>{{ info.username }}</p>
                 <p>加入哈博国际 13天</p>
               </div>
             </div>
@@ -217,6 +217,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Nav from '@/components/Nav'
 import api from '@/api'
 export default {
@@ -227,6 +228,11 @@ export default {
       isReloadBalance: false,
       balance: {}
     }
+  },
+  computed: {
+    ...mapGetters([
+      'info'
+    ])
   },
   created() {
     this.$store.dispatch('app/setNavIndex', 3)

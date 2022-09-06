@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="item_right">
-                    <span class="add">{{ flowMoney(item) }}</span>
+                    <span :class="item.flowMoney>0 ? 'add' : 'sub'">{{ flowMoney(item) }}</span>
                     <span>余额: {{ item.afterMoney }}</span>
                     <span>币种: {{ item.ext }}</span>
                   </div>
@@ -126,6 +126,7 @@ export default {
       this.isLoadingRefresh = false
     },
     flowMoney(item) {
+      console.log(item)
       return item.flowMoney > 0 ? '+' + item.flowMoney : item.flowMoney
     }
   }

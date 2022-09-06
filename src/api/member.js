@@ -63,3 +63,12 @@ export async function logout(params = {}) {
 export async function register(params = {}) {
   return request.post(`/api/member/register`, params)
 }
+
+/**
+ * 更改密码
+ * @param {Object} params 参数
+ * @returns Promise
+ */
+export async function changePwd(params = {}) {
+  return request.post(`/api/member/changePwd`, params)
+}
