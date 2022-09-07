@@ -1,7 +1,7 @@
 <!--
 @Author:      tony
 @Date:        2019-01-04T10:00:00+08:00
-@Description: 推广报表
+@Description: 投注报表
 -->
 <template>
   <div class="wrapper financial-report">
@@ -61,23 +61,26 @@
                 <div class="list">
                   <div class="titleOne">
                     <div class="flex-between-center">
+                      <div class="oneTab">用户名</div>
                       <div class="oneTab">日期</div>
-                      <div class="twoTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
+                      <div class="twoTab">团队人数</div>
+                      <div class="threeTab">直属人数</div>
+                      <div class="threeTab">业绩</div>
+                      <div class="threeTab">佣金</div>
                     </div>
 
-                    <div class="flex-between-center bg">
-                      <div class="oneTab">总计</div>
+                    <div class="flex-between-center">
+                      <div class="oneTab">demo5566</div>
+                      <div class="oneTab">2022-09-05</div>
                       <div class="twoTab">1</div>
                       <div class="threeTab">1</div>
                       <div class="threeTab">1</div>
                       <div class="threeTab">1</div>
-                      <div class="threeTab">1</div>
-                      <div class="threeTab">1</div>
+                    </div>
+
+                    <div class="flex-between-center bg">
+                      <div>总业绩：0</div>
+                      <div>总佣金：0</div>
                     </div>
                   </div>
                 </div>
@@ -172,7 +175,6 @@ export default {
       font-size: .8125rem;
       color: #333;
       background: #fff;
-      width: 170%;
       div {
         text-align: center;
         line-height: 2.75rem;
@@ -180,20 +182,22 @@ export default {
       >div {
         width: 100%;
       }
+      .one {
+        width: 25%;
+      }
       .oneTab, .twoTab, .threeTab {
         border-right: 0.0625rem solid #f2f7ff;
         border-bottom: 0.0625rem solid #f2f7ff;
-        width: 22%;
+        width: 16%;
       }
-
-      .oneTab {
-        width: 25%!important;
-        position: absolute;
-        background-color: #fff;
-      }
-
-      .twoTab {
-        margin-left: 14.5%;
+      .flex-between-center {
+        >div {
+          display: flex;
+          align-items: center;
+          word-break: break-all;
+          overflow: hidden;
+          justify-content: center;
+        }
       }
     }
 
@@ -204,6 +208,12 @@ export default {
       .oneTab {
         line-height: 2.3125rem;
         background-color: #73a3f0;
+      }
+      div {
+        flex: 1;
+        &:first-child {
+          border-right: .0625rem solid #fff;
+        }
       }
     }
   }

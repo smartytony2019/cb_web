@@ -62,12 +62,22 @@
                   <div class="titleOne">
                     <div class="flex-between-center">
                       <div class="oneTab">日期</div>
-                      <div class="twoTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
-                      <div class="threeTab">日期</div>
+                      <div class="twoTab">充值</div>
+                      <div class="threeTab">提款</div>
+                      <div class="threeTab">佣金</div>
+                      <div class="threeTab">下注</div>
+                      <div class="threeTab">返奖</div>
+                      <div class="threeTab">活动</div>
+                    </div>
+
+                    <div class="flex-between-center">
+                      <div class="oneTab">2022-08-12</div>
+                      <div class="twoTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
+                      <div class="threeTab">1</div>
                     </div>
 
                     <div class="flex-between-center bg">
