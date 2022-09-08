@@ -27,32 +27,7 @@
 
         <div class="view">
           <div class="dataList">
-            <van-pull-refresh v-model="isLoading" :head-height="80" @refresh="onRefresh">
-              <!-- 下拉提示，通过 scale 实现一个缩放效果 -->
-              <template #pulling="props">
-                <img
-                  class="doge"
-                  src="https://fastly.jsdelivr.net/npm/@vant/assets/doge.png"
-                  :style="{ transform: `scale(${props.distance / 80})` }"
-                >
-              </template>
-
-              <!-- 释放提示 -->
-              <template #loosing>
-                <img
-                  class="doge"
-                  src="https://fastly.jsdelivr.net/npm/@vant/assets/doge.png"
-                >
-              </template>
-
-              <!-- 加载提示 -->
-              <template #loading>
-                <img
-                  class="doge"
-                  src="https://fastly.jsdelivr.net/npm/@vant/assets/doge-fire.jpeg"
-                >
-              </template>
-
+            <van-pull-refresh v-model="isLoadingRefresh" @refresh="onRefresh">
               <van-list
                 :finished="finished"
                 finished-text="没有更多了"
@@ -89,6 +64,9 @@
             </van-pull-refresh>
 
           </div>
+
+          <!-- 日历 -->
+          <van-calendar v-model="isShowCalendar" type="range" color="#1989fa" :min-date="minDate" @confirm="onConfirm" />
         </div>
       </div>
     </div>
@@ -97,28 +75,89 @@
 </template>
 <script>
 
+import dayjs from 'dayjs'
 import Nav from '@/components/Nav'
+import api from '@/api'
 export default {
   name: 'Promote',
   components: { Nav },
   data() {
     return {
-      isLoading: false,
-      finished: true
+      isShowCalendar: false,
+      date: '',
+      minDate: new Date(dayjs().year(), dayjs().month() - 1, 1),
+
+      recordLoading: false,
+      isLoadingRefresh: false,
+      finished: false,
+      list: [],
+      total: {},
+      form: {
+        startTime: '',
+        endTime: '',
+        current: 0,
+        size: 15
+      }
     }
   },
   created() {
-    // this.onRefresh()
+    this.init()
   },
   methods: {
-    onRefresh() {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
-    },
-    onLoad() {
+    async init() {
+      const start = dayjs().add(-7, 'day').format('YYYY/MM/DD')
+      const end = dayjs().format('YYYY/MM/DD')
+      this.date = `${start}~${end}`
 
+      this.form.startTime = dayjs().add(-7, 'day').format('YYYYMMDD')
+      this.form.endTime = dayjs().format('YYYYMMDD')
+    },
+
+    async handleConfirm() {
+      this.onRefresh()
+    },
+
+    async fetch() {
+      console.log('------fetch------')
+      const res = await api.statistics.financial(this.form)
+      if (res && res.code === 0) {
+        this.list = this.list.concat(res.data.data.records)
+        this.total = res.data.total
+        this.finished = res.data.data.records.length !== this.form.size
+      }
+      this.recordLoading = false
+    },
+    async onRefresh() {
+      console.log('onRefresh', this.isLoadingRefresh)
+      this.form.current = 1
+      this.finished = false
+      this.list = []
+      this.recordLoading = true
+      await this.fetch()
+      this.isLoadingRefresh = false
+    },
+    async onLoad() {
+      // 防止多次加载
+      if (this.recordLoading || this.isLoadingRefresh) {
+        return
+      }
+
+      console.log('onLoad', this.isLoadingRefresh)
+      this.form.current += 1
+      this.recordLoading = true
+      await this.fetch()
+      this.isLoadingRefresh = false
+    },
+
+    onConfirm(date) {
+      const [s, e] = date
+      const start = dayjs(s).format('YYYY/MM/DD')
+      const end = dayjs(e).format('YYYY/MM/DD')
+      this.date = `${start} - ${end}`
+      this.form.startTime = dayjs(s).format('YYYYMMDD')
+      this.form.endTime = dayjs(e).format('YYYYMMDD')
+
+      this.isShowCalendar = false
     }
   }
 }

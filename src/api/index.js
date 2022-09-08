@@ -7,6 +7,7 @@ import * as hashResult from './hashResult'
 import * as member from './member'
 import * as memberFlow from './memberFlow'
 import * as promote from './promote'
+import * as statistics from './statistics'
 
 export default {
   category,
@@ -17,5 +18,6 @@ export default {
   hashResult,
   member,
   memberFlow,
-  promote
+  promote,
+  statistics
 }
