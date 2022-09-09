@@ -19,8 +19,8 @@
 
         <div class="titles flex after before">
           <div class="titles_title">查询时间：</div>
-          <div class="titles_value flex-center-center">
-            <span>2022/07/18~2022/07/18</span>
+          <div class="titles_value flex-center-center" @click="isShowCalendar = true">
+            <span>{{ date }}</span>
           </div>
           <button class="flex-center-center">确定</button>
         </div>
@@ -44,19 +44,21 @@
                       <div class="threeTab">佣金</div>
                     </div>
 
-                    <div class="flex-between-center">
-                      <div class="oneTab">demo5566</div>
-                      <div class="oneTab">2022-09-05</div>
-                      <div class="twoTab">1</div>
-                      <div class="threeTab">1</div>
-                      <div class="threeTab">1</div>
-                      <div class="threeTab">1</div>
-                    </div>
+                    <template v-if="list.length>0">
+                      <div v-for="(item,index) in list" :key="index" class="flex-between-center">
+                        <div class="oneTab">{{ item.username }}</div>
+                        <div class="oneTab">{{ item.date }}</div>
+                        <div class="twoTab">{{ item.teamCount }}</div>
+                        <div class="threeTab">{{ item.directCount }}</div>
+                        <div class="threeTab">{{ item.totalPerformance }}</div>
+                        <div class="threeTab">{{ item.totalCommission }}</div>
+                      </div>
 
-                    <div class="flex-between-center bg">
-                      <div>总业绩：0</div>
-                      <div>总佣金：0</div>
-                    </div>
+                      <div class="flex-between-center bg">
+                        <div>总业绩：{{ total.totalPerformance }}</div>
+                        <div>总佣金：{{ total.totalPerformance }}</div>
+                      </div>
+                    </template>
                   </div>
                 </div>
               </van-list>
@@ -119,7 +121,7 @@ export default {
 
     async fetch() {
       console.log('------fetch------')
-      const res = await api.statistics.financial(this.form)
+      const res = await api.statistics.promote(this.form)
       if (res && res.code === 0) {
         this.list = this.list.concat(res.data.data.records)
         this.total = res.data.total
@@ -158,6 +160,7 @@ export default {
       this.form.endTime = dayjs(e).format('YYYYMMDD')
 
       this.isShowCalendar = false
+      this.onRefresh()
     }
   }
 }

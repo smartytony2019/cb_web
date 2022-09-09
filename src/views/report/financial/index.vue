@@ -45,25 +45,28 @@
                       <div class="threeTab">活动</div>
                     </div>
 
-                    <div v-for="(item,index) in list" :key="index" class="flex-between-center">
-                      <div class="oneTab">{{ item.date }}</div>
-                      <div class="twoTab">{{ item.rechargeTrc20Amount }}</div>
-                      <div class="threeTab">{{ item.withdrawTrc20Amount }}</div>
-                      <div class="threeTab">{{ item.commissionAmount }}</div>
-                      <div class="threeTab">{{ item.betAmount }}</div>
-                      <div class="threeTab">{{ item.payoutAmount }}</div>
-                      <div class="threeTab">{{ item.activityAmount }}</div>
-                    </div>
+                    <template v-if="list.length>0">
+                      <div v-for="(item,index) in list" :key="index" class="flex-between-center">
+                        <div class="oneTab">{{ item.date }}</div>
+                        <div class="twoTab">{{ item.rechargeTrc20Amount }}</div>
+                        <div class="threeTab">{{ item.withdrawTrc20Amount }}</div>
+                        <div class="threeTab">{{ item.commissionAmount }}</div>
+                        <div class="threeTab">{{ item.betAmount }}</div>
+                        <div class="threeTab">{{ item.payoutAmount }}</div>
+                        <div class="threeTab">{{ item.activityAmount }}</div>
+                      </div>
 
-                    <div class="flex-between-center bg">
-                      <div class="oneTab">总计</div>
-                      <div class="twoTab">{{ total.rechargeTrc20Amount }}</div>
-                      <div class="threeTab">{{ total.withdrawTrc20Amount }}</div>
-                      <div class="threeTab">{{ total.commissionAmount }}</div>
-                      <div class="threeTab">{{ total.betAmount }}</div>
-                      <div class="threeTab">{{ total.payoutAmount }}</div>
-                      <div class="threeTab">{{ total.activityAmount }}</div>
-                    </div>
+                      <div class="flex-between-center bg">
+                        <div class="oneTab">总计</div>
+                        <div class="twoTab">{{ total.rechargeTrc20Amount }}</div>
+                        <div class="threeTab">{{ total.withdrawTrc20Amount }}</div>
+                        <div class="threeTab">{{ total.commissionAmount }}</div>
+                        <div class="threeTab">{{ total.betAmount }}</div>
+                        <div class="threeTab">{{ total.payoutAmount }}</div>
+                        <div class="threeTab">{{ total.activityAmount }}</div>
+                      </div>
+                    </template>
+
                   </div>
                 </div>
               </van-list>
