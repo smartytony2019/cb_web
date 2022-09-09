@@ -6,7 +6,7 @@ export default {
     let size = 16
     const defaultSize = 16
     if (scale < 2) {
-      size = defaultSize * scale
+      size = Math.ceil(defaultSize * scale)
     }
     document.getElementsByTagName('html')[0].style.fontSize = size + 'px'
   }
