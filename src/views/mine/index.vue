@@ -12,7 +12,7 @@
           <div class="mine-info-box">
             <div class="service">
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHjSURBVHgBxVeNdYJADA4uUEagE+gGpROUEdigbqAjuAF2AtoJaCfATqAb4AZp7pFoPE894O71ey/veLn8E3JHAp5AxJSWguiFKCdKmQQ7pp8kSbYQCsYx0YqoQ3/sjY6P/eSB8wUtNVHGrCPRB/SZHpiA93WFRN7sv1JFDjAU5DxXWZt1za/BR3fJVRDdHIbAZK6ct0QZDITRsYJYjFFsfbO+YStlG9IXmY9SNUjBLwhJqH4knOMZfiXzC0Lbze8JSvYVBAbZbNh2c0sgi5G9sq+rkLoESnn3EAmqF0rhzdS+ZP0N8fBl+boIYM7rL8TDjtcMHAHIe5lTiQoIDO7+N/Fhb77jNfaB5oAebBorESgV00ytWgcBE4GX47iygsn191lZUXcnofHOC1c16XnD/AZUNAtLecv8NYwE9ieowafFP80c3YQdxMNN2zP4Z5gAjvz8bO09QTycR7Fqwlrx/E6vB1B2ThcS7I/nWjehdtbh+QJh0MJEqATla9CX20yECrweFkZx9G1IBZCqL0onWrgETSAlxjmOG1WFyYkNdV6p7MMmxz20dDUr9gOnUc7XEBLY/zFprJjv+ptaQmig+5RrLcd7nPAp33Oe4n0M+psaG0TjcLrhvojf6VaTmdIP7vA/d6O4qficjwMAAAAASUVORK5CYII=">
-              <span>客服</span>
+              <span @click="isShowService = true">客服</span>
             </div>
 
             <!-- 登录信息 - start -->
@@ -85,16 +85,16 @@
               <div class="bg-box">
                 <div class="title_group flex-between-center after">
                   <div>我的团队</div>
-                  <div>查看业绩详情</div>
+                  <div @click="$router.push({path:'/promote?index=2'})">查看业绩详情</div>
                 </div>
                 <div class="items flex-between-center">
                   <div class="item flex">
                     <p>直属人数：</p>
-                    <div class="val">1</div>
+                    <div class="val">{{ promote.directCount }}</div>
                   </div>
                   <div class="item flex">
                     <p>团队人数：</p>
-                    <div class="val">1</div>
+                    <div class="val">{{ promote.teamCount }}</div>
                   </div>
                 </div>
               </div>
@@ -105,17 +105,29 @@
             <div class="team-data-box">
               <div class="bg-box">
                 <div class="title_group flex-between-center after">
-                  <div>我的团队</div>
-                  <div>查看业绩详情</div>
+                  <div>佣金</div>
+                  <div @click="$router.push({path:'/promote'})">领取佣金</div>
                 </div>
+
                 <div class="items flex-between-center">
                   <div class="item flex">
-                    <p>直属人数：</p>
-                    <div class="val">1</div>
+                    <p>历史已领取佣金：</p>
+                    <div class="val">{{ promote.commissionTotal }}</div>
                   </div>
                   <div class="item flex">
-                    <p>团队人数：</p>
-                    <div class="val">1</div>
+                    <p>团队业绩：</p>
+                    <div class="val">{{ promote.teamPerformance }}</div>
+                  </div>
+                </div>
+
+                <div class="items flex-between-center">
+                  <div class="item flex">
+                    <p>当前可领取佣金：</p>
+                    <div class="val">{{ promote.availableCommission }}</div>
+                  </div>
+                  <div class="item flex">
+                    <p>今日业绩：</p>
+                    <div class="val">{{ promote.totalPerformance }}</div>
                   </div>
                 </div>
               </div>
@@ -213,6 +225,11 @@
     <!-- 导航 - start -->
     <Nav />
     <!-- 导航 - end -->
+
+    <!-- 在线客服 - start -->
+    <OnlineService :show="isShowService" @close="isShowService=false" />
+    <!-- 在线客服 - end -->
+
   </div>
 </template>
 
@@ -220,13 +237,18 @@
 import { mapGetters } from 'vuex'
 import Nav from '@/components/Nav'
 import api from '@/api'
+import dayjs from 'dayjs'
+import OnlineService from '@/components/OnlineService'
 export default {
   name: 'Mine',
-  components: { Nav },
+  components: { Nav, OnlineService },
   data() {
     return {
+      isShowService: false,
       isReloadBalance: false,
-      balance: {}
+      balance: {},
+
+      promote: {} // 推广数据
     }
   },
   computed: {
@@ -241,6 +263,12 @@ export default {
   methods: {
     async init() {
       this.loadBalance(0)
+
+      const date = dayjs().format('YYYYMMDD')
+      const res = await api.promote.find({ date })
+      if (res && res.code === 0) {
+        this.promote = res.data
+      }
     },
     async loadBalance(deep) {
       const res = await api.member.balance({ deep })

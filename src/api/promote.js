@@ -5,6 +5,15 @@ import request from '@/utils/request'
  * @param {Object} params 参数
  * @returns Promise
  */
+export async function find(params = {}) {
+  return request.post(`/api/agent/find/${params.date}`)
+}
+
+/**
+ * 我的团队
+ * @param {Object} params 参数
+ * @returns Promise
+ */
 export async function myTeam(params = {}) {
   return request.post(`/api/agent/myTeam`)
 }

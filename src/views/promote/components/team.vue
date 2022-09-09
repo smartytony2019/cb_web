@@ -17,7 +17,7 @@
         <div>
           <img src="@/assets/images/promote/m6.png">
         </div>
-        <div>{{ data.teamPerformance || '-' }}</div>
+        <div>{{ data.teamPerformance || '0' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -25,7 +25,7 @@
         <div>
           <img src="@/assets/images/promote/m7.png">
         </div>
-        <div>{{ data.selfPerformance || '-' }}</div>
+        <div>{{ data.selfPerformance || '0' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -33,7 +33,7 @@
         <div>
           <img src="@/assets/images/promote/m4.png">
         </div>
-        <div>{{ data.directPerformance || '-' }}</div>
+        <div>{{ data.directPerformance || '0' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -41,7 +41,7 @@
         <div>
           <img src="@/assets/images/promote/m3.png">
         </div>
-        <div>{{ data.subPerformance || '-' }}</div>
+        <div>{{ data.subPerformance || '0' }}</div>
       </div>
 
       <div class="listContent flex-column-center">
@@ -49,7 +49,7 @@
         <div>
           <img src="@/assets/images/promote/m5.png">
         </div>
-        <div>{{ data.totalCommission || '-' }}</div>
+        <div>{{ data.totalCommission || '0' }}</div>
       </div>
     </div>
     <van-calendar v-model="isShowCalendar" color="#1989fa" :min-date="minDate" :max-date="maxDate" />

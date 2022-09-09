@@ -19,35 +19,35 @@
             <img src="https://designer-trip.com/image/daili_banner_0.png" class="img-icon">
           </div>
 
-          <van-tabs swipeable>
-            <van-tab v-for="(item,index) in tabs" :key="index+''">
+          <van-tabs v-model="activeIndex" :swipe-threshold="4" @click="onClick">
+            <van-tab v-for="(item,index) in tabs" :key="index" :name="index">
               <!--自定义标题（#title必不可少）-->
               <template #title>
                 <span class="van-tab__text">{{ item.name }}</span>
               </template>
 
               <!-- 我的推广 -->
-              <template v-if="index == 0">
+              <template v-if="activeIndex == 0">
                 <My />
               </template>
 
               <!-- 直属查询 -->
-              <template v-if="index == 1">
+              <template v-if="activeIndex == 1">
                 <Direct />
               </template>
 
               <!-- 团队业绩 -->
-              <template v-if="index == 2">
+              <template v-if="activeIndex == 2">
                 <Team />
               </template>
 
               <!-- 推广教程 -->
-              <template v-if="index == 3">
+              <template v-if="activeIndex == 3">
                 <Tutorial />
               </template>
 
               <!-- 代理返佣表 -->
-              <template v-if="index == 4">
+              <template v-if="activeIndex == 4">
                 <Rebate />
               </template>
 
@@ -76,6 +76,7 @@ export default {
       maxDate: new Date(dayjs().year(), dayjs().month(), 1),
       isLoadingRefresh: false,
       finished: true,
+      activeIndex: 0,
       tabs: [
         {
           name: '我的推广'
@@ -96,20 +97,15 @@ export default {
     }
   },
   created() {
-    console.log(dayjs().add(7, 'day'))
-    console.log(new Date(2022, 9, 1))
     this.$store.dispatch('app/setNavIndex', 2)
-    console.log('Promote created')
+    this.activeIndex = parseInt(this.$route.query.index || 0)
   },
   methods: {
     handleDateSelect() {
       this.isShowCalendar = !this.isShowCalendar
     },
-    onRefresh() {
-      console.log(111)
-    },
-    onLoad() {
-      console.log(222)
+    onClick(index) {
+      this.activeIndex = index
     }
   }
 }
