@@ -412,7 +412,6 @@ export function resetRouter() {
 
 // 这里设置路由拦截
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach', to.meta.requireAuth)
   if (to.meta.requireAuth) { // 判断是否需要登录验证
     const token = cookies.get(consts.tokenKey) // 这里是登录页面缓存的token
     if (token !== undefined && token !== '') { // 判断token等于时候就跳转路由

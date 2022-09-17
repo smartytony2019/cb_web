@@ -8,6 +8,7 @@ import * as member from './member'
 import * as memberFlow from './memberFlow'
 import * as promote from './promote'
 import * as statistics from './statistics'
+import * as activity from './activity'
 
 export default {
   category,
@@ -19,5 +20,6 @@ export default {
   member,
   memberFlow,
   promote,
-  statistics
+  statistics,
+  activity
 }
