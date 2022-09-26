@@ -96,8 +96,7 @@ export default {
   },
   data() {
     return {
-      logoSrc: '',
-      qrText: 'http://www.baidu.com'
+      logoSrc: ''
     }
   },
   created() {

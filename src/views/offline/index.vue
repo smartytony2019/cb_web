@@ -14,7 +14,7 @@
               <i class="iconfont  icon-fanhui2" />
             </div>
           </div>
-          <div class="flex-center-center title">幸运哈希</div>
+          <div class="flex-center-center title">{{ game.name }}</div>
           <div class="flex-right">
             <div>注册版</div>
           </div>
