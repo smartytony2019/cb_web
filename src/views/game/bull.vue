@@ -185,9 +185,9 @@ export default {
       num1: [],
       flag: '',
       betStatus: '',
-      poker1:'',
+      poker1: '',
       result1: '',
-      poker2:'',
+      poker2: '',
       result2: ''
     }
   },
@@ -226,10 +226,10 @@ export default {
 
           this.poker1 = `${this.num1[0]}+${this.num1[1]}+${this.num1[2]}`
           this.poker2 = `${this.num1[2]}+${this.num1[3]}+${this.num1[4]}`
-          const tmp1 = (n1+n2+n3) % 10
-          const tmp2 = (n3+n4+n5) % 10
-          this.result1 = '牛'+ (tmp1 === 0 ? '牛' : tmp1)
-          this.result2 = '牛'+ (tmp2 === 0 ? '牛' : tmp2)
+          const tmp1 = (n1 + n2 + n3) % 10
+          const tmp2 = (n3 + n4 + n5) % 10
+          this.result1 = '牛' + (tmp1 === 0 ? '牛' : tmp1)
+          this.result2 = '牛' + (tmp2 === 0 ? '牛' : tmp2)
 
           this.url = 'https://nile.tronscan.org/#/block/' + val.blockHeight
           if (val.network === 'mainnet') {
@@ -314,7 +314,7 @@ export default {
     // 开奖后
     async afterHashResult() {
       const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
-      if (res.code === 0 && res.data.length > 0) {
+      if (res.code === 0 && res.data && res.data.length > 0) {
         this.hashResult = res.data[0]
       } else {
         this.hashResult = null
@@ -322,11 +322,11 @@ export default {
     },
 
     formatL(val) {
-      return val.substr(0, val.indexOf("("))
+      return val.substr(0, val.indexOf('('))
     },
 
     formatR(val) {
-      return val.substr(val.indexOf("("), val.length)
+      return val.substr(val.indexOf('('), val.length)
     }
   }
 

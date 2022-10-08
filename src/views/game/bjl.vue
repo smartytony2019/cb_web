@@ -292,7 +292,7 @@ export default {
     // 开奖后
     async afterHashResult() {
       const res = await api.hashResult.findRecord({ gameId: this.play.gameId, playId: this.play.id })
-      if (res.code === 0 && res.data.length > 0) {
+      if (res.code === 0 && res.data && res.data.length > 0) {
         this.hashResult = res.data[0]
       } else {
         this.hashResult = null

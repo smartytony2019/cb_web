@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
+Vue.prototype.$EventBus = new Vue()
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 // 导入vant包 和其相关样式

@@ -167,7 +167,8 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: flex-start;
+        /* align-items: flex-start;
+         */
         color: #fff;
         h2 {
           font-size: 1.25rem;
